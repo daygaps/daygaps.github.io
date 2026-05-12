@@ -1,0 +1,79 @@
+# Hugo configuration for the Day Gaps marketing site.
+#
+# Rename strategy: the public product name lives ONLY in `params.brand`.
+# If the product is renamed, change `params.brand.*` here and nothing else.
+# Templates and content always read the name via `.Site.Params.brand.*`.
+
+baseURL          = "https://daygaps.app/"   # placeholder; update when domain is decided
+languageCode     = "en-us"
+defaultContentLanguage = "en"
+
+# Title is set from the brand param at render time. Keep this as a fallback
+# so feed generators / sitemap don't render empty if a template forgets it.
+title            = "Day Gaps"
+
+# Use the bare-minimum theme: we wrote layouts ourselves under layouts/.
+# No external theme is imported.
+
+enableRobotsTXT  = true
+enableEmoji      = false
+enableGitInfo    = false
+
+# Hugo Pipes for the single CSS file (asset bundling + minification).
+[minify]
+  minifyOutput = true
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true  # allow inline SVG / HTML in markdown content where we need it
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 3
+    ordered    = false
+
+# Centralized brand identity. Change here, change everywhere.
+[params.brand]
+  name        = "Day Gaps"            # full product name
+  nameLeft    = "Day"                 # left half for the split-logo hero
+  nameRight   = "Gaps"                # right half for the split-logo hero
+  # Public-facing tagline. Plain text. The user kept the layered
+  # strike-shit-write-stuff joke for the logo art only — on the website
+  # this reads straight. Don't reintroduce the <s> here.
+  tagline     = "when real stuff gets done"
+  description = "A native macOS task app built around the gap — the precious window of time between meetings where real work actually happens."
+
+# Site-wide knobs the templates read.
+[params]
+  author       = "Teamrat"
+  twitter      = ""                   # optional @handle, omitted from <head> when empty
+  releaseStage = "private alpha"      # shown on the beta page
+
+  # Direct-download CTA targets. The site is built around a download/TestFlight
+  # link rather than an email waitlist — update these when artifacts exist.
+  [params.cta]
+    primaryLabel  = "Join the private beta"
+    primaryHref   = "/beta/"
+    secondaryLabel = "Read the philosophy"
+    secondaryHref  = "/philosophy/"
+
+# Top-of-page navigation. Order matters; templates iterate in declared order.
+[[menu.main]]
+  name   = "Philosophy"
+  url    = "/philosophy/"
+  weight = 10
+
+[[menu.main]]
+  name   = "Beta"
+  url    = "/beta/"
+  weight = 20
+
+[[menu.main]]
+  name   = "Changelog"
+  url    = "/changelog/"
+  weight = 30
+
+# Don't generate per-section RSS pages we won't use. Home + changelog only.
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML"]
+  page    = ["HTML"]

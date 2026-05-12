@@ -1,0 +1,131 @@
+{{ define "body-class" }}page page--home{{ end }}
+{{ define "main" }}
+{{- $brand := site.Params.brand -}}
+{{- $cta := site.Params.cta -}}
+
+{{/* ---------- HERO: split-logo scroll reveal ---------------------------- */}}
+{{/*                                                                         */}}
+{{/* Markup contract for the JS in assets/js/hero.js:                        */}}
+{{/*   - .hero is the scroll-tracked container (sets --p on itself).         */}}
+{{/*   - .hero__stage is sticky inside it.                                   */}}
+{{/*   - .wordmark__left and .wordmark__right read --p for translation.      */}}
+{{/*   - .hero__gap holds the day-chunks that fade in from --p.             */}}
+{{/* The hero is fully readable WITHOUT JS — words sit side-by-side and the */}}
+{{/* chunks appear below them as a static block (see prefers-reduced-       */}}
+{{/* motion + .no-js fallback in main.css).                                 */}}
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__stage">
+    <h1 id="hero-heading" class="hero__wordmark wordmark wordmark--hero" aria-label="{{ $brand.name }}">
+      <span class="wordmark__left" aria-hidden="true">{{ $brand.nameLeft }}</span>
+      <span class="hero__gap" aria-hidden="true">
+        {{- partial "hero-checklist.html" . -}}
+      </span>
+      <span class="wordmark__right" aria-hidden="true">{{ $brand.nameRight }}</span>
+    </h1>
+    <p class="hero__tagline">{{ $brand.tagline | safeHTML }}</p>
+    <p class="hero__scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="1" y="1" width="12" height="20" rx="6" />
+        <line x1="7" y1="6" x2="7" y2="10" />
+      </svg>
+    </p>
+  </div>
+</section>
+
+{{/* ---------- WHY THE GAP -------------------------------------------------- */}}
+<section class="band band--why">
+  <div class="band__inner">
+    <p class="band__kicker">The North star</p>
+    <h2 class="band__heading">Your calendar is full.<br>Your gaps are precious.</h2>
+    <div class="band__body">
+      <p>
+        A gap is the window of time between meetings where work actually happens. {{ $brand.name }} treats the gap as the unit of value — every surface of the app exists to help you make the most of it.
+      </p>
+      <p>
+        Plan once. Open the app when a gap starts. Close it when the gap ends. The list serves the gap.
+      </p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- TWO MODES --------------------------------------------------- */}}
+<section class="band band--modes">
+  <div class="band__inner">
+    <p class="band__kicker">Two modes, one app</p>
+    <h2 class="band__heading">Plan the day. Then close the laptop and do it.</h2>
+    <div class="modes">
+      <article class="mode">
+        <h3 class="mode__title">Plan</h3>
+        <p class="mode__lede">Sunday morning. Start of the day. End of the day.</p>
+        <p class="mode__body">
+          See the week, drag chunks around, surface what's buried, archive what's done. The main window is the conductor's stand — sidebar, calendar, inspector, full chrome.
+        </p>
+      </article>
+      <article class="mode mode--exec">
+        <h3 class="mode__title">Execute</h3>
+        <p class="mode__lede">The gap is here. You've already decided.</p>
+        <p class="mode__body">
+          Click a chunk to focus it in place, or pop it out as a standalone window with no sidebar, no inspector, no way to navigate elsewhere. The friction is the feature.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- PLAIN FILES -------------------------------------------------- */}}
+<section class="band band--files">
+  <div class="band__inner band__inner--split">
+    <div>
+      <p class="band__kicker">Plain files. Yours forever.</p>
+      <h2 class="band__heading">YAML + Markdown in your own Dropbox.</h2>
+      <p class="band__body band__body--narrow">
+        Your day plan is a YAML file. Your notebook is Markdown. There is no proprietary database, no cloud account, no migration story when {{ $brand.name }} eventually goes away. You can read your data with <code>cat</code>. You can edit it in Vim. You can ask Claude to reorganize a project for you — the app is meant to be operated <em>with</em> an AI, not despite one.
+      </p>
+    </div>
+    <pre class="band__file" aria-label="Example day file"><span class="dim"># 2026-05-12.yaml</span>
+chunks:
+  - time: <span class="hl">"07:30"</span>
+    project: paper-draft
+    tasks:
+      - Sketch §3 figure
+      - Pull citation list
+  - time: <span class="hl">"10:00"</span>
+    project: lab-meeting-prep
+    tasks:
+      - Update slide 4
+  - time: <span class="hl">"15:00"</span>
+    project: inbox
+    tasks:
+      - Triage week
+</pre>
+  </div>
+</section>
+
+{{/* ---------- DESIGN PRINCIPLES (LIST) ------------------------------------ */}}
+<section class="band band--principles">
+  <div class="band__inner">
+    <p class="band__kicker">How it works</p>
+    <h2 class="band__heading">Less to maintain. More to do.</h2>
+    <ul class="principles">
+      <li><strong>Tasks find their own order.</strong> Inside each chunk, tasks sort themselves by project and area. You write what needs doing; the order takes care of itself.</li>
+      <li><strong>One way to mark a task: done.</strong> A checkbox is the only knob a task needs.</li>
+      <li><strong>Projects have an end.</strong> A project is a thing with a finish line — a paper, a renovation, a semester's service. Areas hold the ongoing work.</li>
+      <li><strong>Completed work stays visible.</strong> You can see what you got done today, this week, all the way back to when the project started.</li>
+      <li><strong>Subtasks live with their parents.</strong> A task with parts shows its parts — open, in context, nothing hidden.</li>
+    </ul>
+  </div>
+</section>
+
+{{/* ---------- FINAL CTA ---------------------------------------------------- */}}
+<section class="band band--cta">
+  <div class="band__inner">
+    <h2 class="band__heading band__heading--cta">{{ $brand.name }} is in {{ site.Params.releaseStage }}.</h2>
+    <p class="band__body band__body--center">A native Mac app. Universal binary. macOS 14 and later.</p>
+    <p class="cta-row">
+      <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
+      <a class="btn btn--ghost"   href="{{ $cta.secondaryHref | relURL }}">{{ $cta.secondaryLabel }}</a>
+    </p>
+  </div>
+</section>
+{{ end }}

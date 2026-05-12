@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 86">
+  <!-- Same composition as the inline pill-mark, with literal colors so it
+       renders correctly when loaded as a standalone favicon (no CSS context). -->
+  <rect x="4"  y="4"  width="36" height="18" rx="9" fill="#8FCCBD"/>
+  <rect x="52" y="4"  width="36" height="18" rx="9" fill="#8FCCBD"/>
+  <rect x="4"  y="34" width="36" height="18" rx="9" fill="#F4BC61"/>
+  <rect x="40" y="40" width="12" height="6"        fill="#F4BC61"/>
+  <rect x="52" y="34" width="36" height="18" rx="9" fill="#F4BC61"/>
+  <rect x="4"  y="64" width="36" height="18" rx="9" fill="#ED7456"/>
+  <rect x="52" y="64" width="36" height="18" rx="9" fill="#ED7456"/>
+</svg>

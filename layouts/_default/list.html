@@ -1,0 +1,26 @@
+{{ define "body-class" }}page page--list{{ end }}
+{{ define "main" }}
+<article class="prose">
+  <header class="prose__header">
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="prose__lede">{{ . }}</p>
+    {{- end }}
+  </header>
+  <div class="prose__body">
+    {{ .Content }}
+    {{- with .Pages }}
+    <ul class="page-list">
+      {{- range . }}
+      <li class="page-list__item">
+        <a href="{{ .RelPermalink }}">
+          <span class="page-list__title">{{ .Title }}</span>
+          <time class="page-list__date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+    {{- end }}
+  </div>
+</article>
+{{ end }}

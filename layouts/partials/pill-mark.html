@@ -1,0 +1,24 @@
+{{- /*
+  Day Gaps pill-mark. Three rows × two columns of pills:
+    row 1 — two mint pills (separate)
+    row 2 — two gold pills joined by a narrow bridge (the gap itself)
+    row 3 — two coral pills (separate)
+
+  Fills use CSS custom properties so the mark recolors with the theme
+  (light/dark). The bridge in the gold row is a smaller rectangle with
+  no rounding — visually says "these two are connected." Matches the
+  user's logo concept where the gap is the precious middle row.
+
+  Sized via the .pill-mark CSS class (height: 1em-ish in header/footer).
+  ARIA: caller decides whether this is decorative (aria-hidden) or has
+  an accessible name via the surrounding link's aria-label.
+*/ -}}
+<svg class="pill-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 86" role="img" aria-hidden="true" focusable="false">
+  <rect x="4"  y="4"  width="36" height="18" rx="9" fill="var(--c-mint)"/>
+  <rect x="52" y="4"  width="36" height="18" rx="9" fill="var(--c-mint)"/>
+  <rect x="4"  y="34" width="36" height="18" rx="9" fill="var(--c-gold)"/>
+  <rect x="40" y="40" width="12" height="6"        fill="var(--c-gold)"/>
+  <rect x="52" y="34" width="36" height="18" rx="9" fill="var(--c-gold)"/>
+  <rect x="4"  y="64" width="36" height="18" rx="9" fill="var(--c-coral)"/>
+  <rect x="52" y="64" width="36" height="18" rx="9" fill="var(--c-coral)"/>
+</svg>

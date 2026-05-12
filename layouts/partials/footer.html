@@ -1,0 +1,21 @@
+{{- $brand := site.Params.brand -}}
+<footer class="site-footer" role="contentinfo">
+  <div class="site-footer__inner">
+    <a class="site-footer__mark" href="{{ "/" | relURL }}" aria-label="{{ $brand.name }} — home">
+      {{ partial "pill-mark.html" . }}
+      <span class="wordmark wordmark--small" aria-hidden="true">
+        <span class="wordmark__left">{{ $brand.nameLeft }}</span><span class="wordmark__right">{{ $brand.nameRight }}</span>
+      </span>
+    </a>
+    <p class="site-footer__tag">{{ $brand.tagline | safeHTML }}</p>
+    <nav class="site-footer__nav" aria-label="Footer">
+      {{- range site.Menus.main }}
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{- end }}
+    </nav>
+    <p class="site-footer__meta">
+      &copy; {{ now.Year }} {{ site.Params.author | default $brand.name }}.
+      Built with <a href="https://gohugo.io" rel="external nofollow">Hugo</a>.
+    </p>
+  </div>
+</footer>

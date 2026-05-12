@@ -1,0 +1,14 @@
+{{ define "body-class" }}page page--single{{ end }}
+{{ define "main" }}
+<article class="prose">
+  <header class="prose__header">
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="prose__lede">{{ . }}</p>
+    {{- end }}
+  </header>
+  <div class="prose__body">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

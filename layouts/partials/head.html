@@ -1,0 +1,35 @@
+{{- $brand := site.Params.brand -}}
+{{- $title := cond .IsHome $brand.name (printf "%s — %s" .Title $brand.name) -}}
+{{- $desc  := cond (ne .Description "") .Description $brand.description -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14242A" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary_large_image">
+{{- with site.Params.twitter }}
+<meta name="twitter:site" content="{{ . }}">
+{{- end }}
+
+<link rel="canonical" href="{{ .Permalink }}">
+<link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relURL }}">
+{{- with .OutputFormats.Get "RSS" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $brand.name }}" href="{{ .Permalink }}">
+{{- end }}
+
+{{- /* Bundle + fingerprint the main stylesheet via Hugo Pipes. */ -}}
+{{- $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- /* Hero JS only on the home page; loaded as a deferred module. */ -}}
+{{- if .IsHome }}
+  {{- $js := resources.Get "js/hero.js" | resources.Minify | resources.Fingerprint }}
+  <script type="module" src="{{ $js.RelPermalink }}" defer></script>
+{{- end }}
