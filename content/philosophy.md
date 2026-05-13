@@ -39,10 +39,7 @@ project:
   notebook: false
 
   purpose: |-
-    Submit the methods paper by the Q2 cutoff. Audience leans
-    methods-heavy. Co-authored with Marie; she gets one editing
-    pass before submission. The goal is a tight first draft,
-    not a perfect manuscript.
+    Submit the methods paper by the Q2 cutoff. Audience leans methods-heavy. Co-authored with Marie; she gets one editing pass before submission. The goal is a tight first draft, not a perfect manuscript.
 
 tasks:
   - header: Drafting

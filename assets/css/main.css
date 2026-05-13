@@ -786,6 +786,20 @@ html:not(.js) .hero__scroll-hint { display: none; }
   border-radius: var(--r-lg);
   overflow-x: auto;
   color: var(--fg);
+  /* pre-wrap (not plain `pre`) so long lines break at the container edge
+     on narrow viewports rather than forcing horizontal scroll. Source
+     line breaks are still respected. Trade-off: when a long line wraps,
+     the wrapped portion starts at the pre's left padding, not at the
+     original indent level — there's no clean way to preserve per-line
+     indent on wrap in plain pre. For YAML that mostly shows up as a
+     long prose value (purpose) breaking on small phones; structurally
+     short lines (id:, name:, etc.) never wrap. */
+  white-space: pre-wrap;
+  /* Prefer breaking at word boundaries over mid-token. For unbreakable
+     tokens (long URLs, hashed IDs), fall back to mid-token break rather
+     than overflow. */
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 .prose__body pre code {
   /* Reset the inline-code styling so code inside a fenced block doesn't get
