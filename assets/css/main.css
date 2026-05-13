@@ -1,16 +1,16 @@
 /* ============================================================================
-   Day Gaps — site stylesheet
+   Day Gaps . site stylesheet
 
    Design rationale
    ----------------
    The visitor is a Mac person who values restraint. Conventions used:
 
    • One accent (terracotta). Color is for affordance and tone, not decoration.
-   • System font stack — the visitor's Mac type renders this app's universe.
+   • System font stack . the visitor's Mac type renders this app's universe.
    • Generous type sizes; quiet chrome; no shadows / gradients in the main UI.
    • Dark mode mirrors light, doesn't invent new colors.
    • The hero animation is driven by ONE custom property (--p, set by JS).
-     Every animated value is calc()'d from --p — no per-element timelines.
+     Every animated value is calc()'d from --p . no per-element timelines.
    ============================================================================ */
 
 /* ---------- Tokens ------------------------------------------------------- */
@@ -20,15 +20,15 @@
        --fg     : the ink (#27454E, deep slate-teal). Body text, wordmark.
        --accent : the action color (#ED7456 coral). Buttons, links, kickers.
        --c-mint / --c-gold / --c-coral : the three pill colors. Decorative
-         tokens — used in the logo and any future illustrations. NOT applied
+         tokens . used in the logo and any future illustrations. NOT applied
          to chunk rows in the hero (per the app's "elevate the tasks, mute
          everything else" rule).
      "Day" half of the wordmark renders at 66% opacity of the ink; "Gaps"
-     at 100%. The asymmetry is intentional — it tells the visitor which
+     at 100%. The asymmetry is intentional . it tells the visitor which
      word the brand emphasizes.
      ------------------------------------------------------------------------ */
   --bg:           #F7F6F2;   /* warm near-white, slightly cooled to harmonize with slate */
-  --fg:           #27454E;   /* deep slate-teal — brand ink */
+  --fg:           #27454E;   /* deep slate-teal . brand ink */
   --fg-dim:       #5B7078;   /* mid-tone derived from the ink */
   --hairline:     rgba(39, 69, 78, 0.10);
   --accent:       #ED7456;   /* coral */
@@ -42,11 +42,11 @@
 
   /* Type ------------------------------------------------------------------
      Body uses the system humanist sans (SF on Mac, Segoe on Windows, etc).
-     Wordmark uses Futura — that's the brand font the user picked for the
+     Wordmark uses Futura . that's the brand font the user picked for the
      logo. Futura ships on macOS / iOS by default, so the vast majority
      of visitors (Mac users; that's the product's audience) will see the
      real thing. The fallback stack reaches for other geometric sans-
-     serifs before degrading to system-ui — non-Mac visitors still get
+     serifs before degrading to system-ui . non-Mac visitors still get
      something Futura-adjacent rather than a humanist substitute.
      ----------------------------------------------------------------------- */
   --font-sans:
@@ -69,9 +69,14 @@
   --t-4xl:   clamp(2.4rem, 5vw, 4rem);
 
   /* Layout */
-  --measure: 38rem;   /* prose width — ~75 chars */
+  --measure: 38rem;   /* prose width . ~75 chars */
   --pad-x:   clamp(1.25rem, 4vw, 3rem);
   --band-y:  clamp(4rem, 8vw, 7rem);
+  /* Approx height of the sticky site-header (0.875rem padding × 2 + 1.75rem
+     pill-mark = 3.5rem). Used by the hero stage to fit the visible viewport
+     below the header so absolute-positioned elements (e.g. scroll hint)
+     don't drop off-screen at page load. */
+  --header-h: 3.5rem;
 
   /* Hero scroll progress (0..1). JS sets this; CSS reads it. */
   --p: 0;
@@ -146,7 +151,7 @@ body {
   gap: 1.5rem;
 }
 
-/* The clickable brand mark in the header — pill logo, no text. */
+/* The clickable brand mark in the header . pill logo, no text. */
 .site-mark {
   display: inline-flex;
   align-items: center;
@@ -221,14 +226,14 @@ body {
      .wordmark--inline  → header (small, compact)
      .wordmark--small   → footer (smaller still)
      .wordmark--hero    → home hero (display size, split)
-   The split is structural in every variant — .wordmark__left + .wordmark__right
-   are siblings — so we can drive the hero animation off the same markup.
+   The split is structural in every variant . .wordmark__left + .wordmark__right
+   are siblings . so we can drive the hero animation off the same markup.
    ============================================================================ */
 .wordmark {
   display: inline-flex;
   align-items: baseline;
   font-family: var(--font-display);
-  /* 500 maps to Futura Medium — the user's logo uses the thinner Medium
+  /* 500 maps to Futura Medium . the user's logo uses the thinner Medium
      cut, not Bold. The geometric letterforms still read clearly at this
      weight; Bold made the wordmark feel chunkier than the source. */
   font-weight: 500;
@@ -239,7 +244,7 @@ body {
   text-decoration: none;
   line-height: 1;
   /* Optical/ligature hints for the wordmark. font-feature-settings overrides
-     the body's "ss01"/"cv11" stylistic alternates with defaults — we want
+     the body's "ss01"/"cv11" stylistic alternates with defaults . we want
      Futura's standard glyphs, not feature-tweaked ones. */
   font-feature-settings: "kern", "liga";
 }
@@ -253,8 +258,27 @@ body {
 .wordmark--inline { font-size: var(--t-xl); }
 .wordmark--small  { font-size: var(--t-lg); }
 
+/* ----------------------------------------------------------------------------
+   Inline brand mark (DayGaps in body text).
+   Two-tone, no space between halves. Matches the hero wordmark's
+   asymmetric color relationship (Day muted, Gaps full) so every mention
+   of the product on the site reads as the brand, not a typed name.
+   ---------------------------------------------------------------------------- */
+.brand {
+  /* Slight weight bump so the brand reads as a name, not as accidental
+     emphasis from a colored word. Falls short of bold so it doesn't shout
+     inside running prose. */
+  font-weight: 600;
+  /* Closes the small visual seam between the two halves. With two
+     differently-colored spans the eye catches the boundary; a touch of
+     negative spacing makes them read as one word. */
+  letter-spacing: -0.005em;
+}
+.brand__left  { color: color-mix(in srgb, var(--fg) 66%, transparent); }
+.brand__right { color: var(--fg); }
+
 /* ============================================================================
-   Hero — the scroll choreography
+   Hero . the scroll choreography
    ============================================================================ */
 .hero {
   /* Tall enough that the sticky inner has scroll distance to animate over. */
@@ -263,28 +287,34 @@ body {
 }
 .hero__stage {
   position: sticky;
-  top: 0;
-  height: 100vh;
+  /* Stick BELOW the sticky site-header rather than at top: 0. Otherwise
+     the stage's 100vh height pushes its bottom edge past the viewport at
+     initial scroll position (the header takes the first --header-h of
+     document flow), and the scroll-hint at bottom:1.75rem drops off-screen. */
+  top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  /* Use svh where supported so mobile browsers with toggling chrome get
+     a height that matches the smallest visible viewport, again avoiding
+     the off-screen scroll-hint trap. */
+  height: calc(100svh - var(--header-h));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 var(--pad-x);
-  /* Tagline sits tucked right under the wordmark — they read as one
-     composition. The wordmark also has margin-bottom: -0.2em to pull the
-     tagline up into the descender zone (Futura reserves leading below
-     baseline that line-height: 1 doesn't remove). */
+  /* Tagline sits tucked right under the wordmark . they read as one
+     composition. */
   gap: 0;
 }
 
 .wordmark--hero {
   font-size: clamp(3rem, 13vw, 10rem);
-  /* Display-size override stays minimal — the Medium weight already feels
+  /* Display-size override stays minimal . the Medium weight already feels
      well-spaced at large sizes. */
   letter-spacing: -0.008em;
   /* Trim the natural leading below the baseline. Futura (and most display
      fonts) reserves substantial line-box space below the descender that
-     line-height: 1 doesn't strip — for a 10rem wordmark the element
+     line-height: 1 doesn't strip . for a 10rem wordmark the element
      measures ~228px instead of ~160px, leaving a visible chasm above the
      tagline. Negative margin pulls the next sibling up into that empty
      descender zone. Stops at the visual descender of "y" in "Day". */
@@ -305,7 +335,7 @@ body {
 .wordmark--hero .wordmark__right { justify-self: start; text-align: left; }
 
 /* Starting overlap. At --p=0 the two halves visually overlap by a small
-   amount — the wordmark reads as one tight glyph cluster (DayGaps) where
+   amount . the wordmark reads as one tight glyph cluster (DayGaps) where
    the y-tail and G-bowl interlock. As --p increases the transforms relax
    to 0, and the gap (which is also growing) takes over the separation.
    We use translateX on transform (cheap; doesn't trigger layout) rather
@@ -347,7 +377,7 @@ body {
    feedback_daychunks_ui_chrome.md): muted chunk header on top, elevated
    task rows below. The visitor is meant to see the same hierarchy on the
    marketing site as inside the app. Do not visually elevate the chunk
-   header — the design rule is "elevate the tasks, mute everything else."
+   header . the design rule is "elevate the tasks, mute everything else."
 
    --i (0..5) on each element drives the staggered reveal:
      0  chunk 1 header
@@ -370,7 +400,7 @@ body {
      RESET inherited wordmark typography. The chunks panel is nested inside
      the .wordmark--hero <h1>, which sets letter-spacing: -0.04em at a font
      size of ~160px. That computes to roughly -6.4px and CSS inherits the
-     computed pixel value, not the raw em — so without this reset, the task
+     computed pixel value, not the raw em . so without this reset, the task
      text renders with letters stacked on top of each other. Same goes for
      font-weight (wordmark is 800) and line-height (wordmark is 1).
      ---------------------------------------------------------------------- */
@@ -390,7 +420,7 @@ body {
   list-style: none;
 }
 
-/* Chunk header — recedes. Time in tabular numerals, separator faint,
+/* Chunk header . recedes. Time in tabular numerals, separator faint,
    label uppercased with tracking. Same line, baseline-aligned. */
 .chunk__head {
   display: flex;
@@ -400,7 +430,7 @@ body {
   font-weight: 600;
   color: var(--fg-dim);
   letter-spacing: 0.06em;
-  /* Per-item fade-in. Same formula as tasks below — shared rhythm. */
+  /* Per-item fade-in. Same formula as tasks below . shared rhythm. */
   --in: clamp(0, calc((var(--p) - 0.22 - var(--i) * 0.07) * 12), 1);
   opacity: var(--in);
   transform: translateY(calc((1 - var(--in)) * 6px));
@@ -409,7 +439,7 @@ body {
 .chunk__sep   { opacity: 0.55; }
 .chunk__label { text-transform: uppercase; }
 
-/* Task rows — elevated. Larger font than header, full foreground color. */
+/* Task rows . elevated. Larger font than header, full foreground color. */
 .chunk__tasks {
   list-style: none;
   margin: 0;
@@ -466,7 +496,7 @@ body {
   color: var(--fg-dim);
   text-align: center;
   max-width: 40rem;
-  /* Light tracking gives the tagline a deliberate, branded feel — the
+  /* Light tracking gives the tagline a deliberate, branded feel . the
      wordmark's geometric weight reads as a logo above a "set-spec" line. */
   letter-spacing: 0.035em;
   /* Tagline fades as the user scrolls into the hero, ceding focus to the
@@ -527,7 +557,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 }
 
 /* ============================================================================
-   Bands — content sections below the hero
+   Bands . content sections below the hero
    ============================================================================ */
 .band {
   padding: var(--band-y) var(--pad-x);
@@ -581,7 +611,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 /* Why band gets the most generous breathing room */
 .band--why .band__heading { margin-bottom: 2rem; }
 
-/* Modes band — side by side cards (sort of) */
+/* Modes band . side by side cards (sort of) */
 .modes {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -629,7 +659,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
   line-height: 1.55;
 }
 
-/* Files band — YAML preview */
+/* Files band . YAML preview */
 .band__file {
   margin: 0;
   padding: 1.75rem;
@@ -663,13 +693,109 @@ html:not(.js) .hero__scroll-hint { display: none; }
   position: relative;
 }
 .principles li::before {
-  content: "—";
+  content: ".";
   position: absolute;
   left: 0;
   color: var(--accent);
   font-weight: 700;
 }
 .principles strong { color: var(--fg); font-weight: 600; }
+
+/* ---------------------------------------------------------------------------
+   Short band . single sentence, large, centered. Carries the descriptive
+   elevator-pitch line right after the hero. Treated like a quote: the
+   visitor lands on one idea before getting deeper context below.
+   --------------------------------------------------------------------------- */
+.band--short {
+  text-align: center;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+.band__one-liner {
+  margin: 0 auto;
+  max-width: 32ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  color: var(--fg);
+  /* Mute slightly so it reads as a definition / lede, not as a heading */
+  opacity: 0.88;
+}
+
+/* ---------------------------------------------------------------------------
+   About band . the long-form pitch. Single narrow text column; paragraphs
+   are larger than the why-band so the reader feels they're getting more
+   detail, not the same thing twice.
+   --------------------------------------------------------------------------- */
+.band--about .band__body--narrow {
+  max-width: 36rem;
+  font-size: var(--t-xl);
+  line-height: 1.55;
+}
+.band--about .band__body--narrow em {
+  font-style: italic;
+  color: var(--fg);
+}
+
+/* ---------------------------------------------------------------------------
+   Prose figures. Used in content pages (philosophy.md) to pair a screenshot
+   with caption. The PNG itself carries transparent margin around the visible
+   screen, which acts as the figure's own frame, so we don't add a border or
+   background here. On viewports wide enough to have room, the figure bleeds
+   a bit past the prose column for visual presence.
+   --------------------------------------------------------------------------- */
+.prose__figure {
+  margin: 2.25em 0;
+  padding: 0;
+}
+.prose__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.prose__figure figcaption {
+  margin-top: 0.65em;
+  font-size: var(--t-sm);
+  color: var(--fg-dim);
+  text-align: center;
+  font-style: italic;
+}
+/* On viewports with room, extend the figure past the prose column. The
+   transparent PNG margin already provides air around the visible screen,
+   so the negative margin lands at the image edge, not at the screenshot. */
+@media (min-width: 52rem) {
+  .prose__figure { margin-left: -3rem; margin-right: -3rem; }
+}
+
+/* ---------------------------------------------------------------------------
+   Prose <pre> blocks (fenced code in markdown). Match the band__file look on
+   the landing page: padded, soft background, rounded, monospace. Keeps the
+   YAML in philosophy.md visually consistent with the day-file example in
+   the plain-files band.
+   --------------------------------------------------------------------------- */
+.prose__body pre {
+  margin: 1.75em 0;
+  padding: 1.5rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  background: var(--code-bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow-x: auto;
+  color: var(--fg);
+}
+.prose__body pre code {
+  /* Reset the inline-code styling so code inside a fenced block doesn't get
+     the small inset background and rounded padding. */
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  font-size: 1em;
+  color: inherit;
+}
 
 /* Final CTA band */
 .band--cta {

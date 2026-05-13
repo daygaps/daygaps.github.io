@@ -1,10 +1,10 @@
 ---
 title: "Beta"
-description: "Day Gaps is in private alpha. Here's how to get in."
+description: "DayGaps is in private alpha. Here's how to get in."
 date: 2026-05-12
 ---
 
-Day Gaps is a native Mac app, currently in private alpha. It runs on macOS 14 and later as a universal binary.
+{{< brand >}} is a native Mac app, currently in private alpha. It runs on macOS 14 and later as a universal binary.
 
 ## Get the build
 
@@ -12,7 +12,7 @@ The current build is distributed via TestFlight. The link is invite-only while t
 
 <p class="cta-row cta-row--inline">
   <a class="btn btn--primary" href="https://testflight.apple.com/join/PLACEHOLDER">Join the TestFlight</a>
-  <a class="btn btn--ghost" href="mailto:teamrat@gmail.com?subject=Day%20Gaps%20alpha%20access">Email for an invite</a>
+  <a class="btn btn--ghost" href="mailto:teamrat@gmail.com?subject=DayGaps%20alpha%20access">Email for an invite</a>
 </p>
 
 If TestFlight isn't an option for you, email and we'll send you a notarized DMG directly. <!-- Update both links above when the real TestFlight link is ready. -->
@@ -23,7 +23,7 @@ This is alpha software. Things will break. The data format is stable enough that
 
 - Day view with chunks, projects, and the calendar inspector
 - Project pages with inline editing
-- Inbox capture (right-pane only — by design)
+- Inbox capture (right-pane only, by design)
 - Standalone focus windows for any project, date, or area
 - Plain-text storage: YAML day files, YAML project files, Markdown notebook
 - Files live in any folder you point the app at (Dropbox, iCloud, Syncthing, etc.)

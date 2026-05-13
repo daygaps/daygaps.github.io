@@ -1,10 +1,16 @@
 {{ define "body-class" }}page page--single{{ end }}
 {{ define "main" }}
+{{- /* The visible lede is the frontmatter `description`, with the literal
+       brand name substituted for the two-tone span markup. The frontmatter
+       value stays plain text so it's still valid for the <meta description>
+       tag (rendered separately in head.html). */ -}}
+{{- $brandMark := partial "brand-inline.html" . -}}
 <article class="prose">
   <header class="prose__header">
     <h1>{{ .Title }}</h1>
     {{- with .Description }}
-    <p class="prose__lede">{{ . }}</p>
+      {{- $lede := replace . site.Params.brand.name $brandMark -}}
+      <p class="prose__lede">{{ $lede | safeHTML }}</p>
     {{- end }}
   </header>
   <div class="prose__body">

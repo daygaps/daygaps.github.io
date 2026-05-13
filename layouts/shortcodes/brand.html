@@ -1,0 +1,17 @@
+{{- /*
+  Markdown shortcode for the inline brand mark. Same output as the
+  brand-inline partial; this file exists separately because Hugo
+  shortcodes are loaded from layouts/shortcodes/ while partials live
+  in layouts/partials/.
+
+  Usage in markdown content: write the shortcode with curly-percent
+  delimiters around the word "brand". See `layouts/partials/brand-inline.html`
+  for the long-form rationale.
+
+  (Avoid putting the literal shortcode syntax inside this comment: the
+  Hugo docs convention for showing a shortcode literally includes the
+  star-slash combination, which closes a Go-template comment early and
+  breaks the parser.)
+*/ -}}
+{{- $b := site.Params.brand -}}
+<span class="brand"><span class="brand__left">{{ $b.nameLeft }}</span><span class="brand__right">{{ $b.nameRight }}</span></span>

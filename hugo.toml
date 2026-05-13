@@ -1,16 +1,16 @@
-# Hugo configuration for the Day Gaps marketing site.
+# Hugo configuration for the DayGaps marketing site.
 #
 # Rename strategy: the public product name lives ONLY in `params.brand`.
 # If the product is renamed, change `params.brand.*` here and nothing else.
 # Templates and content always read the name via `.Site.Params.brand.*`.
 
-baseURL = "https://daygaps.github.io/daygaps-site/"   # placeholder; update when domain is decided
+baseURL = "https://daygaps.github.io/"   # user-site URL (repo: daygaps/daygaps.github.io). Update if you point a custom domain.
 languageCode     = "en-us"
 defaultContentLanguage = "en"
 
 # Title is set from the brand param at render time. Keep this as a fallback
 # so feed generators / sitemap don't render empty if a template forgets it.
-title            = "Day Gaps"
+title            = "DayGaps"
 
 # Use the bare-minimum theme: we wrote layouts ourselves under layouts/.
 # No external theme is imported.
@@ -33,14 +33,17 @@ enableGitInfo    = false
 
 # Centralized brand identity. Change here, change everywhere.
 [params.brand]
-  name        = "Day Gaps"            # full product name
-  nameLeft    = "Day"                 # left half for the split-logo hero
-  nameRight   = "Gaps"                # right half for the split-logo hero
+  # No space in the product name. The two halves render as one closed
+  # compound word with the two-tone color treatment (Day muted, Gaps full)
+  # wherever the brand appears in body text. See `layouts/partials/brand-inline.html`.
+  name        = "DayGaps"             # full product name, no space
+  nameLeft    = "Day"                 # left half for split-logo / two-tone renders
+  nameRight   = "Gaps"                # right half for split-logo / two-tone renders
   # Public-facing tagline. Plain text. The user kept the layered
-  # strike-shit-write-stuff joke for the logo art only — on the website
+  # strike-shit-write-stuff joke for the logo art only. On the website
   # this reads straight. Don't reintroduce the <s> here.
   tagline     = "when real stuff gets done"
-  description = "A native macOS task app built around the gap — the precious window of time between meetings where real work actually happens."
+  description = "A native macOS task app built around the gap. The precious window of time between meetings where real work actually happens."
 
 # Site-wide knobs the templates read.
 [params]
@@ -49,7 +52,7 @@ enableGitInfo    = false
   releaseStage = "private alpha"      # shown on the beta page
 
   # Direct-download CTA targets. The site is built around a download/TestFlight
-  # link rather than an email waitlist — update these when artifacts exist.
+  # link rather than an email waitlist. Update these when artifacts exist.
   [params.cta]
     primaryLabel  = "Join the private beta"
     primaryHref   = "/beta/"

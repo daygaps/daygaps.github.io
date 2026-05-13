@@ -21,7 +21,7 @@ date: 2026-05-12
 ## Alpha · April 20, 2026
 
 - Self-backlog project retired; treat the `p-2d3931.yaml` file as sample data.
-- Sidebar wordmark updated to **Day Gaps** (formerly **DayChunks**) ahead of a full rename.
+- Sidebar wordmark updated to **DayGaps** (formerly **DayChunks**) ahead of a full rename.
 
 ## Alpha · April 17, 2026
 

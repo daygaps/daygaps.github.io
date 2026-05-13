@@ -1,0 +1,22 @@
+{{- /*
+  Figure shortcode for prose content pages. Overrides Hugo's built-in
+  `figure` shortcode so we control the class and src handling.
+
+  Params:
+    src     (required)  Image path, e.g. "/screens/project.png". Passed
+                        through `relURL` so the baseURL config is honored.
+    alt     (required)  Accessibility alt text. Keep this plain text.
+    caption (optional)  Visible figcaption text.
+
+  Usage in markdown:
+    {{ "{{< figure src=\"/screens/project.png\" alt=\"...\" caption=\"...\" >}}" }}
+*/ -}}
+{{- $src     := .Get "src" -}}
+{{- $alt     := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+<figure class="prose__figure">
+  <img src="{{ $src | relURL }}" alt="{{ $alt }}">
+  {{- with $caption }}
+  <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>

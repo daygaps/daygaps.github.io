@@ -1,0 +1,15 @@
+{{- /*
+  Inline brand mark: "DayGaps" rendered as two-tone, no space between halves.
+  Day is muted (66% of ink); Gaps is full ink. Matches the hero wordmark's
+  asymmetric color treatment so every mention of the product on the site
+  reads as the brand, not just a typed name.
+
+  Usage in templates:
+    {{ partial "brand-inline.html" . }}
+
+  Renders as a single inline span so it flows in body text. No leading or
+  trailing whitespace inside the outer span (line breaks would print as
+  spaces between the halves).
+*/ -}}
+{{- $b := site.Params.brand -}}
+<span class="brand"><span class="brand__left">{{ $b.nameLeft }}</span><span class="brand__right">{{ $b.nameRight }}</span></span>

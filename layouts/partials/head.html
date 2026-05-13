@@ -1,5 +1,5 @@
 {{- $brand := site.Params.brand -}}
-{{- $title := cond .IsHome $brand.name (printf "%s — %s" .Title $brand.name) -}}
+{{- $title := cond .IsHome $brand.name (printf "%s · %s" .Title $brand.name) -}}
 {{- $desc  := cond (ne .Description "") .Description $brand.description -}}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">

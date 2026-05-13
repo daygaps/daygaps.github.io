@@ -1,6 +1,6 @@
 ---
-title: "Day Gaps"
-description: "A native macOS task app built around the gap — the precious window of time between meetings where work actually happens."
+title: "DayGaps"
+description: "A native macOS task app built around the gap. The precious window of time between meetings where work actually happens."
 ---
 
 <!--
