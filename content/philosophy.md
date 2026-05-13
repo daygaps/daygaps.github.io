@@ -18,11 +18,19 @@ You don't live your day in twenty-minute increments, and you don't live it as "T
 
 {{< brand >}} takes this seriously. A task isn't just due today; it's in *this* gap. When the gap arrives, the tasks under it are what you do. You decided where each task belonged earlier: first thing in the morning, the night before, whenever planning fit. By the time the gap is in front of you, the deciding is done.
 
+{{< figure src="/screens/today.png" alt="Today view in DayGaps, with named chunks across the day and the tasks scheduled into each" caption="Today. Each gap is named and holds the tasks you put there. Tasks are queried in from project files by their date." >}}
+
 ## Planning and executing
 
-Your day has two halves of work. One half sits on the calendar already: meetings, classes, commitments with a clock and a room. The other half is in the gaps between, and that half is yours to direct.
+Your day has two halves. One half is already structured: meetings, classes, meals, errands, the walk, sleep. The parts that have a time and place. The other half is in the gaps between, and that half is yours to direct.
 
 {{< brand >}} has two modes for the two halves, though it doesn't label them on the screen. Before the day starts, you're planning. The whole interface exists to help you decide what each gap is for. Once you're inside a gap, you're executing. The other gaps fade and the other projects step out of the way, and what's in front of you is one slice of time and a few tasks beneath it.
+
+{{< figure src="/screens/focus.png" alt="A single gap focused in DayGaps, with the rest of the day's chunks muted" caption="Click a gap to focus it. The others quiet down." >}}
+
+Or open the gap as its own window, with no sidebar and no way to navigate elsewhere. The friction is the feature. The next time you want to switch contexts, you close the window. That's the only gesture there is.
+
+{{< figure src="/screens/standalone.png" alt="A standalone focused window in DayGaps showing a single gap with its tasks and nothing else" caption="A gap opened as a standalone window. No sidebar, no inspector, no escape hatch." >}}
 
 Both modes are calm. Neither asks for grooming.
 
