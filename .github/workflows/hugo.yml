@@ -43,6 +43,11 @@ jobs:
       - name: Configure Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # Auto-enable Pages on the first run if it isn't already configured.
+          # Without this, the action errors out with "Get Pages site failed"
+          # when Pages is enabled AFTER a workflow has already been pushed.
+          enablement: true
 
       - name: Build
         env:
