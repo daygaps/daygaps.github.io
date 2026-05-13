@@ -270,7 +270,11 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0 var(--pad-x);
-  gap: 2rem;
+  /* Tagline sits tucked right under the wordmark — they read as one
+     composition. The wordmark also has margin-bottom: -0.2em to pull the
+     tagline up into the descender zone (Futura reserves leading below
+     baseline that line-height: 1 doesn't remove). */
+  gap: 0;
 }
 
 .wordmark--hero {
@@ -278,6 +282,13 @@ body {
   /* Display-size override stays minimal — the Medium weight already feels
      well-spaced at large sizes. */
   letter-spacing: -0.008em;
+  /* Trim the natural leading below the baseline. Futura (and most display
+     fonts) reserves substantial line-box space below the descender that
+     line-height: 1 doesn't strip — for a 10rem wordmark the element
+     measures ~228px instead of ~160px, leaving a visible chasm above the
+     tagline. Negative margin pulls the next sibling up into that empty
+     descender zone. Stops at the visual descender of "y" in "Day". */
+  margin-bottom: 0;
   /* Three-column grid keeps the gap at the TRUE visual center of the
      viewport regardless of "Day" being narrower than "Gaps". The 1fr
      side columns are equal width; the auto middle column hugs the gap's
@@ -322,9 +333,11 @@ body {
      once the gap is opening AND the chunks become visible, padding kicks
      in to keep chunk content off the wordmark glyphs. */
   padding: 0 calc(var(--p) * 0.18em);
-  /* Smooth out the JS step. Don't put a long transition here or scroll
-     will feel laggy — keep it just enough to debounce frame edges. */
-  transition: width 50ms linear;
+  /* No transition here. JS updates --p once per requestAnimationFrame
+     (~16ms) which is already smooth at 60fps; layering a CSS transition
+     on top fights the JS-driven values and produces visible stutter on
+     fast or uneven scroll. Let --p drive the width directly. */
+  will-change: width;
 }
 
 /* ----------------------------------------------------------------------------
@@ -434,7 +447,8 @@ body {
   background-position: center;
   background-size: 80% 80%;
   opacity: var(--tick);
-  transition: opacity 60ms linear;
+  /* --tick is driven by --p (scroll-position); no CSS transition here.
+     The transition would queue against JS-driven --p updates and stutter. */
 }
 .task__text {
   text-decoration-line: line-through;
@@ -448,10 +462,13 @@ body {
 
 .hero__tagline {
   margin: 0;
-  font-size: clamp(1rem, 1.6vw, 1.375rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   color: var(--fg-dim);
   text-align: center;
-  max-width: 28rem;
+  max-width: 40rem;
+  /* Light tracking gives the tagline a deliberate, branded feel — the
+     wordmark's geometric weight reads as a logo above a "set-spec" line. */
+  letter-spacing: 0.035em;
   /* Tagline fades as the user scrolls into the hero, ceding focus to the
      spreading wordmark. */
   opacity: calc(1 - var(--p) * 0.7);

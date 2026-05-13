@@ -4,7 +4,7 @@
 # If the product is renamed, change `params.brand.*` here and nothing else.
 # Templates and content always read the name via `.Site.Params.brand.*`.
 
-baseURL          = "https://daygaps.app/"   # placeholder; update when domain is decided
+baseURL = "https://daygaps.github.io/daygaps-site/"   # placeholder; update when domain is decided
 languageCode     = "en-us"
 defaultContentLanguage = "en"
 
