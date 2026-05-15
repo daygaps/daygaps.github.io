@@ -47,7 +47,7 @@ enableGitInfo    = false
 
 # Site-wide knobs the templates read.
 [params]
-  author       = "Teamrat"
+  author       = "DayGaps"           # publisher name for RSS / sitemap. Visible footer copyright renders DayGaps two-tone via the brand partial regardless.
   twitter      = ""                   # optional @handle, omitted from <head> when empty
   releaseStage = "private alpha"      # shown on the beta page
 

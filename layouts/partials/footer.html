@@ -14,7 +14,7 @@
       {{- end }}
     </nav>
     <p class="site-footer__meta">
-      &copy; {{ now.Year }} {{ site.Params.author | default $brand.name }}.
+      &copy; {{ now.Year }} {{ partial "brand-inline.html" . }}.
       Built with <a href="https://gohugo.io" rel="external nofollow">Hugo</a>.
     </p>
   </div>

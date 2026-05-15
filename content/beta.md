@@ -1,36 +1,44 @@
 ---
 title: "Beta"
 description: "DayGaps is in private alpha. Here's how to get in."
-date: 2026-05-12
+date: 2026-05-15
 ---
 
-{{< brand >}} is a native Mac app, currently in private alpha. It runs on macOS 14 and later as a universal binary.
+{{< brand >}} is a native Mac app, currently in private alpha. It runs on macOS 14 (Sonoma) and later as a universal binary.
 
 ## Get the build
 
-The current build is distributed via TestFlight. The link is invite-only while the alpha gates close out.
+The current build is **v0.2**. It's ad-hoc signed and distributed as a zipped `.app` bundle from this site.
 
 <p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="https://testflight.apple.com/join/PLACEHOLDER">Join the TestFlight</a>
-  <a class="btn btn--ghost" href="mailto:teamrat@gmail.com?subject=DayGaps%20alpha%20access">Email for an invite</a>
+  <a class="btn btn--primary" href="/downloads/DayGaps.zip">Download DayGaps 0.2 (.zip, 6 MB)</a>
+  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=DayGaps%20alpha%20feedback">Email about the build</a>
 </p>
 
-If TestFlight isn't an option for you, email and we'll send you a notarized DMG directly. <!-- Update both links above when the real TestFlight link is ready. -->
+## Installing
+
+1. Unzip the download. You'll get `DayGaps.app`.
+2. Drag `DayGaps.app` into `/Applications`.
+3. **First launch only:** right-click the app icon and choose **Open**. macOS will show an "unidentified developer" warning once because the build isn't notarized; clicking Open through that prompt clears it permanently. Subsequent launches work like any other app.
+4. The app reads and writes plain YAML / Markdown in a folder you choose on first run. Dropbox, iCloud, Syncthing, or any local folder works.
+
+Bundle identifier is `com.daygaps.app`, so installing v0.2 over an earlier build preserves your calendar permission and data-folder choice. If you change Macs, each new machine prompts once for Calendar access on first launch, then remembers.
 
 ## What's in this build
 
-This is alpha software. Things will break. The data format is stable enough that the author trusts it for his own daily plans, but you should keep a sync'd copy of your plans folder for now.
+This is alpha software. The data format is stable enough that the author trusts it for his own daily plans across multiple Macs, but keep a synced copy of your plans folder until you've decided to trust it too.
 
-- Day view with chunks, projects, and the calendar inspector
+- Day view with named chunks, projects in the sidebar, and the calendar inspector
 - Project pages with inline editing
 - Inbox capture (right-pane only, by design)
 - Standalone focus windows for any project, date, or area
+- Variant-aware app icon (Default / Dark / Tinted) for macOS Tahoe Dock and Spotlight
 - Plain-text storage: YAML day files, YAML project files, Markdown notebook
 - Files live in any folder you point the app at (Dropbox, iCloud, Syncthing, etc.)
 
 ## Known gaps
 
-The roadmap is public on the [changelog page](/changelog/). The headline items still in flight:
+The roadmap is on the [changelog page](/changelog/). Headline items still in flight:
 
 - Some keyboard shortcuts are not yet wired into menu commands.
 - Area deletion is intentionally restricted while the empty-only path is designed.
@@ -41,5 +49,6 @@ The roadmap is public on the [changelog page](/changelog/). The headline items s
 - Does the two-mode framing (overview vs. focus) match the way you actually work?
 - Anywhere the chrome feels too loud at rest?
 - Anywhere a feature feels like more work than it saves?
+- Multi-Mac install: any odd file-sync behavior in the Dropbox / iCloud folder?
 
-Send notes, bug reports, or rants to <a href="mailto:teamrat@gmail.com">teamrat@gmail.com</a>.
+Send notes, bug reports, or rants to <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a>.

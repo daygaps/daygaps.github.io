@@ -1,17 +1,23 @@
 ---
 title: "Changelog"
 description: "What's shipped, and what's next."
-date: 2026-05-12
+date: 2026-05-15
 ---
 
-<!-- Placeholder content seeded from project_daychunks.md. Update with each
-     alpha gate. Don't link to internal-only docs from here. -->
+## v0.2 · May 15, 2026
 
-## In flight (May 2026)
+First build published from this site as a downloadable `.app` bundle.
+
+- **Variant-aware app icon.** Default, Dark, and Tinted PNGs compile into a single asset catalog that macOS Tahoe consumes for per-appearance Dock and Spotlight rendering. Replaces v0.1's single-variant flow, where the icon was auto-desaturated to a "grayish ghost" in tinted contexts.
+- **Standalone `.app` packaging.** A `Packaging/pack-app.sh` script produces `DayGaps.app` directly from the SwiftPM source. No Xcode project to maintain in parallel. Bundle is ad-hoc signed; first launch on a new Mac needs right-click → Open to clear Gatekeeper.
+- **Multi-Mac install pattern.** Bundle identifier (`com.daygaps.app`) is stable across machines, so calendar permission and the data-folder choice persist when you drag a new build over an old one. Each Mac prompts once for Calendar access, then remembers.
+- **Calendar permission key shipped.** `NSCalendarsFullAccessUsageDescription` is now in the bundle Info.plist; the calendar inspector can actually request access from inside the packaged app (which `swift run` builds couldn't).
+
+## In flight
 
 - Polishing inspector behavior across NavigationSplitView edge cases.
 - Pinning empty-state copy for the inbox and area-default routes.
-- Beta on-ramp materials (this site, TestFlight build notes).
+- Distribution path for non-self users (Developer ID + notarization). Parked until the private alpha cohort outgrows ad-hoc signing.
 
 ## Alpha · April 28, 2026
 

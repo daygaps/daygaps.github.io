@@ -920,13 +920,17 @@ html:not(.js) .hero__scroll-hint { display: none; }
   border-radius: 4px;
   background: var(--code-bg);
 }
-.prose__body a {
+/* Inline anchors in prose body get accent-colored and underlined. Exclude
+   .btn anchors: those carry their own background/foreground colors, and
+   the prose link rule (coral text) would land on coral button bg, making
+   the label invisible until hover. */
+.prose__body a:not(.btn) {
   color: var(--accent);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
-.prose__body a:hover { text-decoration-thickness: 2px; }
+.prose__body a:not(.btn):hover { text-decoration-thickness: 2px; }
 
 /* Changelog list (if Hugo generates one) */
 .page-list { list-style: none; padding: 0; margin: 0; }
