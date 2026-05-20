@@ -61,19 +61,24 @@ enableGitInfo    = false
 
 # Top-of-page navigation. Order matters; templates iterate in declared order.
 [[menu.main]]
+  name   = "Patterns"
+  url    = "/patterns/"
+  weight = 10
+
+[[menu.main]]
   name   = "Philosophy"
   url    = "/philosophy/"
-  weight = 10
+  weight = 20
 
 [[menu.main]]
   name   = "Beta"
   url    = "/beta/"
-  weight = 20
+  weight = 30
 
 [[menu.main]]
   name   = "Changelog"
   url    = "/changelog/"
-  weight = 30
+  weight = 40
 
 # Don't generate per-section RSS pages we won't use. Home + changelog only.
 [outputs]

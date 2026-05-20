@@ -702,9 +702,11 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .principles strong { color: var(--fg); font-weight: 600; }
 
 /* ---------------------------------------------------------------------------
-   Short band . single sentence, large, centered. Carries the descriptive
-   elevator-pitch line right after the hero. Treated like a quote: the
-   visitor lands on one idea before getting deeper context below.
+   Belief band (.band--short).
+   Carries the WHY statement right after the hero. Sinek arc: visitor lands
+   on a belief and decides whether they nod, before any scene or feature.
+   Wider max-width than a tagline because the statement is several sentences
+   long, and slightly smaller font so the lines breathe.
    --------------------------------------------------------------------------- */
 .band--short {
   text-align: center;
@@ -713,15 +715,22 @@ html:not(.js) .hero__scroll-hint { display: none; }
 }
 .band__one-liner {
   margin: 0 auto;
-  max-width: 32ch;
+  max-width: 42ch;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
-  line-height: 1.2;
-  letter-spacing: -0.012em;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--fg);
-  /* Mute slightly so it reads as a definition / lede, not as a heading */
-  opacity: 0.88;
+  opacity: 0.9;
+}
+/* The brand-key phrase ("in the gaps") gets italic emphasis to land the
+   thesis at the end of the statement. Italics on the wordmark-adjacent
+   word, not on the whole statement, so it stays declarative not poetic. */
+.band__one-liner em {
+  font-style: italic;
+  color: var(--fg);
+  opacity: 1;
 }
 
 /* ---------------------------------------------------------------------------
@@ -737,6 +746,80 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .band--about .band__body--narrow em {
   font-style: italic;
   color: var(--fg);
+}
+
+/* ---------------------------------------------------------------------------
+   Scene bands.
+   ---------------------------------------------------------------------------
+   The landing page's main body is a sequence of scenes: short, sensory,
+   present-tense vignettes paired with a screenshot. Two layouts:
+     .band__inner--scene             text left,  figure right (default)
+     .band--scene--reverse           figure left, text right (alternates)
+     .band--scene--center            single column, centered, no figure
+   On viewports < 800px, scenes stack with text above figure regardless of
+   the reverse modifier (reading order > visual rhythm at small sizes).
+   --------------------------------------------------------------------------- */
+.band__inner--scene {
+  max-width: 76rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.scene__text { max-width: 34rem; }
+.scene__text > p {
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--fg-dim);
+  margin: 0 0 1em;
+}
+.scene__text > p:last-child { margin-bottom: 0; }
+.scene__text > p em {
+  color: var(--fg);
+  font-style: italic;
+}
+
+/* Figures in scene bands don't need the prose-page's wide-bleed treatment.
+   They're already in a grid cell sized for the layout. Reset the negative
+   margins the .prose__figure rule applies at larger viewports. */
+.scene__figure .prose__figure {
+  margin: 0;
+}
+.scene__figure .prose__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Reverse: figure on the left, text on the right. */
+.band--scene--reverse .band__inner--scene > .scene__text   { order: 2; }
+.band--scene--reverse .band__inner--scene > .scene__figure { order: 1; }
+
+/* Center variant: single column, centered, used for the "quiet by design"
+   scene where prose carries it alone. */
+.band--scene--center .band__inner {
+  text-align: center;
+}
+.band--scene--center .band__heading {
+  margin-left: auto;
+  margin-right: auto;
+}
+.band--scene--center .band__body--narrow {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .band__inner--scene {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  /* Stack: text first, figure below, regardless of reverse. */
+  .band--scene--reverse .band__inner--scene > .scene__text   { order: 1; }
+  .band--scene--reverse .band__inner--scene > .scene__figure { order: 2; }
 }
 
 /* ---------------------------------------------------------------------------

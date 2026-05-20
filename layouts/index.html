@@ -4,15 +4,9 @@
 {{- $cta := site.Params.cta -}}
 
 {{/* ---------- HERO: split-logo scroll reveal ---------------------------- */}}
-{{/*                                                                         */}}
-{{/* Markup contract for the JS in assets/js/hero.js:                        */}}
-{{/*   - .hero is the scroll-tracked container (sets --p on itself).         */}}
-{{/*   - .hero__stage is sticky inside it.                                   */}}
-{{/*   - .wordmark__left and .wordmark__right read --p for translation.      */}}
-{{/*   - .hero__gap holds the day-chunks that fade in from --p.             */}}
-{{/* The hero is fully readable WITHOUT JS. Words sit side-by-side and the */}}
-{{/* chunks appear below them as a static block (see prefers-reduced-       */}}
-{{/* motion + .no-js fallback in main.css).                                 */}}
+{{/* Untouched. The animated wordmark is the brand's signature moment and  */}}
+{{/* the conceptual anchor of the whole site: a gap in the name literally  */}}
+{{/* becomes the workspace.                                                */}}
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero__stage">
     <h1 id="hero-heading" class="hero__wordmark wordmark wordmark--hero" aria-label="{{ $brand.name }}">
@@ -33,60 +27,105 @@
   </div>
 </section>
 
-{{/* ---------- SHORT: one-line definition -------------------------------- */}}
-{{/* The descriptive elevator-pitch sentence. Sits on its own band so the
-     reader's eye lands on one idea before going deeper. */}}
+{{/* ---------- WHY: belief statement -------------------------------------- */}}
+{{/* Opens the Sinek arc. Belief first, before any features or scenes. The */}}
+{{/* visitor decides whether they nod here. If they do, the scenes below   */}}
+{{/* are HOW that belief manifests; plain files + CTA are the WHAT.        */}}
 <section class="band band--short">
   <div class="band__inner">
     <p class="band__one-liner">
-      {{ partial "brand-inline.html" . }} is a task manager for the time between your meetings.
+      The work that matters happens in the spaces between meetings, classes, errands, and sleep. Not in the meetings themselves. <em>In the gaps.</em>
     </p>
   </div>
 </section>
 
-{{/* ---------- MEDIUM: short Sinek-style pitch -------------------------- */}}
-<section class="band band--why">
-  <div class="band__inner">
-    <p class="band__kicker">The idea</p>
-    <h2 class="band__heading">Your day arrives with shape.</h2>
-    <div class="band__body">
+{{/* ---------- SCENE 1: the moment of execution --------------------------- */}}
+{{/* Open the page with a sensory, present-tense scene. Show what using the */}}
+{{/* app feels like before explaining anything about it.                    */}}
+<section class="band band--scene">
+  <div class="band__inner band__inner--scene">
+    <div class="scene__text">
+      <p class="band__kicker">9:30 in the morning</p>
+      <h2 class="band__heading">The work starts.</h2>
       <p>
-        Some of it is already committed: meetings, errands, meals, the walk, sleep. The parts that have a time and place.
+        The gap you named <em>morning focus</em> is waiting. Three tasks sit beneath it. You start on the first one.
       </p>
       <p>
-        The rest is between, and it's yours. {{ partial "brand-inline.html" . }} will help you make the most of it.
+        Nothing else is asking for your attention. The other gaps are still in the day, but they've quieted down. No badges, no inbox count, no second list pulling your eye. The only thing in front of you is the work you decided yesterday belonged here.
       </p>
+    </div>
+    <div class="scene__figure">
+      <figure class="prose__figure">
+        <img src="{{ "/screens/focus.png" | relURL }}" alt="A single chunk focused in DayGaps with the rest of the day quieted down">
+      </figure>
     </div>
   </div>
 </section>
 
-{{/* ---------- LONG: deeper about ---------------------------------------- */}}
-{{/* Expands the medium pitch into a fuller picture. Brings in the two-mode
-     framing explicitly. Ends on the refrain. */}}
-<section class="band band--about">
+{{/* ---------- SCENE 2: the two gestures ----------------------------------- */}}
+<section class="band band--scene band--scene--reverse">
+  <div class="band__inner band__inner--scene">
+    <div class="scene__text">
+      <p class="band__kicker">Plan, then do</p>
+      <h2 class="band__heading">Two gestures. That's the whole loop.</h2>
+      <p>
+        You plan when you have headspace for it. Sunday evening. First thing in the morning. The fifteen minutes after a meeting ends early. {{ partial "brand-inline.html" . }} gives planning its own surface: the calendar, the sidebar, your projects, your inbox, all at once.
+      </p>
+      <p>
+        Then the gap arrives and the app changes posture. Sidebars step back. Other chunks fade. What's in front of you is one slice of time and a few tasks beneath it. Doing the work feels like doing the work.
+      </p>
+    </div>
+    <div class="scene__figure">
+      <figure class="prose__figure">
+        <img src="{{ "/screens/today.png" | relURL }}" alt="DayGaps Today view, the planning surface with chunks arrayed across the day">
+      </figure>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- SCENE 3: the shape of your day ----------------------------- */}}
+{{/* Day-shape-agnostic positioning: whether your day is meeting-fractured */}}
+{{/* or wide-open, the gap framing applies.                                 */}}
+<section class="band band--scene">
+  <div class="band__inner band__inner--scene">
+    <div class="scene__text">
+      <p class="band__kicker">However your day is shaped</p>
+      <h2 class="band__heading">A gap can be anything you want it to be.</h2>
+      <p>
+        Some days are meeting-fractured. Six events, three short gaps between them, a long stretch in the morning before anyone is asking for you. <em>Before 11am call. Afternoon writing. Evening proposal.</em>
+      </p>
+      <p>
+        Other days are wide open. Three hours of work-shaped time stretching out before you, with only meals and a walk to anchor it. <em>Morning deep work. After lunch. Evening reading.</em>
+      </p>
+      <p>
+        Either way, the chunks become the units. You name them. You decide what goes in each. The app holds the shape.
+      </p>
+    </div>
+    <div class="scene__figure">
+      <figure class="prose__figure">
+        <img src="{{ "/screens/standalone.png" | relURL }}" alt="A standalone DayGaps window for a single chunk, with just its tasks and nothing else">
+      </figure>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- SCENE 4: quiet by design ----------------------------------- */}}
+<section class="band band--scene band--scene--center">
   <div class="band__inner">
-    <p class="band__kicker">What it looks like</p>
-    <h2 class="band__heading">A day, in its actual shape.</h2>
+    <p class="band__kicker">Quiet by design</p>
+    <h2 class="band__heading">Every pixel earns its place.</h2>
     <div class="band__body band__body--narrow">
       <p>
-        Some of your day is fixed: meetings, meals, the school run, the walk, the class you teach. Between those points are gaps. Pockets of time the day doesn't claim. They're where reading happens, where the proposal gets written, where the next idea has room to form.
+        The colors don't call attention to themselves. Completed work fades to muted strikethrough instead of disappearing. When you focus a chunk, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
       </p>
       <p>
-        {{ partial "brand-inline.html" . }} is a task manager built around those gaps. You name each one in your own words: <em>morning focus. Afternoon writing. Evening proposal.</em> Each is a small, deliberate intention for a slice of your day.
-      </p>
-      <p>
-        Two modes follow from that. Before the day starts, you're planning: deciding what each gap is for, what goes in it. Once a gap arrives, you're executing: in it, focused, with everything else faded.
-      </p>
-      <p>
-        The gap is the unit. That's the whole idea.
+        These are not absences. They are decisions. Every choice the app makes is pointed at the same thing: keeping you in the work and out of the app. {{ partial "brand-inline.html" . }} gets quieter the more you use it.
       </p>
     </div>
   </div>
 </section>
 
 {{/* ---------- PLAIN FILES ----------------------------------------------- */}}
-{{/* YAML below matches the real day-file schema: chunks list with time +
-     label only. Tasks live in project files and query in by date. */}}
 <section class="band band--files">
   <div class="band__inner band__inner--split">
     <div>
@@ -96,7 +135,7 @@
         Every project is a YAML file. Every day is a YAML file. Your notebook is Markdown. There is no proprietary database, no cloud account, no migration story when {{ partial "brand-inline.html" . }} eventually goes away. You can read your data with <code>cat</code>. You can edit it in Vim. You can ask Claude to reorganize a project for you. The app is meant to be operated <em>with</em> an AI, not despite one.
       </p>
     </div>
-    <pre class="band__file" aria-label="Example day file">date: 2026-05-12
+    <pre class="band__file" aria-label="Example day file">date: 2026-05-15
 
 chunks:
   - time: <span class="hl">"07:30"</span>
@@ -117,10 +156,11 @@ chunks:
 {{/* ---------- FINAL CTA ------------------------------------------------- */}}
 <section class="band band--cta">
   <div class="band__inner">
-    <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is in {{ site.Params.releaseStage }}.</h2>
+    <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager, in {{ site.Params.releaseStage }}.</h2>
     <p class="band__body band__body--center">A native Mac app. Universal binary. macOS 14 and later.</p>
     <p class="cta-row">
       <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
+      <a class="btn btn--ghost"   href="{{ "/patterns/" | relURL }}">See how it fits a day</a>
       <a class="btn btn--ghost"   href="{{ $cta.secondaryHref | relURL }}">{{ $cta.secondaryLabel }}</a>
     </p>
   </div>
