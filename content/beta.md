@@ -1,34 +1,40 @@
 ---
 title: "Beta"
 description: "DayGaps is in private alpha. Here's how to get in."
-date: 2026-05-15
+date: 2026-05-24
 ---
 
-{{< brand >}} is a native Mac app, currently in private alpha. It runs on macOS 14 (Sonoma) and later as a universal binary.
+{{< brand >}} runs on Mac and iPhone. The Mac app is a universal binary on macOS 14 (Sonoma) and later. The iPhone app runs on iOS 17 and later, via TestFlight.
 
 ## Get the build
 
-The current build is **v0.2**. It's ad-hoc signed and distributed as a zipped `.app` bundle from this site.
+The current build is **v0.5**. It's ad-hoc signed and distributed as a zipped `.app` bundle from this site.
 
 <p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="/downloads/DayGaps.zip">Download DayGaps 0.2 (.zip, 6 MB)</a>
+  <a class="btn btn--primary" href="/downloads/DayGaps.zip">Download DayGaps 0.5 (.zip, 5.7 MB)</a>
   <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=DayGaps%20alpha%20feedback">Email about the build</a>
 </p>
 
-## Installing
+## Installing on Mac
 
 1. Unzip the download. You'll get `DayGaps.app`.
 2. Drag `DayGaps.app` into `/Applications`.
 3. **First launch only:** right-click the app icon and choose **Open**. macOS will show an "unidentified developer" warning once because the build isn't notarized; clicking Open through that prompt clears it permanently. Subsequent launches work like any other app.
 4. The app reads and writes plain YAML / Markdown in a folder you choose on first run. Dropbox, iCloud, Syncthing, or any local folder works.
 
-Bundle identifier is `com.daygaps.app`, so installing v0.2 over an earlier build preserves your calendar permission and data-folder choice. If you change Macs, each new machine prompts once for Calendar access on first launch, then remembers.
+Bundle identifier is `com.daygaps.app`, so installing a new build over an earlier one preserves your calendar permission and data-folder choice. If you change Macs, each new machine prompts once for Calendar access on first launch, then remembers.
+
+## Installing on iPhone
+
+The iPhone app is in TestFlight. To get added, email <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a> with the Apple ID you want to test under.
+
+When you launch the iPhone app the first time it asks for the folder your data lives in. If you keep your folder in Dropbox, install the Dropbox iOS app first and mark the folder available offline. If you use iCloud Drive, no extra step is needed.
 
 ## What's in this build
 
 This is alpha software. The data format is stable enough that the author trusts it for his own daily plans across multiple Macs, but keep a synced copy of your plans folder until you've decided to trust it too.
 
-- Day view with named chunks, projects in the sidebar, and the calendar inspector
+- Day view with named gaps, projects in the sidebar, and the calendar inspector
 - Project pages with inline editing
 - Inbox capture (right-pane only, by design)
 - Standalone focus windows for any project, date, or area

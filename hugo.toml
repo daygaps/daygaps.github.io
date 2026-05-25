@@ -43,7 +43,7 @@ enableGitInfo    = false
   # strike-shit-write-stuff joke for the logo art only. On the website
   # this reads straight. Don't reintroduce the <s> here.
   tagline     = "when real stuff gets done"
-  description = "A native macOS task app built around the gap. The precious window of time between meetings where real work actually happens."
+  description = "A task app for Mac and iPhone, built around the gap. The precious window of time between meetings where real work actually happens."
 
 # Site-wide knobs the templates read.
 [params]
@@ -71,9 +71,24 @@ enableGitInfo    = false
   weight = 20
 
 [[menu.main]]
+  name   = "iPhone"
+  url    = "/ios/"
+  weight = 25
+
+[[menu.main]]
+  name   = "AI"
+  url    = "/ai/"
+  weight = 28
+
+[[menu.main]]
   name   = "Beta"
   url    = "/beta/"
   weight = 30
+
+[[menu.main]]
+  name   = "FAQ"
+  url    = "/faq/"
+  weight = 35
 
 [[menu.main]]
   name   = "Changelog"

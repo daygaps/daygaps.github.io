@@ -45,10 +45,10 @@
 <section class="band band--scene">
   <div class="band__inner band__inner--scene">
     <div class="scene__text">
-      <p class="band__kicker">9:30 in the morning</p>
+      <p class="band__kicker">7:30 in the morning</p>
       <h2 class="band__heading">The work starts.</h2>
       <p>
-        The gap you named <em>morning focus</em> is waiting. Three tasks sit beneath it. You start on the first one.
+        The gap you named <em>morning writing</em> is waiting. Three tasks sit beneath it. You start on the first one.
       </p>
       <p>
         Nothing else is asking for your attention. The other gaps are still in the day, but they've quieted down. No badges, no inbox count, no second list pulling your eye. The only thing in front of you is the work you decided yesterday belonged here.
@@ -56,7 +56,7 @@
     </div>
     <div class="scene__figure">
       <figure class="prose__figure">
-        <img src="{{ "/screens/focus.png" | relURL }}" alt="A single chunk focused in DayGaps with the rest of the day quieted down">
+        <img src="{{ "/screens/focus.png" | relURL }}" alt="A single gap focused in DayGaps with the rest of the day quieted down">
       </figure>
     </div>
   </div>
@@ -72,12 +72,12 @@
         You plan when you have headspace for it. Sunday evening. First thing in the morning. The fifteen minutes after a meeting ends early. {{ partial "brand-inline.html" . }} gives planning its own surface: the calendar, the sidebar, your projects, your inbox, all at once.
       </p>
       <p>
-        Then the gap arrives and the app changes posture. Sidebars step back. Other chunks fade. What's in front of you is one slice of time and a few tasks beneath it. Doing the work feels like doing the work.
+        Then the gap arrives and the app changes posture. Sidebars step back. Other gaps fade. What's in front of you is one slice of time and a few tasks beneath it. Doing the work feels like doing the work.
       </p>
     </div>
     <div class="scene__figure">
       <figure class="prose__figure">
-        <img src="{{ "/screens/today.png" | relURL }}" alt="DayGaps Today view, the planning surface with chunks arrayed across the day">
+        <img src="{{ "/screens/today.png" | relURL }}" alt="DayGaps Today view, the planning surface with gaps arrayed across the day">
       </figure>
     </div>
   </div>
@@ -98,12 +98,12 @@
         Other days are wide open. Three hours of work-shaped time stretching out before you, with only meals and a walk to anchor it. <em>Morning deep work. After lunch. Evening reading.</em>
       </p>
       <p>
-        Either way, the chunks become the units. You name them. You decide what goes in each. The app holds the shape.
+        Either way, the gaps become the units. You name them. You decide what goes in each. The app holds the shape.
       </p>
     </div>
     <div class="scene__figure">
       <figure class="prose__figure">
-        <img src="{{ "/screens/standalone.png" | relURL }}" alt="A standalone DayGaps window for a single chunk, with just its tasks and nothing else">
+        <img src="{{ "/screens/standalone.png" | relURL }}" alt="A standalone DayGaps window for a single gap, with just its tasks and nothing else">
       </figure>
     </div>
   </div>
@@ -116,11 +116,34 @@
     <h2 class="band__heading">Every pixel earns its place.</h2>
     <div class="band__body band__body--narrow">
       <p>
-        The colors don't call attention to themselves. Completed work fades to muted strikethrough instead of disappearing. When you focus a chunk, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
+        The colors don't call attention to themselves. Completed work fades to muted strikethrough instead of disappearing. When you focus a gap, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
       </p>
       <p>
         These are not absences. They are decisions. Every choice the app makes is pointed at the same thing: keeping you in the work and out of the app. {{ partial "brand-inline.html" . }} gets quieter the more you use it.
       </p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- iOS TEASER ------------------------------------------------- */}}
+{{/* The phone scene. Position: after the four Mac scenes and before plain  */}}
+{{/* files. Reads as "and the same gaps follow you off the desk."          */}}
+<section class="band band--scene band--scene--reverse">
+  <div class="band__inner band__inner--scene">
+    <div class="scene__text">
+      <p class="band__kicker">And on your phone</p>
+      <h2 class="band__heading">The same gaps follow you off the desk.</h2>
+      <p>
+        The iPhone app reads the same folder as the Mac. Open it between meetings or on the walk to lunch. The Today view is right there, the inbox is one tap away, and the gestures match the way the day actually changes.
+      </p>
+      <p>
+        <strong>Tap</strong> to mark a task done. <strong>Swipe right</strong> to move it to a different gap. <strong>Swipe left</strong> to reschedule it for another day. The vocabulary is the same in Today, in This Week, and inside a project. <a href="{{ "/ios/" | relURL }}">See the phone in more detail</a>.
+      </p>
+    </div>
+    <div class="scene__figure">
+      <figure class="prose__figure">
+        <img src="{{ "/screens/ios/today.png" | relURL }}" alt="The DayGaps iPhone Today view, the same gaps and tasks the Mac shows, in a single column">
+      </figure>
     </div>
   </div>
 </section>
@@ -132,12 +155,12 @@
       <p class="band__kicker">Plain files. Yours forever.</p>
       <h2 class="band__heading">YAML and Markdown in your own folder.</h2>
       <p class="band__body band__body--narrow">
-        Every project is a YAML file. Every day is a YAML file. Your notebook is Markdown. There is no proprietary database, no cloud account, no migration story when {{ partial "brand-inline.html" . }} eventually goes away. You can read your data with <code>cat</code>. You can edit it in Vim. You can ask Claude to reorganize a project for you. The app is meant to be operated <em>with</em> an AI, not despite one.
+        Every project is a YAML file. Every day is a YAML file. Your notebook is Markdown. There is no proprietary database, no cloud account, no migration story when {{ partial "brand-inline.html" . }} eventually goes away. You can read your data with <code>cat</code>. You can edit it in Vim. You can <a href="{{ "/ai/" | relURL }}">hand the schema to your AI assistant</a> and ask it to reorganize a project for you. The app is meant to be operated <em>with</em> an AI, not despite one.
       </p>
     </div>
     <pre class="band__file" aria-label="Example day file">date: 2026-05-15
 
-chunks:
+gaps:
   - time: <span class="hl">"07:30"</span>
     label: <span class="hl">Morning focus</span>
 
@@ -156,8 +179,8 @@ chunks:
 {{/* ---------- FINAL CTA ------------------------------------------------- */}}
 <section class="band band--cta">
   <div class="band__inner">
-    <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager, in {{ site.Params.releaseStage }}.</h2>
-    <p class="band__body band__body--center">A native Mac app. Universal binary. macOS 14 and later.</p>
+    <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager for Mac and iPhone, in {{ site.Params.releaseStage }}.</h2>
+    <p class="band__body band__body--center">Native apps. Universal binary on the Mac (macOS 14+). iPhone via TestFlight (iOS 17+).</p>
     <p class="cta-row">
       <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
       <a class="btn btn--ghost"   href="{{ "/patterns/" | relURL }}">See how it fits a day</a>

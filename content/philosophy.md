@@ -18,7 +18,7 @@ You don't live your day in twenty-minute increments, and you don't live it as "T
 
 {{< brand >}} takes this seriously. A task isn't just due today; it's in *this* gap. When the gap arrives, the tasks under it are what you do. You decided where each task belonged earlier: first thing in the morning, the night before, whenever planning fit. By the time the gap is in front of you, the deciding is done.
 
-{{< figure src="/screens/today.png" alt="Today view in DayGaps, with named chunks across the day and the tasks scheduled into each" caption="Today. Each gap is named and holds the tasks you put there. Tasks are queried in from project files by their date." >}}
+{{< figure src="/screens/today.png" alt="Today view in DayGaps, with named gaps across the day and the tasks scheduled into each" caption="Today. Each gap is named and holds the tasks you put there. Tasks are queried in from project files by their date." >}}
 
 ## Planning and executing
 
@@ -26,7 +26,7 @@ Your day has two halves. One half is already structured: meetings, classes, meal
 
 {{< brand >}} has two modes for the two halves, though it doesn't label them on the screen. Before the day starts, you're planning. The whole interface exists to help you decide what each gap is for. Once you're inside a gap, you're executing. The other gaps fade and the other projects step out of the way, and what's in front of you is one slice of time and a few tasks beneath it.
 
-{{< figure src="/screens/focus.png" alt="A single gap focused in DayGaps, with the rest of the day's chunks muted" caption="Click a gap to focus it. The others quiet down." >}}
+{{< figure src="/screens/focus.png" alt="A single gap focused in DayGaps, with the rest of the day's gaps muted" caption="Click a gap to focus it. The others quiet down." >}}
 
 Or open the gap as its own window, with no sidebar and no way to navigate elsewhere. The friction is the feature. The next time you want to switch contexts, you close the window. That's the only gesture there is.
 
@@ -54,7 +54,7 @@ tasks:
 
   - id: t-c351bc
     date: 2026-05-13
-    chunk: "12:30"
+    gap: "12:30"
     title: Sketch §3 figure
     done: false
     subtasks:
