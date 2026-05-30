@@ -29,63 +29,62 @@ Drag-and-drop also works on the Mac:
 
 ## Where your data lives
 
-DayGaps reads and writes plain YAML files inside a single folder. The Mac picks the folder via *Settings → Storage*; the iPhone picks it via the Files-app folder picker on first launch.
+Day Gaps stores areas, projects, tasks, headers, gaps, days, and inbox items in your private CloudKit zone. There's no shared backend, no Day Gaps server: the data lives between your devices and your iCloud account.
 
-The structure is one file per project, one file per day, plus a top-level `areas.yaml`, `inbox.yaml`, and `scratchpad.md`. There is no database. There is no proprietary export format. If DayGaps disappears tomorrow, your data is still there in a format you can read with `cat`.
+On the Mac you can optionally turn on a **YAML bridge** in Settings → Sync. Point it at a folder and Day Gaps mirrors every change as plain YAML on disk: one file per project, one per day, plus `areas.yaml`, `inbox.yaml`, and `scratchpad.md`. Edit the YAML in your editor and the bridge picks it up; edit in the app and the YAML rewrites. The CloudKit zone stays the source of truth.
+
+The bridge is Mac-only. The iPhone reads CloudKit directly.
 
 If you want the full schema (for an AI assistant, a custom script, or just curiosity), see the [AI assistant page](/ai/).
 
-## Why YAML
+## Why a YAML mirror still matters
 
 Three reasons.
 
 **It's hand-editable.** You can fix a typo in Vim. You can paste a task into the right project with a text editor. You can ask Claude or ChatGPT to reorganize a project for you and apply the change directly to the file. The schema is meant to be operated by a person, not by a serializer.
 
-**It diffs cleanly.** YAML lines up nicely in version control. If you keep your DayGaps folder in git (some users do), every change shows up as a small, readable diff. The same applies to manual diffs across two Macs after a sync.
+**It diffs cleanly.** YAML lines up nicely in version control. If you keep your bridged folder in git, every change shows up as a small, readable diff.
 
-**It survives.** Markdown files from a decade ago still open. YAML files from a decade ago still parse. Proprietary task-app databases from a decade ago usually don't.
+**It survives.** Markdown files from a decade ago still open. YAML files from a decade ago still parse. CloudKit is convenient today; the plaintext mirror is what survives if Apple ever changes the rules.
 
 ## Syncing across devices
 
-DayGaps doesn't sync anything itself. Point the data folder at any cloud-synced location and the sync just happens. Tested setups:
+Day Gaps syncs through your private iCloud zone via CloudKit. Sign into the same Apple ID on each device and the data is there. No folder to configure, no cloud provider to choose, no permissions to grant beyond "use iCloud."
 
-- **Dropbox.** Works on Mac and iPhone. On the Mac, the folder must be marked **Always Keep on This Device** on each machine; otherwise files arrive as `.icloud`-style placeholders and the app reads them as empty. One-time setup per Mac.
-- **iCloud Drive.** Works on Mac and iPhone. No special setup; the folder is always-local by default.
-- **OneDrive, Box, Google Drive (with the desktop client), Syncthing.** Anything that exposes the folder through Finder on the Mac and through the Files app on iPhone works the same way.
-- **Local-only.** Perfectly fine if you only use one machine. Pick a folder anywhere in your home directory and skip the cloud step.
+What this means in practice:
 
-Changes from another device show up in the running app within a few hundred milliseconds of the file landing locally. The Mac app watches the data folder for filesystem events and refreshes its views in place. The iPhone app re-reads on pull-to-refresh and on view appearance.
+- **Mac and iPhone share state automatically.** A task ticked on the iPhone shows ticked on the Mac within seconds, usually faster. Same direction the other way.
+- **Offline writes survive.** Each device keeps a local cache. If you tick a task on the plane, the change persists; iCloud picks it up when you land.
+- **First launch is instant.** The local cache means the app opens to your full data without waiting for a network round-trip.
 
-Latency depends on the provider. Dropbox typically lands within seconds; iCloud Drive is more variable. For capture-and-tick on the phone this is fine. If you mark a task done on iPhone and want the Mac to reflect it instantly, give the sync a moment.
+Sync timing is determined by Apple's silent-push pipeline. Most of the time it's effectively realtime. Occasionally a Mac that's been asleep takes a few seconds to catch up; the apps fall back to a periodic poll so even a missed push gets reconciled within a minute.
 
 ## Mac and iPhone together
 
-Both apps read and write the same files. There is no separate iPhone database, no companion sync protocol, no online account. The folder is the shared state.
+Both apps read and write the same iCloud zone. The CloudKit records are the shared state.
 
 What lives where:
 
-- **Planning and structural work on the Mac.** Creating projects, archiving, renaming areas, scheduling reminders, the menu-bar timer, drag-and-drop into the calendar. Things you do at a desk with a keyboard.
-- **Last-minute replanning and capture on the iPhone.** Marking done, moving a task to a different gap because the morning shifted, rescheduling, adding to the inbox between meetings. Things you do walking around.
+- **Planning and structural work on the Mac.** Creating projects, archiving, renaming areas, scheduling reminders, the menu-bar timer, drag-reorder of sections, the calendar inspector. Things you do at a desk with a keyboard.
+- **Last-minute replanning and capture on the iPhone.** Marking done, setting deadlines, rescheduling, focusing one gap, adding to the inbox between meetings. Things you do walking around.
 
-The iPhone is read-mostly for projects (date-assign via swipe is the one write). Renaming or deleting a project, renaming or deleting an area, and reordering sections all happen on the Mac.
+The iPhone is read-mostly for project structure. Renaming or deleting a project, renaming or deleting an area, drag-reordering within an area: all happen on the Mac.
 
 ## Daily flow
 
-Click a gap's header on the Mac to enter **Focus mode**: that gap pops to full opacity and the others fade. Click again or press Esc to exit. Focus is a viewing posture, not a setting; it doesn't persist across launches.
+On the Mac, **CMD-click** a gap header to arm the menu-bar timer for that gap. Pick a duration (25 / 45 / 90 minutes or custom). The menu bar shows the countdown. A gentle ping plays at zero. CMD-click the same gap header again (or use the menu-bar *End* item) to stop early. The timer has no pause: wall-clock time keeps moving whether you're paying attention or not.
 
-CMD-click a gap header to arm the **menu-bar timer** for that gap. Pick a duration (25 / 45 / 90 minutes or custom). A clock glyph appears on the focused gap; the menu bar shows the countdown. A gentle ping plays at zero. CMD-click the same gap header (or use the menu-bar dropdown's *End* item) to stop early.
+On iPhone, **tap a gap's header** to enter focus mode for that gap. The other gaps hide, plus Carried Over and Anytime. The screen narrows to the block of time you're trying to live inside. Tap the focused header again to come back to the full day. There's no timer on the phone: the focus is the filter.
 
-The timer has no pause. Wall-clock time keeps moving whether you're paying attention or not. That's the whole point of pinning a gap to your day.
-
-The timer is a Mac feature. On iPhone the day reads itself: tap a gap to enter it, do the work, tap done.
+Two interpretations of "focus" for two different surfaces.
 
 ## Undo
 
-Every destructive operation on the Mac (delete task, delete subtask, delete header, archive project, move project to Trash) shows a small **Undo toast** at the bottom-right corner for ten seconds. Press ⌘Z or click the *Undo* button to restore.
+Every destructive operation on the Mac (delete task, delete subtask, delete header, archive project, move project to Trash) shows a small **Undo toast** at the bottom-right for ten seconds. Press ⌘Z or click the *Undo* button to restore.
 
-Only the most recent destructive operation is undoable. Once the toast disappears, the change is permanent (delete) or reversible only by hand-editing the file back (archive moves to `archive/{area}/`).
+Only the most recent destructive operation is undoable. Once the toast disappears, the change is permanent.
 
-iPhone undo is via the same swipe in reverse: re-tap a completed task to un-check it; if you rescheduled by accident, swipe-left again and pick the original date.
+iPhone undo is via the same swipe in reverse: re-tap a completed task to un-check it; if you rescheduled by accident, swipe again and pick the original date.
 
 ## Keyboard (Mac)
 

@@ -1,69 +1,78 @@
 ---
-title: "DayGaps on iPhone"
-description: "The same gaps, the same files, on the device that's actually with you between meetings."
-date: 2026-05-24
+title: "Day Gaps on iPhone"
+description: "The same gaps, the same data, on the device that's actually with you between meetings."
+date: 2026-05-30
 ---
 
-The iPhone app reads and writes the same folder as the Mac. Open it on the bus, between meetings, in line for coffee. The Today view shows the gaps you planned this morning. A few gestures let you bend the day when it bends on you.
+The iPhone app reads from your iCloud zone. Open it on the bus, between meetings, in line for coffee. The Today view shows the gaps you planned this morning. A few gestures let you bend the day when it bends on you.
 
 ## What's on the phone
 
-A hamburger menu opens a sidebar. **Inbox**, **Today**, **This Week**, then each of your **Areas** with its projects nested underneath, then **Settings** anchored at the bottom. The badge on Inbox tells you what's piled up since last triage.
+A hamburger sidebar opens to the same destinations the Mac has. **Today**, **This Week**, **Deadlines**, **Anyday**, **Inbox**. A **Pinned** section for projects you've chosen to keep at the top. Each of your **Areas**, with their projects nested underneath. **Archives** and **Settings** anchored at the bottom. The brand wordmark sits at the very top.
 
-Today is the default view. It looks like the Mac's Today, in a single vertical column: a section per gap, tasks under each gap. Tap the title at the top to pop a date picker and walk forward or back without leaving the screen.
+Today is the default view. Same gaps the Mac is reading, in a single vertical column: a section per gap, tasks under each gap.
 
-{{< figure src="/screens/ios/today.png" alt="The iPhone Today view, with named gaps across the day and tasks under each one" caption="The Today view on iPhone. Same data the Mac is reading." >}}
+{{< figure src="/screens/ios/today.png" alt="The iPhone Today view, with named gaps across the day and tasks under each one" caption="The Today view on iPhone. Same data the Mac is reading, sized for your thumb." >}}
 
-## Three gestures that do most of the work
+## Four gestures, same vocabulary everywhere
 
-DayGaps on iPhone uses the same vocabulary on every list of tasks, so the gesture you learned in Today still works in This Week and in a project.
+Day Gaps on iPhone uses the same gesture vocabulary on every list of tasks, so the gesture you learn in Today still works in This Week, in Deadlines, in Anyday, in an Area, in a project.
 
-**Tap a task** to mark it done. The checkmark flips immediately; the file is written in the background. If something goes wrong (rare), the row reverts and a small toast tells you.
+**Tap a task** to mark it done. The checkmark flips immediately and the strikethrough lands; the change syncs to iCloud in the background.
 
-**Swipe right** on a task to move it to a different gap on the same day. A sheet slides up with the day's gaps as a picker. One tap, and the task lands under the new gap.
+**Leading swipe** (drag right) sets the deadline. A calendar slides up; pick a day, save.
 
-**Swipe left** on a task to reschedule it. A date picker comes up. Pick a day, save. On a project view, swipe-left becomes *Assign date* for tasks that don't have one yet, or *Reschedule* for ones that do.
+**Trailing swipe** (drag left) opens Reschedule. The same sheet lets you change the day AND pick which gap on that new day in one motion. (On the Mac these are two clicks; on the phone they collapse into one swipe + one tap.)
 
-{{< figure src="/screens/ios/swipe-actions.png" alt="A task row showing the swipe-right Move and swipe-left Reschedule reveals" caption="The two halves of last-minute replanning: where it goes today, or which day it goes to." >}}
+**Long-press** opens "Move to project." An area-grouped picker comes up; pick a destination project (or an area's General bucket), the task moves.
 
-## Bending the day
+{{< figure src="/screens/ios/swipe-actions.png" alt="A task row showing the leading-swipe Deadline and trailing-swipe Reschedule reveals" caption="The two halves of last-minute replanning. Pull one way to commit to a date; pull the other to push it." >}}
 
-Plans change. The bus was late. The meeting ran over. The morning you'd named *deep work* is now a fifteen-minute window and the rest of it is gone.
+## Focus on one gap
 
-**Tap a gap's header** to open an editor: change the time, change the label, delete it. **Swipe left on the header** to delete the gap with a confirmation. Tasks that were under a deleted gap fall through to Anytime; nothing is lost.
+Plans crowd up. The morning you'd named *deep work* now looks like a stack of mid-morning interruptions and your eye keeps drifting to them.
 
-**The floating bottom bar** has the right buttons for the screen you're on. On Today, that's *Add gap* and *Add to inbox*. On a project, *Add task* and *Add header*. On This Week, just *Add to inbox*. The bar floats above the safe area in a glass material, so the content behind it is still visible.
+**Tap a gap's header** to focus that gap. The other gaps hide. Carried Over and Anytime hide. The screen narrows to the block of time you're actually trying to live inside. Tap the focused header again to come back to the full day.
 
-{{< figure src="/screens/ios/edit-gap.png" alt="The Edit Gap sheet on iPhone, with time picker and label field and a Delete button" caption="Gap CRUD on iPhone. Add a fresh gap, rename one in place, or drop one that no longer fits." >}}
+(On the Mac, focus is a Pomodoro timer in the menu bar. Phones don't have menu bars, so iPhone focus does what a phone is good at instead: filtering the screen.)
 
-## Capture, always one tap away
+## Bottom bar, contextual
 
-The bottom bar's *Add to inbox* button opens a single-field capture sheet. Type a line, save. The item goes into `inbox.yaml` in your folder; you triage it later, on the phone or on the Mac.
-
-For direct-to-project capture (skipping the inbox), navigate to the project via the hamburger menu and use that screen's *Add task* button. Two taps instead of a destination picker. The same idea as on the Mac: the project's "+ Add task" lives inside the project.
+The floating bottom bar carries the right buttons for the screen you're on. On Today, that's a quick-jump to today, a coral capture (+) for inbox, and a tray to open the inbox itself. The bar floats above the safe area in a glass material so the content behind stays visible.
 
 {{< figure src="/screens/ios/capture.png" alt="The capture sheet on iPhone: one text field, save, cancel" caption="Capture lives in your pocket. Triage lives on the desk." >}}
 
-## This Week, at a glance
+## This Week, vertical
 
-Tap **This Week** in the sidebar to see the next seven days as sections. *Today · Sat, May 24*, *Tomorrow*, *Mon, May 26*, and so on. Each section lists what's scheduled for that day, with the gap time shown as a small pill next to the task.
+Tap **This Week** in the sidebar to see the next seven days as scrollable sections. *Today · Sat, May 30*, *Tomorrow · Sun, May 31*, *Mon, Jun 1*, and so on. Each section lists what's scheduled for that day. Today's section title reads in coral so your eye lands there first.
 
-Swipe left to reschedule. Tap to mark done. If nothing is scheduled all week, the view says so plainly.
+A work-week toggle in the trailing menu hides Sat / Sun if Mon–Fri is the week you actually want to see. Setting persists.
+
+(Mac's This Week is horizontal columns side-by-side. iPhone's is a vertical list. Same data, different shape per platform.)
 
 {{< figure src="/screens/ios/this-week.png" alt="The This Week view on iPhone, showing seven days as scrollable sections" caption="A whole week of gaps, in your pocket." >}}
 
-## What the phone doesn't do
+## Inbox is a pile, not a queue
 
-Some things stay on the Mac on purpose.
+Inbox items carry no date, no gap, no project. Just a title and a capture timestamp. Triage is the verb that moves an item into the right place.
 
-- **Reminders and the gap timer.** Reminders fire on the device that scheduled them; the Mac is the canonical scheduler. The menu-bar countdown timer is a Mac feature.
-- **Renaming or archiving projects, renaming or deleting areas.** Read-only on the phone. Structural changes happen at a desk.
-- **Calendar integration.** The Mac reads your calendar to show events alongside gaps; the phone leans on the native Calendar app for that.
+Tap an inbox row, or swipe right, and an area-grouped picker appears: General buckets per area on top, projects under each. Pick a destination, the item becomes a task in that place and disappears from the inbox.
 
-The line between the two devices is: planning and structural work on the Mac, last-minute replanning and capture on the phone. Both apps read and write the same folder, so the two views agree.
+Swipe left on a row to delete the item outright. Long-press for the same actions in a menu.
+
+## What the phone doesn't do (on purpose)
+
+- **The Pomodoro timer.** Mac feature. Focus on iPhone is the visual filter described above.
+- **Renaming projects, archiving projects, deleting areas, reordering inside an area.** Read-only on the phone. Structural changes happen at a desk.
+- **Calendar integration.** The Mac reads your calendar to show events alongside gaps; iPhone leans on the native Calendar app for that.
+- **YAML bridge.** Mac-only. If you want a plaintext copy of your data on disk, point the Mac at a folder; the phone reads CloudKit directly.
+
+The line between the two devices is: planning and structural work on the Mac, last-minute replanning and capture on the phone. Both apps read and write the same iCloud zone, so the two views agree.
 
 ## Getting it
 
-DayGaps for iPhone is on TestFlight alongside the Mac private beta. Email `daygaps@gmail.com` to be added.
+Day Gaps for iPhone is on internal TestFlight alongside the Mac beta. Both ship together.
 
-When you launch the app for the first time, it asks you to pick the folder where your DayGaps files live. Dropbox, iCloud Drive, and any other Files-app-visible folder all work. If you keep your folder in Dropbox, install the Dropbox iOS app first and make sure the folder is marked available offline.
+[Request beta access →](/beta/)
+
+When you accept the TestFlight invitation, the app installs like any other TestFlight build. On first launch it signs into your iCloud account automatically — no folder picker, no Dropbox setup, no Files-app permission. If you've also installed the Mac app on the same iCloud account, your data is already there.

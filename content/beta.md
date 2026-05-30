@@ -1,60 +1,62 @@
 ---
 title: "Beta"
-description: "DayGaps is in private alpha. Here's how to get in."
-date: 2026-05-24
+description: "Day Gaps is in private TestFlight. Here's how to get in."
+date: 2026-05-30
 ---
 
-{{< brand >}} runs on Mac and iPhone. The Mac app is a universal binary on macOS 14 (Sonoma) and later. The iPhone app runs on iOS 17 and later, via TestFlight.
+{{< brand >}} runs on Mac and iPhone. The Mac app is a universal binary on macOS 14 (Sonoma) and later. The iPhone app runs on iOS 17 and later. Both ship through TestFlight.
 
-## Get the build
+## Request beta access
 
-The current build is **v0.5**. It's ad-hoc signed and distributed as a zipped `.app` bundle from this site.
+Internal TestFlight is invite-only. Email the Apple ID you want to test under and we'll add you. You'll get a TestFlight invitation by email within a day or two; install the **TestFlight** app from the App Store and tap **Accept** in the invitation.
 
 <p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="/downloads/DayGaps.zip">Download DayGaps 0.5 (.zip, 5.7 MB)</a>
-  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=DayGaps%20alpha%20feedback">Email about the build</a>
+  <a class="btn btn--primary" href="mailto:daygaps@gmail.com?subject=Day%20Gaps%20beta%20access&body=Apple%20ID%3A%20%0A%0ADevices%20(Mac%2FiPhone%2FiPad)%3A%20%0A%0AHow%20I%20plan%20today%3A%20">Request beta access</a>
+  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=Day%20Gaps%20feedback">Send feedback</a>
 </p>
 
 ## Installing on Mac
 
-1. Unzip the download. You'll get `DayGaps.app`.
-2. Drag `DayGaps.app` into `/Applications`.
-3. **First launch only:** right-click the app icon and choose **Open**. macOS will show an "unidentified developer" warning once because the build isn't notarized; clicking Open through that prompt clears it permanently. Subsequent launches work like any other app.
-4. The app reads and writes plain YAML / Markdown in a folder you choose on first run. Dropbox, iCloud, Syncthing, or any local folder works.
+Once accepted:
 
-Bundle identifier is `com.daygaps.app`, so installing a new build over an earlier one preserves your calendar permission and data-folder choice. If you change Macs, each new machine prompts once for Calendar access on first launch, then remembers.
+1. Open the **TestFlight** app on your Mac (App Store has it).
+2. Sign in with the Apple ID you sent us.
+3. **Day Gaps** appears in the list. Tap **Install**.
+
+That's it — no right-click-to-open dance, no Gatekeeper prompt. The build is signed and notarized through Apple's TestFlight pipeline.
 
 ## Installing on iPhone
 
-The iPhone app is in TestFlight. To get added, email <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a> with the Apple ID you want to test under.
+Same flow. Install the TestFlight app from the App Store, sign in, install Day Gaps.
 
-When you launch the iPhone app the first time it asks for the folder your data lives in. If you keep your folder in Dropbox, install the Dropbox iOS app first and mark the folder available offline. If you use iCloud Drive, no extra step is needed.
+No folder picker on first launch. The phone signs into your iCloud account automatically; your data syncs from the Mac across iCloud in the background.
 
 ## What's in this build
 
-This is alpha software. The data format is stable enough that the author trusts it for his own daily plans across multiple Macs, but keep a synced copy of your plans folder until you've decided to trust it too.
+The current build is **v0.6**. Universal Mac + iPhone + iPad, syncing through your private iCloud zone. The full feature surface is on the [changelog](/changelog/); the short version:
 
-- Day view with named gaps, projects in the sidebar, and the calendar inspector
-- Project pages with inline editing
-- Inbox capture (right-pane only, by design)
-- Standalone focus windows for any project, date, or area
-- Variant-aware app icon (Default / Dark / Tinted) for macOS Tahoe Dock and Spotlight
-- Plain-text storage: YAML day files, YAML project files, Markdown notebook
-- Files live in any folder you point the app at (Dropbox, iCloud, Syncthing, etc.)
+- Today, This Week, Deadlines, Anyday, Inbox, Areas, Projects, Settings, all native on iPhone.
+- One gesture vocabulary across every list: tap for done, leading swipe for deadline, trailing swipe for reschedule, long-press for move.
+- iCloud sync end to end. Local cache for offline writes.
+- Mac focus mode is a Pomodoro timer in the menu bar. iPhone focus mode is a visual filter on Today. (Different shapes for different surfaces.)
+- Optional YAML bridge on Mac for a plaintext mirror of your data.
+
+This is beta software. The format is stable and Day Gaps now runs the author's actual daily plans, but TestFlight is the right venue for it until external review is done.
 
 ## Known gaps
 
-The roadmap is on the [changelog page](/changelog/). Headline items still in flight:
+The roadmap is on the [changelog page](/changelog/). Items still in flight:
 
-- Some keyboard shortcuts are not yet wired into menu commands.
+- Some keyboard shortcuts are not yet wired into menu commands on Mac.
 - Area deletion is intentionally restricted while the empty-only path is designed.
-- A few advanced filters in the calendar inspector are placeholder.
+- iPhone drag-reorder on Today is parked while the swipe vocabulary settles.
 
 ## What we'd love feedback on
 
 - Does the two-mode framing (overview vs. focus) match the way you actually work?
 - Anywhere the chrome feels too loud at rest?
 - Anywhere a feature feels like more work than it saves?
-- Multi-Mac install: any odd file-sync behavior in the Dropbox / iCloud folder?
+- Sync timing across devices: does an edit on the Mac surface fast enough on the iPhone, and vice versa?
+- Anywhere a Mac idiom leaked into the iPhone or the iPhone idiom leaked back to Mac?
 
 Send notes, bug reports, or rants to <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a>.

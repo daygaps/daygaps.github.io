@@ -1,8 +1,41 @@
 ---
 title: "Changelog"
 description: "What's shipped, and what's next."
-date: 2026-05-24
+date: 2026-05-30
 ---
+
+## v0.6 · May 30, 2026
+
+The release where Day Gaps becomes a real two-device product. Sync stops being "open the same Dropbox folder on every Mac" and becomes iCloud, end to end. The iPhone app stops being a preview and becomes the whole app, screen for screen. The visual language across both platforms tightens into one set of glyphs, one palette, one rhythm.
+
+### iCloud sync, end to end (new)
+
+- **CloudKit replaces shared-folder.** Areas, projects, tasks, headers, gaps, days, and the inbox now live in your private CloudKit zone. Changes flow between Mac, iPhone, and iPad through Apple's silent-push pipeline. No Dropbox needed, no Files-app picker on first launch.
+- **Local cache for offline.** Every device keeps a Codable snapshot of the records it has seen, so first launch is instant and offline writes survive a relaunch. The sync engine replays those writes when the device sees iCloud again.
+- **Optional YAML bridge on Mac.** If you still want a plaintext copy of your data on disk (for editor access, version control, or a paranoia backup), turn the bridge on in Settings → Sync and point it at a folder. CloudKit stays the source of truth; YAMLs are a mirror that round-trips through.
+
+### iPhone app, full surface (new)
+
+The phone is no longer a capture-plus-Today preview. Every sidebar destination has its own native screen.
+
+- **Today, This Week, Deadlines, Anyday, Inbox, Areas, Projects, Settings** all rendered for iPhone instead of falling back to a scaled-down Mac layout.
+- **One gesture vocabulary across every list.** Tap a task to mark it done. Leading swipe sets the deadline. Trailing swipe opens Reschedule (pick a new date and a gap on that day in one sheet). Long-press surfaces "Move to project." Same four gestures in Today, Project, This Week, Anyday, Area.
+- **Focus mode on Today.** Tap a gap header to focus that gap. Every other gap, plus Carried Over and Anytime, hide. Tap the focused header again to come back. (The Mac's focus is a Pomodoro timer in the menu bar; the phone has no menu bar, so focus there is a visual filter instead.)
+- **Floating-glass bottom bar.** Today, capture, and inbox triage live there; the rest of the surface area belongs to your tasks.
+
+### Visual language pass
+
+- **Sidebar glyphs match across Mac and iPhone.** Today is a dynamic day-of-month calendar mark. This Week is the split-rectangle on Mac, an ellipsis-calendar on iPhone (both reading as "horizontal stretch of week"). Deadlines is a flag. Anyday is the infinity loop. Inbox is the tray-with-arrow.
+- **One glyph for projects, tinted by area.** Every project row, in the sidebar and inside the area view, uses the same `app.badge.checkmark` mark — a container of check-able items — colored with its parent area's tone. Pinned projects keep the same glyph; they're recognized by living in the Pinned section, not by a different mark.
+- **One fixed glyph for areas.** Each area carries the same stacked-squares mark; only the color is yours to choose. (Color is the signal that actually carries information at a glance; per-area glyph variety doesn't earn its keep when the name is always next to it.)
+- **Two-tone wordmark, tighter.** The y-tail of "Day" now fully interlocks with the bowl of "G" in "Gaps". Identical on the app and on this site.
+
+### Mac changes
+
+- **Sidebar restructure.** Today, This Week, Deadlines, Anyday, Inbox at the top; Pinned section always visible; Areas with disclosure-grouped projects; Archives at the bottom; brand wordmark anchored beneath. The wordmark now appears at the **top** of the iPhone sidebar — same component, mirrored placement that fits each platform's chrome.
+- **Local persistent cache, instant launch.** No more multi-second wait staring at empty sidebar lists on cold start.
+- **Reset all data button** in Settings → Data. Wipes the CloudKit zone and the local cache when you need to start clean.
+- **Sync diagnostics in Settings.** Cached record count, last fetch result, last write result, plus a Sync now button. So when a sync hiccup happens it's something you can look at instead of guess at.
 
 ## v0.5 · May 24, 2026
 
