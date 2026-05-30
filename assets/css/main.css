@@ -339,12 +339,16 @@ body {
    the y-tail and G-bowl interlock. As --p increases the transforms relax
    to 0, and the gap (which is also growing) takes over the separation.
    We use translateX on transform (cheap; doesn't trigger layout) rather
-   than negative margin (would change the grid measurements). */
+   than negative margin (would change the grid measurements).
+
+   Total overlap = 0.20em (0.10em per half), matching DayGapsWordmark
+   in the app. Bumped from 0.18em on 2026-05-30 to fully interlock the
+   y-tail of "Day" into the bowl of "G". */
 .wordmark--hero .wordmark__left  {
-  transform: translateX(calc((1 - var(--p)) *  0.09em));
+  transform: translateX(calc((1 - var(--p)) *  0.10em));
 }
 .wordmark--hero .wordmark__right {
-  transform: translateX(calc((1 - var(--p)) * -0.09em));
+  transform: translateX(calc((1 - var(--p)) * -0.10em));
 }
 
 /* The growing gap between Day and Gaps. */
