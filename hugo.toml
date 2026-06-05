@@ -4,7 +4,7 @@
 # If the product is renamed, change `params.brand.*` here and nothing else.
 # Templates and content always read the name via `.Site.Params.brand.*`.
 
-baseURL = "https://daygaps.github.io/"   # user-site URL (repo: daygaps/daygaps.github.io). Update if you point a custom domain.
+baseURL = "https://daygaps.com/"   # user-site URL (repo: daygaps/daygaps.github.io). Update if you point a custom domain.
 languageCode     = "en-us"
 defaultContentLanguage = "en"
 
