@@ -784,6 +784,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
   color: var(--fg);
   opacity: 1;
 }
+.band__one-liner .band__act { color: var(--accent); font-weight: 700; }
 
 /* ---------------------------------------------------------------------------
    About band . the long-form pitch. Single narrow text column; paragraphs
