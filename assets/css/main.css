@@ -418,10 +418,11 @@ body {
   font-size: clamp(1.05rem, 2.1vw, 1.85rem);
   line-height: 1.25;
   text-align: center;
-  /* Always present; ink darkens faint to full AND the line grows as you scroll.
-     transform (not font-size) so it never reflows the events below. */
-  color: color-mix(in oklab, var(--fg) calc((0.22 + var(--p) * 0.78) * 100%), var(--bg));
-  transform: scale(calc(0.92 + var(--p) * 0.24));
+  /* Animation completes WITH the first gap (by --p 0.30), then holds: the ink
+     darkens faint to full and the line grows. transform, not font-size. */
+  --tp: clamp(0, calc(var(--p) / 0.3), 1);
+  color: color-mix(in oklab, var(--fg) calc((0.22 + var(--tp) * 0.78) * 100%), var(--bg));
+  transform: scale(calc(0.92 + var(--tp) * 0.24));
   transform-origin: center top;
 }
 
@@ -429,7 +430,7 @@ body {
 .hero__tagline .t-done {
   font-style: italic;
   font-weight: 700;
-  color: color-mix(in oklab, var(--accent) calc(var(--p) * 100%), color-mix(in oklab, var(--fg) 22%, var(--bg)));
+  color: color-mix(in oklab, var(--accent) calc(var(--tp) * 100%), color-mix(in oklab, var(--fg) 22%, var(--bg)));
 }
 
 
