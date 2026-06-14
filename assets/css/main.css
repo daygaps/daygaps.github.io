@@ -167,6 +167,10 @@ body {
 
 ::selection { background: var(--accent-soft); color: var(--fg); }
 
+/* Home only: stop the browser anchoring/restoring scroll into the tall pinned
+   hero on load (paired with the manual scroll-restoration script in head). */
+.page--home { overflow-anchor: none; }
+
 /* ============================================================================
    Header / footer
    ============================================================================ */
@@ -411,11 +415,14 @@ body {
 .hero__tagline {
   width: 100%;
   margin: 0.6rem 0 0;
-  font-size: clamp(0.95rem, 1.9vw, 1.65rem);
+  font-size: clamp(1.05rem, 2.1vw, 1.85rem);
   line-height: 1.25;
   text-align: center;
-  /* Always present; the ink darkens from faint to full across the scroll. */
+  /* Always present; ink darkens faint to full AND the line grows as you scroll.
+     transform (not font-size) so it never reflows the events below. */
   color: color-mix(in oklab, var(--fg) calc((0.22 + var(--p) * 0.78) * 100%), var(--bg));
+  transform: scale(calc(0.92 + var(--p) * 0.24));
+  transform-origin: center top;
 }
 
 /* "done" is bold italic and resolves to coral as the scroll completes. */
@@ -588,8 +595,10 @@ html:not(.js) .hero__scroll-hint { display: none; }
    the tagline yields first if vertical room is tight. */
 @media (max-width: 760px) {
   .hero { height: 200vh; }
+  .hero__stage { justify-content: flex-start; padding-top: clamp(1.5rem, 6vh, 3.5rem); }
   .hero__grid { grid-template-columns: 1fr; gap: clamp(1.1rem, 5vw, 1.8rem); max-width: none; justify-items: stretch; }
   .hero__copy { max-width: 100%; }
+  .hero__lockup { margin-inline: auto; }
   .wordmark--hero { font-size: clamp(2.4rem, 13vw, 4rem); }
   .day { max-width: none; }
 }

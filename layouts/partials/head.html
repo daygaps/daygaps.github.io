@@ -9,6 +9,17 @@
 <meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1B1F22" media="(prefers-color-scheme: dark)">
 
+{{- /* Home has a tall pinned hero; stop the browser restoring a mid-page
+       scroll position on load (and correct any web-font layout shift). */ -}}
+{{- if .IsHome }}
+<script>
+  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
+  function _dgTop(){ window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+  window.addEventListener("load", _dgTop);
+  window.addEventListener("pageshow", _dgTop);
+</script>
+{{- end }}
+
 {{- /* OG / social preview. Image is the real macOS app icon flattened onto
        the brand-slate background for a square 1200x1200 social card. */ -}}
 <meta property="og:type" content="website">
