@@ -196,7 +196,7 @@ body {
   text-decoration: none;
   color: var(--fg);
 }
-.site-mark .pill-mark {
+.site-mark__icon {
   width: auto;
   height: 1.75rem;
   display: block;

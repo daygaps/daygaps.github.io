@@ -26,10 +26,10 @@
 
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{- /* Favicons + iOS bookmark icon. The SVG pill-mark stays as the modern
-       browser fallback (sharp at any size); PNGs use the real app icon so
-       browser tabs and iOS bookmarks visually match the app on the user's
-       Mac. apple-touch-icon at 180x180 covers iOS / Android home screens. */ -}}
+{{- /* Favicons + iOS bookmark icon. favicon.svg is the app icon as a flat
+       vector (sharp at any size); the PNGs are the same icon for older
+       browsers and iOS bookmarks. apple-touch-icon at 180x180 covers iOS /
+       Android home screens. */ -}}
 <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relURL }}">
 <link rel="icon" type="image/png" sizes="32x32"   href="{{ "/icons/favicon-32.png"  | relURL }}">
 <link rel="icon" type="image/png" sizes="64x64"   href="{{ "/icons/favicon-64.png"  | relURL }}">
