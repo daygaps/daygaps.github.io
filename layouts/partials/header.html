@@ -4,6 +4,12 @@
     <a class="site-mark" href="{{ "/" | relURL }}" aria-label="{{ $brand.name }}, home">
       <img class="site-mark__icon" src="{{ "/favicon.svg" | relURL }}" alt="" width="28" height="28">
     </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label for="nav-toggle" class="nav-burger" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12.5" x2="21" y2="12.5"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </label>
     <nav class="site-nav" aria-label="Primary">
       {{- range site.Menus.main }}
         <a href="{{ .URL | relURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
