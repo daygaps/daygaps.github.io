@@ -1209,7 +1209,6 @@ html:not(.js) .hero__scroll-hint { display: none; }
    ============================================================================ */
 .band--demo .band__inner{text-align:center}
 .fdemo{margin:1.6rem auto 0;max-width:38rem}
-.fdemo input{position:absolute;opacity:0;pointer-events:none}
 .fdemo__win{border:1px solid var(--hairline);border-radius:14px;overflow:hidden;background:var(--bg);box-shadow:0 24px 60px var(--ink-selection);text-align:left}
 .fdemo__bar{display:flex;gap:7px;padding:.7rem .9rem}
 .fdemo__dot{width:11px;height:11px;border-radius:50%}
@@ -1217,7 +1216,6 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__body{padding:1.1rem clamp(1rem,2.5vw,1.6rem) 1.5rem}
 .fdemo__today{font-family:var(--font-sans);font-weight:700;font-size:1.5rem;margin:0 0 1rem;letter-spacing:-.01em}
 .dimmable{transition:opacity .3s ease}
-#fd-focus:checked ~ .fdemo__win .dimmable{opacity:.26}
 .fsec,.fgap{margin-bottom:1.05rem}
 .fsec__head,.fgap__head{display:flex;align-items:center;gap:.5em;padding-bottom:.4em;margin-bottom:.5em;border-bottom:1px solid var(--hairline);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-dim)}
 .fsec__meta{font-weight:400;text-transform:none;letter-spacing:0}
@@ -1263,8 +1261,6 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__status{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1rem;border-top:1px solid var(--hairline);color:var(--fg-dim)}
 .fdemo__status-right{display:flex;align-items:center;gap:1.25rem}
 .fstat{display:inline-flex;align-items:center;gap:.4em;font-size:.85rem}
-.fstat--focus{cursor:pointer}
-#fd-focus:checked ~ .fdemo__win .fstat--focus{color:var(--accent)}
 .fdemo__body[data-filter=due] .frow:not(.is-due){display:none}
 .fdemo__body[data-filter=research] .frow:not(.a-research){display:none}
 .fdemo__body[data-filter=methods] .frow:not(.t-methods){display:none}
@@ -1272,3 +1268,10 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__body[data-filter=research] .fgap:not(:has(.a-research)),.fdemo__body[data-filter=research] .fsec:not(:has(.a-research)),
 .fdemo__body[data-filter=methods] .fgap:not(:has(.t-methods)),.fdemo__body[data-filter=methods] .fsec:not(:has(.t-methods)){display:none}
 @media(max-width:560px){.fdemo__status{font-size:.8rem;padding:.6rem .8rem}.fdemo__status-right{gap:.9rem}.fdemo__chips{justify-content:flex-start}}
+
+/* Focus by clicking a gap header (JS toggles .is-focusing / .is-focused). */
+.fgap__head{cursor:pointer;border-radius:6px}
+.fgap__head:hover{color:var(--fg)}
+.fdemo__body.is-focusing .dimmable:not(.is-focused){opacity:.26}
+.fdemo__try{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:1.4rem 0 1rem;color:var(--fg-dim);font-size:.92rem}
+.fdemo__try-badge{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.28em .7em}

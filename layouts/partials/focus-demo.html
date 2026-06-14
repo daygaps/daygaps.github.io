@@ -1,13 +1,12 @@
-{{/* Live focus demo. Mirrors the app Today view. Focus Mode (in the status bar)
-     keeps the gap you are in at full ink and dims the rest. The chips filter
-     the list (a little vanilla JS sets data-filter; CSS does the hiding). */}}
+{{/* Live focus demo. Click a gap header to focus it (the rest of the day dims);
+     tap a chip to filter. Small vanilla JS drives both via classes/attrs. */}}
 <section class="band band--demo" aria-labelledby="demo-h">
   <div class="band__inner">
     <p class="band__kicker">See it quiet down</p>
     <h2 class="band__heading" id="demo-h">Your whole day, then just the part you're in.</h2>
 
     <div class="fdemo" id="focusDemo">
-      <input type="checkbox" id="fd-focus" hidden>
+      <p class="fdemo__try"><span class="fdemo__try-badge">Test drive</span> It's live. Click a gap to focus it, or tap a chip to filter.</p>
       <div class="fdemo__win">
         <div class="fdemo__bar"><span class="fdemo__dot"></span><span class="fdemo__dot"></span><span class="fdemo__dot"></span></div>
 
@@ -27,14 +26,14 @@
           </section>
 
           <section class="fgap dimmable">
-            <header class="fgap__head"><span class="ftime">10:30 &ndash; 12:00</span><span class="fsep">&middot;</span><span class="flabel">Before seminar</span>
-              <svg class="fbell" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 2a3.5 3.5 0 0 0-3.5 3.5c0 3-1.6 4-1.6 4h10.2s-1.6-1-1.6-4A3.5 3.5 0 0 0 8 2Z"/><path d="M6.5 13a1.5 1.5 0 0 0 3 0"/></svg></header>
+            <header class="fgap__head" role="button" tabindex="0" aria-label="Focus the Before seminar gap"><span class="ftime">10:30 &ndash; 12:00</span><span class="fsep">&middot;</span><span class="flabel">Before seminar</span>
+              <svg class="ffocus" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="1.7" fill="currentColor" stroke="none"/></svg></header>
             <div class="frow a-research"><span class="fbox"></span><span class="fmain"><span class="ftitle">Skim the shared draft</span><span class="fproj">Lab</span></span></div>
           </section>
 
-          <section class="fgap fgap--focus">
-            <header class="fgap__head"><span class="ftime">1:00 &ndash; 3:30</span><span class="fsep">&middot;</span><span class="flabel">Writing</span>
-              <svg class="ffocus" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="1.7" fill="currentColor" stroke="none"/></svg></header>
+          <section class="fgap dimmable">
+            <header class="fgap__head" role="button" tabindex="0" aria-label="Focus the Writing gap"><span class="ftime">1:00 &ndash; 3:30</span><span class="fsep">&middot;</span><span class="flabel">Writing</span>
+              <svg class="ffocus" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><circle cx="8" cy="8" r="1.7" fill="currentColor" stroke="none"/></svg></header>
             <div class="frow a-research t-methods"><span class="fbox"></span><span class="fmain"><span class="ftitle">Draft results, section 3 <span class="taghl">#methods</span></span><span class="fproj">Soil carbon paper</span></span></div>
             <div class="frow a-research"><span class="fbox"></span><span class="fmain"><span class="ftitle">Re-run figure 2</span><span class="fproj">Soil carbon paper</span></span></div>
           </section>
@@ -47,28 +46,36 @@
         </div>
 
         <div class="fdemo__status">
-          <span class="fstat"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3v10M3 8h10"/></svg> Gap</span>
+          <span class="fstat"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg> Gap</span>
           <span class="fdemo__status-right">
-            <label class="fstat fstat--focus" for="fd-focus"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="6"/><path d="M5 6.5h6M5 9.5h6"/></svg> Focus Mode</label>
-            <span class="fstat"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10v3h12v-3M8 2.5v5.5M5.5 5.5 8 8l2.5-2.5"/></svg> Capture to Inbox</span>
+            <span class="fstat"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M5 6.5h6M5 9.5h6"/></svg> Focus Mode</span>
+            <span class="fstat"><svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 10v3h12v-3M8 2.5v5.5M5.5 5.5 8 8l2.5-2.5"/></svg> Capture to Inbox</span>
           </span>
         </div>
       </div>
-      <p class="fdemo__note">Tap <b>Focus Mode</b> to quiet the rest of the day, or a chip to filter.</p>
+      <p class="fdemo__note">Nothing is deleted; the rest of the day just steps back.</p>
     </div>
   </div>
 </section>
 <script>
 (function(){
   var d=document.getElementById('focusDemo'); if(!d) return;
-  var body=d.querySelector('.fdemo__body'), chips=d.querySelectorAll('.chip');
-  chips.forEach(function(c){
-    c.addEventListener('click',function(){
-      var f=c.dataset.filter;
-      body.setAttribute('data-filter', body.getAttribute('data-filter')===f ? '' : f);
-      var on=body.getAttribute('data-filter');
-      chips.forEach(function(x){ x.setAttribute('aria-pressed', String(x.dataset.filter===on)); });
-    });
+  var body=d.querySelector('.fdemo__body');
+  var chips=d.querySelectorAll('.chip');
+  chips.forEach(function(c){ c.addEventListener('click',function(){
+    var f=c.dataset.filter;
+    body.setAttribute('data-filter', body.getAttribute('data-filter')===f ? '' : f);
+    var on=body.getAttribute('data-filter');
+    chips.forEach(function(x){ x.setAttribute('aria-pressed', String(x.dataset.filter===on)); });
+  });});
+  d.querySelectorAll('.fgap__head').forEach(function(h){
+    function toggle(){
+      var g=h.closest('.fgap');
+      if(g.classList.contains('is-focused')){ body.classList.remove('is-focusing'); g.classList.remove('is-focused'); }
+      else { d.querySelectorAll('.fgap').forEach(function(x){ x.classList.remove('is-focused'); }); g.classList.add('is-focused'); body.classList.add('is-focusing'); }
+    }
+    h.addEventListener('click',toggle);
+    h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
   });
 })();
 </script>
