@@ -42,76 +42,10 @@
     </p>
   </div>
 </section>
+{{/* ---------- LIVE DEMO + FEATURE CARDS ---------------------------------- */}}
+{{- partial "focus-demo.html" . -}}
 
-{{/* ---------- SCENE 1: the moment of execution --------------------------- */}}
-{{/* Open the page with a sensory, present-tense scene. Show what using the */}}
-{{/* app feels like before explaining anything about it.                    */}}
-<section class="band band--scene">
-  <div class="band__inner band__inner--scene">
-    <div class="scene__text">
-      <p class="band__kicker">7:30 in the morning</p>
-      <h2 class="band__heading">The work starts.</h2>
-      <p>
-        The gap you named <em>morning writing</em> is waiting. Three tasks sit beneath it. You start on the first one.
-      </p>
-      <p>
-        Nothing else is asking for your attention. The other gaps are still in the day, but they've quieted down. No badges, no inbox count, no second list pulling your eye. The only thing in front of you is the work you decided yesterday belonged here.
-      </p>
-    </div>
-    <div class="scene__figure">
-      <figure class="prose__figure">
-        <img src="{{ "/screens/focus.png" | relURL }}" alt="A single gap focused in DayGaps with the rest of the day quieted down">
-      </figure>
-    </div>
-  </div>
-</section>
-
-{{/* ---------- SCENE 2: the two gestures ----------------------------------- */}}
-<section class="band band--scene band--scene--reverse">
-  <div class="band__inner band__inner--scene">
-    <div class="scene__text">
-      <p class="band__kicker">Plan, then do</p>
-      <h2 class="band__heading">Two gestures. That's the whole loop.</h2>
-      <p>
-        You plan when you have headspace for it. Sunday evening. First thing in the morning. The fifteen minutes after a meeting ends early. {{ partial "brand-inline.html" . }} gives planning its own surface: the calendar, the sidebar, your projects, your inbox, all at once.
-      </p>
-      <p>
-        Then the gap arrives and the app changes posture. Sidebars step back. Other gaps fade. What's in front of you is one slice of time and a few tasks beneath it. Doing the work feels like doing the work.
-      </p>
-    </div>
-    <div class="scene__figure">
-      <figure class="prose__figure">
-        <img src="{{ "/screens/today.png" | relURL }}" alt="DayGaps Today view, the planning surface with gaps arrayed across the day">
-      </figure>
-    </div>
-  </div>
-</section>
-
-{{/* ---------- SCENE 3: the shape of your day ----------------------------- */}}
-{{/* Day-shape-agnostic positioning: whether your day is meeting-fractured */}}
-{{/* or wide-open, the gap framing applies.                                 */}}
-<section class="band band--scene">
-  <div class="band__inner band__inner--scene">
-    <div class="scene__text">
-      <p class="band__kicker">However your day is shaped</p>
-      <h2 class="band__heading">A gap can be anything you want it to be.</h2>
-      <p>
-        Some days are meeting-fractured. Six events, three short gaps between them, a long stretch in the morning before anyone is asking for you. <em>Before 11am call. Afternoon writing. Evening proposal.</em>
-      </p>
-      <p>
-        Other days are wide open. Three hours of work-shaped time stretching out before you, with only meals and a walk to anchor it. <em>Morning deep work. After lunch. Evening reading.</em>
-      </p>
-      <p>
-        Either way, the gaps become the units. You name them. You decide what goes in each. The app holds the shape.
-      </p>
-    </div>
-    <div class="scene__figure">
-      <figure class="prose__figure">
-        <img src="{{ "/screens/standalone.png" | relURL }}" alt="A standalone DayGaps window for a single gap, with just its tasks and nothing else">
-      </figure>
-    </div>
-  </div>
-</section>
+{{- partial "feature-cards.html" . -}}
 
 {{/* ---------- CALENDAR BAND: alongside, never inside ---------------------- */}}
 {{/* The calendar-task relationship, stated entirely as what we do: read    */}}
@@ -144,25 +78,6 @@
     <p class="band__one-liner">
       {{ partial "brand-inline.html" . }} computes the shape of your time. What fills it, and what it costs you, <em>stays yours to judge.</em>
     </p>
-  </div>
-</section>
-
-{{/* ---------- METHOD BAND: bring your own process ------------------------- */}}
-{{/* The day-shape scene above says "any day works"; this one says "any     */}}
-{{/* method works." Stated positively, per the no-critique rule: each       */}}
-{{/* method maps to a thing the app already does.                           */}}
-<section class="band band--scene band--scene--center">
-  <div class="band__inner">
-    <p class="band__kicker">However you work</p>
-    <h2 class="band__heading">It adapts to how you work.</h2>
-    <div class="band__body band__body--narrow">
-      <p>
-        If you time-block, gaps are your blocks: name them, fill them, live them. If you Pomodoro, arm the Mac's menu-bar timer for the gap you're in. If you run a GTD-shaped system, capture everything to the inbox, triage into projects, and review on whatever cadence suits you. A hybrid of all three works too, and so does pure improvisation: a gap created at 4pm for the evening is as much a plan as one named on Sunday.
-      </p>
-      <p>
-        Your process can change between projects, between semesters, between Tuesday and Wednesday. {{ partial "brand-inline.html" . }} holds whichever one you bring and asks for nothing back.
-      </p>
-    </div>
   </div>
 </section>
 

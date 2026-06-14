@@ -1,0 +1,36 @@
+{{/* Freedom intro (the method band, repurposed) + the Apple-style feature grid.
+     Two wide cards: Inbox and the meeting agenda. Reserved top-right room in
+     each card for a future mini-graphic. */}}
+<section class="band fcards" aria-labelledby="fcards-h">
+  <div class="band__inner">
+    <p class="band__kicker">However you work</p>
+    <h2 class="band__heading" id="fcards-h">It bends to your process, not the other way around.</h2>
+    <p class="band__body band__body--narrow fcards__lede">
+      Time-block, Pomodoro, GTD, or pure improvisation. {{ partial "brand-inline.html" . }} holds whichever you bring, and lets it change from one project or one day to the next. It stays out of the way, so the only thing in front of you is the stuff that needs doing.
+    </p>
+
+    <div class="fcards__grid">
+      <article class="fcard"><h3>It knows how long.</h3><p>Each gap reaches to the next fixed thing on your day, a calendar event or the next gap you named, and recomputes the moment either one moves.</p></article>
+
+      <article class="fcard"><h3>Reads your calendar, writes nothing.</h3><p>It sees the calendars you choose as the fixed posts of your day, and never writes a thing back to them.</p></article>
+
+      <article class="fcard"><h3>A nudge when a gap opens.</h3><p>An optional, quiet, exact reminder when a gap begins. Only if you ask for one.</p></article>
+
+      <article class="fcard"><h3>When you'll do it.</h3><p>Drop a task into a day and a gap. It shows up in Today right under that gap, where you meant to do it.</p></article>
+
+      <article class="fcard"><h3>And a deadline, when it has one.</h3><p>A deadline is a separate date, and the one thing the app will press you on. <b class="due">It turns red as the day arrives.</b></p></article>
+
+      <article class="fcard"><h3>Filter by area, or by tag.</h3><p>Narrow Today to a single area, or to a hashtag you dropped into a task. Tags are read from your text on the spot and stored nowhere, so there's no list to keep and nothing to tidy.</p></article>
+
+      <article class="fcard fcard--wide"><h3>Capture now, sort later.</h3><p>The same Add to Inbox button sits in one fixed spot on every screen, so a thought lands the instant you have it, note and all. File it into a project later and your note is appended to that project's purpose, time-stamped, so the thinking you had at the moment travels with the task.</p></article>
+
+      <article class="fcard"><h3>A timer if you want it.</h3><p>Time a gap for as long as you like, or let it fill in the minutes left until the gap ends.</p></article>
+
+      <article class="fcard fcard--wide"><h3>A gap inside a meeting.</h3><p>Fill it with the points you want to raise. On a shared project that same gap becomes everyone's agenda. The app only holds the time; <b>you decide what it means.</b></p></article>
+
+      <article class="fcard"><h3>Your iCloud, and nothing else.</h3><p>Everything syncs through your own private iCloud, with no {{ partial "brand-inline.html" . }} account to create. Nothing sits on a server of ours, and no third-party SDKs anywhere. It's on your devices and in your iCloud, full stop.</p></article>
+
+      <article class="fcard"><h3>Share a project.</h3><p>Hand a project to a collaborator over iCloud. The plan is shared; each person's schedule stays their own.</p></article>
+    </div>
+  </div>
+</section>

@@ -104,6 +104,11 @@ enableGitInfo    = false
   weight = 30
 
 [[menu.main]]
+  name   = "Pricing"
+  url    = "/pricing/"
+  weight = 31
+
+[[menu.main]]
   name   = "FAQ"
   url    = "/faq/"
   weight = 35
