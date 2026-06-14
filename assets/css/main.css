@@ -1,5 +1,5 @@
 /* ============================================================================
-   Day Gaps . site stylesheet
+   DayGaps . site stylesheet
 
    Design rationale
    ----------------
@@ -16,29 +16,53 @@
 /* ---------- Tokens ------------------------------------------------------- */
 :root {
   /* ------------------------------------------------------------------------
-     Brand palette. Lifted from the user's pill-logo design (2026-05-12):
-       --fg     : the ink (#27454E, deep slate-teal). Body text, wordmark.
-       --accent : the action color (#ED7456 coral). Buttons, links, kickers.
-       --c-mint / --c-gold / --c-coral : the three pill colors. Decorative
-         tokens . used in the logo and any future illustrations. NOT applied
-         to chunk rows in the hero (per the app's "elevate the tasks, mute
-         everything else" rule).
-     "Day" half of the wordmark renders at 66% opacity of the ink; "Gaps"
-     at 100%. The asymmetry is intentional . it tells the visitor which
-     word the brand emphasizes.
+     Palette adopted from the app (Palette.swift + DesignTokens.swift). The
+     ink shades are one family: change --ink and every density tone follows.
+     Legacy names (--bg / --fg / --fg-dim / --accent / --hairline) are kept as
+     aliases onto the named tokens so the rest of the stylesheet follows. The
+     calendar-event swatch colours are intentionally fixed, not part of this
+     family (see .event--blue / .event--green).
      ------------------------------------------------------------------------ */
-  --bg:           #F7F6F2;   /* warm near-white, slightly cooled to harmonize with slate */
-  --fg:           #27454E;   /* deep slate-teal . brand ink */
-  --fg-dim:       #5B7078;   /* mid-tone derived from the ink */
-  --hairline:     rgba(39, 69, 78, 0.10);
-  --accent:       #ED7456;   /* coral */
-  --accent-soft:  rgba(237, 116, 86, 0.14);
-  --code-bg:      rgba(39, 69, 78, 0.06);
+  --ink:           #1F2D34;   /* brand ink. Body text, "Gaps" half. */
+  --ink-gap:       #5F6F77;   /* gap header text */
+  --ink-day:       #728186;   /* "Day" wordmark half */
+  --ink-tagline:   #ACB3B5;   /* subtitles, taglines */
+  --ink-medium:    rgba(31, 45, 52, 0.65);
+  --ink-light:     rgba(31, 45, 52, 0.40);
+  --ink-whisper:   rgba(31, 45, 52, 0.20);
+  --ink-hairline:  rgba(31, 45, 52, 0.18);
+  --ink-selection: rgba(31, 45, 52, 0.06);
 
-  /* Decorative chunk-pill colors. Use sparingly. */
-  --c-mint:       #8FCCBD;
-  --c-gold:       #F4BC61;
-  --c-coral:      #ED7456;
+  --cream:         #F7F6F2;   /* page background */
+  --gap-surface:   #FFFBF6;   /* a gap card, lighter than cream */
+
+  --coral:         #DE7D60;   /* completion, attention not alarm */
+  --urgency-red:   #C73E3D;   /* past-due, DUE chip, urgent signal */
+  --carried-over:  #709EAC;   /* mist teal, carried-over band */
+
+  /* Legacy aliases onto the named tokens. */
+  --bg:            var(--cream);
+  --fg:            var(--ink);
+  --fg-dim:        var(--ink-gap);
+  --hairline:      var(--ink-hairline);
+  --accent:        var(--coral);
+  --accent-soft:   rgba(222, 125, 96, 0.14);
+  --code-bg:       var(--ink-selection);
+
+  /* Decorative pill colours (logo / illustration only). */
+  --c-mint:        #8FCCBD;
+  --c-gold:        #F4BC61;
+  --c-coral:       var(--coral);
+
+  /* Calendar-event swatches (fixed values, not part of the ink family). */
+  --event-blue-bg:    #D9E9F8;
+  --event-blue-edge:  #477EC1;
+  --event-blue-ink:   #18457E;
+  --event-green-bg:   #E7F2DE;
+  --event-green-edge: #76C043;
+  --event-green-ink:  #356D35;
+
+  --on-accent:        #FFF;   /* text on a filled accent surface */
 
   /* Type ------------------------------------------------------------------
      Body uses the system humanist sans (SF on Mac, Segoe on Windows, etc).
@@ -89,17 +113,31 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:          #14242A;     /* a darker slate, deeper than the ink */
-    --fg:          #E8E6E0;     /* warm off-white, balances the cool bg */
-    --fg-dim:      #92A2A8;
-    --hairline:    rgba(255, 255, 255, 0.10);
-    --accent:      #F08A6F;     /* lighter coral for contrast on dark */
-    --accent-soft: rgba(240, 138, 111, 0.18);
-    --code-bg:     rgba(255, 255, 255, 0.06);
-    /* Decorative pill colors lift slightly so they read on the darker bg. */
-    --c-mint:      #A4D9CB;
-    --c-gold:      #F6C778;
-    --c-coral:     #F08A6F;
+    /* App dark-mode pairs. The legacy aliases follow these automatically. */
+    --ink:           #E8EDEF;
+    --ink-gap:       #A0ADB3;
+    --ink-day:       #8E9A9F;
+    --ink-tagline:   #6E7577;
+    --ink-medium:    rgba(232, 237, 239, 0.65);
+    --ink-light:     rgba(232, 237, 239, 0.40);
+    --ink-whisper:   rgba(232, 237, 239, 0.20);
+    --ink-hairline:  rgba(232, 237, 239, 0.18);
+    --ink-selection: rgba(232, 237, 239, 0.06);
+    --cream:         #1B1F22;
+    --gap-surface:   #2A2D2F;
+    --coral:         #E89682;
+    --urgency-red:   #E55A4E;
+    --carried-over:  #88B4C0;
+    --accent-soft:   rgba(232, 150, 130, 0.18);
+    --c-mint:        #A4D9CB;
+    --c-gold:        #F6C778;
+    /* Calendar-event swatches, dark pairs. Edge and ink share one colour. */
+    --event-blue-bg:    #102F50;
+    --event-blue-edge:  #508CCA;
+    --event-blue-ink:   #508CCA;
+    --event-green-bg:   #324627;
+    --event-green-edge: #A2D07B;
+    --event-green-ink:  #A2D07B;
   }
 }
 
@@ -212,11 +250,18 @@ body {
 .site-footer__tag { margin: 0; color: var(--fg-dim); }
 .site-footer__nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.25rem;
   margin-top: 0.5rem;
 }
 .site-footer__nav a { color: var(--fg-dim); text-decoration: none; }
 .site-footer__nav a:hover { color: var(--fg); }
+/* Second footer row: reference links (changelog, legal, support). Smaller
+   and quieter than the page nav above it . sought out, not browsed to. */
+.site-footer__nav--meta {
+  margin-top: 0.25rem;
+  font-size: var(--t-xs);
+}
 .site-footer__meta { margin: 1.25rem 0 0; font-size: var(--t-xs); }
 
 /* ============================================================================
@@ -252,7 +297,7 @@ body {
    opacity (or alpha-mixed color) creates the hierarchy. Using color-mix
    instead of `opacity` so child elements aren't affected and stacking
    contexts don't change. */
-.wordmark__left  { color: color-mix(in srgb, var(--fg) 66%, transparent); }
+.wordmark__left  { color: var(--ink-day); }
 .wordmark__right { color: var(--fg); }
 
 .wordmark--inline { font-size: var(--t-xl); }
@@ -274,250 +319,207 @@ body {
      negative spacing makes them read as one word. */
   letter-spacing: -0.005em;
 }
-.brand__left  { color: color-mix(in srgb, var(--fg) 66%, transparent); }
+.brand__left  { color: var(--ink-day); }
 .brand__right { color: var(--fg); }
 
 /* ============================================================================
-   Hero . the scroll choreography
+   Hero . pinned scroll-fill
+   ----------------------------------------------------------------------------
+   The wordmark and three fixed calendar events are static and fill the
+   viewport. The sticky stage pins while one --p value (0..1, written by
+   hero.js from scroll position) raises the two gaps (header + tasks) in
+   between the events, then the tagline, then the buttons. When everything has
+   risen the pin releases into plain scroll. Only opacity and a small vertical
+   lift animate, so nothing ever moves horizontally.
    ============================================================================ */
 .hero {
-  /* Tall enough that the sticky inner has scroll distance to animate over. */
-  height: 240vh;
+  height: 200vh;
   position: relative;
 }
 .hero__stage {
   position: sticky;
-  /* Stick BELOW the sticky site-header rather than at top: 0. Otherwise
-     the stage's 100vh height pushes its bottom edge past the viewport at
-     initial scroll position (the header takes the first --header-h of
-     document flow), and the scroll-hint at bottom:1.75rem drops off-screen. */
   top: var(--header-h);
   height: calc(100vh - var(--header-h));
-  /* Use svh where supported so mobile browsers with toggling chrome get
-     a height that matches the smallest visible viewport, again avoiding
-     the off-screen scroll-hint trap. */
   height: calc(100svh - var(--header-h));
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   padding: 0 var(--pad-x);
-  /* Tagline sits tucked right under the wordmark . they read as one
-     composition. */
-  gap: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
-
-.wordmark--hero {
-  font-size: clamp(3rem, 13vw, 10rem);
-  /* Display-size override stays minimal . the Medium weight already feels
-     well-spaced at large sizes. */
-  letter-spacing: -0.008em;
-  /* Trim the natural leading below the baseline. Futura (and most display
-     fonts) reserves substantial line-box space below the descender that
-     line-height: 1 doesn't strip . for a 10rem wordmark the element
-     measures ~228px instead of ~160px, leaving a visible chasm above the
-     tagline. Negative margin pulls the next sibling up into that empty
-     descender zone. Stops at the visual descender of "y" in "Day". */
-  margin-bottom: 0;
-  /* Three-column grid keeps the gap at the TRUE visual center of the
-     viewport regardless of "Day" being narrower than "Gaps". The 1fr
-     side columns are equal width; the auto middle column hugs the gap's
-     content. Halves justify-self toward the gap so they hug its edges. */
+.hero__grid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: center;
   width: 100%;
-  max-width: 96rem;       /* prevent absurd stretching on ultrawide displays */
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 64rem;
+  margin: 0 auto;
 }
-.wordmark--hero .wordmark__left  { justify-self: end;   text-align: right; }
-.wordmark--hero .wordmark__right { justify-self: start; text-align: left; }
+.hero__copy { min-width: 0; max-width: 27rem; }
 
-/* Starting overlap. At --p=0 the two halves visually overlap by a small
-   amount . the wordmark reads as one tight glyph cluster (DayGaps) where
-   the y-tail and G-bowl interlock. As --p increases the transforms relax
-   to 0, and the gap (which is also growing) takes over the separation.
-   We use translateX on transform (cheap; doesn't trigger layout) rather
-   than negative margin (would change the grid measurements).
-
-   Total overlap = 0.20em (0.10em per half), matching DayGapsWordmark
-   in the app. Bumped from 0.18em on 2026-05-30 to fully interlock the
-   y-tail of "Day" into the bowl of "G". */
-.wordmark--hero .wordmark__left  {
-  transform: translateX(calc((1 - var(--p)) *  0.10em));
+/* The lockup is wordmark + tagline only, so its width is the wordmark width.
+   The tagline is justified to fill that width, so it reads as wide as the
+   logo. The buttons sit outside the lockup and never widen it. */
+.hero__lockup { width: max-content; max-width: 100%; }
+.wordmark--hero {
+  font-size: clamp(2.6rem, 6.4vw, 5.25rem);
+  letter-spacing: -0.01em;
+  margin: 0;
 }
-.wordmark--hero .wordmark__right {
-  transform: translateX(calc((1 - var(--p)) * -0.10em));
+.wordmark--hero .wordmark__left  { transform: translateX(0.09em); }
+.wordmark--hero .wordmark__right { transform: translateX(-0.09em); }
+
+.hero__tagline {
+  width: 100%;
+  margin: 0.6rem 0 0;
+  font-size: clamp(0.95rem, 1.9vw, 1.65rem);
+  line-height: 1.25;
+  text-align: center;
+  /* Always present; the ink darkens from faint to full across the scroll. */
+  color: color-mix(in oklab, var(--fg) calc((0.22 + var(--p) * 0.78) * 100%), var(--bg));
 }
 
-/* The growing gap between Day and Gaps. */
-.hero__gap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* Width is the engine of the spread. At p=0 → effectively 0 (just enough
-     padding to keep the halves' glyphs from touching the chunks), at p=1 →
-     up to 36rem capped by 56vw on narrower viewports. */
-  width: clamp(0px, calc(var(--p) * 36rem), 56vw);
-  min-width: 0;
-  /* Internal padding scales with --p. At --p=0 we want 0 padding so the
-     wordmark halves can sit close (or overlap via their own transforms);
-     once the gap is opening AND the chunks become visible, padding kicks
-     in to keep chunk content off the wordmark glyphs. */
-  padding: 0 calc(var(--p) * 0.18em);
-  /* No transition here. JS updates --p once per requestAnimationFrame
-     (~16ms) which is already smooth at 60fps; layering a CSS transition
-     on top fights the JS-driven values and produces visible stutter on
-     fast or uneven scroll. Let --p drive the width directly. */
-  will-change: width;
+/* "done" is bold italic and resolves to coral as the scroll completes. */
+.hero__tagline .t-done {
+  font-style: italic;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--accent) calc(var(--p) * 100%), color-mix(in oklab, var(--fg) 22%, var(--bg)));
+}
+
+
+/* Reveal utility. --s is the scroll position (0..1) at which an element starts
+   rising; --in ramps to 1 over --win. Tasks hold their layout space from the
+   start so the fixed events never shift. */
+.rise {
+  --win: 0.10;
+  --s: 0;
+  --in: clamp(0, calc((var(--p) - var(--s)) / var(--win)), 1);
+  opacity: var(--in);
+  transform: translateY(calc((1 - var(--in)) * 12px));
+  will-change: opacity, transform;
 }
 
 /* ----------------------------------------------------------------------------
-   Chunks inside the hero gap.
-   ----------------------------------------------------------------------------
-   This block mirrors the app's Today view exactly (see
-   feedback_daychunks_ui_chrome.md): muted chunk header on top, elevated
-   task rows below. The visitor is meant to see the same hierarchy on the
-   marketing site as inside the app. Do not visually elevate the chunk
-   header . the design rule is "elevate the tasks, mute everything else."
-
-   --i (0..5) on each element drives the staggered reveal:
-     0  chunk 1 header
-     1  chunk 1 task A
-     2  chunk 1 task B
-     3  chunk 2 header
-     4  chunk 2 task A
-     5  chunk 2 task B
-   --------------------------------------------------------------------------- */
-.chunks {
+   The day . three fixed calendar events bound two open gaps.
+   Events are solid and muted (the given posts of the day); gaps are lighter
+   and hold the tasks (the work you place). Elevate the tasks, mute the rest.
+   ---------------------------------------------------------------------------- */
+.hero__panel { display: flex; justify-content: center; min-width: 0; }
+.day {
   width: 100%;
-  max-width: 22rem;
+  max-width: 24rem;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  text-align: left;
-  font-size: clamp(0.7rem, 1.35vw, 1rem);
-  color: var(--fg);
-  /* ----------------------------------------------------------------------
-     RESET inherited wordmark typography. The chunks panel is nested inside
-     the .wordmark--hero <h1>, which sets letter-spacing: -0.04em at a font
-     size of ~160px. That computes to roughly -6.4px and CSS inherits the
-     computed pixel value, not the raw em . so without this reset, the task
-     text renders with letters stacked on top of each other. Same goes for
-     font-weight (wordmark is 800) and line-height (wordmark is 1).
-     ---------------------------------------------------------------------- */
-  letter-spacing: normal;
-  font-weight: 500;
-  line-height: 1.45;
-  /* Container fade-in: items don't show until the gap is wide enough. */
-  opacity: clamp(0, calc((var(--p) - 0.18) * 6), 1);
-  transform: scale(calc(0.94 + var(--p) * 0.06));
-  transform-origin: center;
+  gap: 0.7rem;
 }
-
-.chunk {
+.event {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  list-style: none;
+  align-items: center;
+  gap: 0.55em;
+  background: color-mix(in srgb, var(--fg) 7%, var(--bg));
+  border-radius: var(--r-sm);
+  padding: 0.58em 0.8em;
 }
-
-/* Chunk header . recedes. Time in tabular numerals, separator faint,
-   label uppercased with tracking. Same line, baseline-aligned. */
-.chunk__head {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5em;
-  font-size: 0.72em;
+.event__time {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
   font-weight: 600;
   color: var(--fg-dim);
-  letter-spacing: 0.06em;
-  /* Per-item fade-in. Same formula as tasks below . shared rhythm. */
-  --in: clamp(0, calc((var(--p) - 0.22 - var(--i) * 0.07) * 12), 1);
-  opacity: var(--in);
-  transform: translateY(calc((1 - var(--in)) * 6px));
+  white-space: nowrap;
 }
-.chunk__time { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; letter-spacing: 0; }
-.chunk__sep   { opacity: 0.55; }
-.chunk__label { text-transform: uppercase; }
+.event__name { color: var(--fg-dim); }
+.event__src {
+  margin-left: auto;
+  font-size: 0.62em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  opacity: 0.65;
+  white-space: nowrap;
+}
 
-/* Task rows . elevated. Larger font than header, full foreground color. */
-.chunk__tasks {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* Calendar-event swatches: background, a left-border accent, and the calendar
+   text colour per event. Box size and text placement are otherwise unchanged. */
+.event--blue  { background: var(--event-blue-bg); border-left: 3px solid var(--event-blue-edge); }
+.event--blue  .event__time,
+.event--blue  .event__name,
+.event--blue  .event__src  { color: var(--event-blue-ink); }
+.event--green { background: var(--event-green-bg); border-left: 3px solid var(--event-green-edge); }
+.event--green .event__time,
+.event--green .event__name,
+.event--green .event__src  { color: var(--event-green-ink); }
+
+.gap { display: flex; flex-direction: column; padding: 0 0.1em; }
+.gap__head {
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.task {
-  display: grid;
-  grid-template-columns: 1.05em 1fr;
   align-items: center;
-  gap: 0.65em;
-  font-weight: 500;
-  --in:   clamp(0, calc((var(--p) - 0.22 - var(--i) * 0.07) * 12), 1);
-  --tick: clamp(0, calc((var(--p) - 0.52 - var(--i) * 0.06) * 12), 1);
-  opacity: var(--in);
-  transform: translateY(calc((1 - var(--in)) * 6px));
+  gap: 0.5em;
+  padding-bottom: 0.45em;
+  margin-bottom: 0.55em;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.84em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-gap);
 }
-.task__box {
-  width: 1.05em;
-  height: 1.05em;
-  border: 1.5px solid var(--fg-dim);
-  border-radius: 4px;
+.gap__time { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+.gap__sep  { color: var(--fg-dim); font-weight: 400; }
+.gap__label { text-transform: uppercase; }
+.gap__bell { margin-left: auto; color: var(--fg-dim); opacity: 0.75; flex: none; }
+
+.gap__tasks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.7em; }
+.trow {
+  display: grid;
+  grid-template-columns: 1.2em 1fr auto;
+  align-items: start;
+  gap: 0.6em;
+  --tick: clamp(0, calc((var(--p) - var(--c, 2)) / 0.04), 1);
+}
+.tbox {
+  width: 1.2em;
+  height: 1.2em;
+  margin-top: 0.12em;
+  border: 1.6px solid var(--fg-dim);
+  border-radius: 5px;
+  flex: none;
   position: relative;
-  background:    color-mix(in oklab, var(--accent) calc(var(--tick) * 100%), transparent);
-  border-color:  color-mix(in oklab, var(--accent) calc(var(--tick) * 100%), var(--fg-dim));
+  background: color-mix(in oklab, var(--fg-dim) calc(var(--tick) * 100%), transparent);
 }
-.task__box::after {
+.tbox::after {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 80% 80%;
+  background: center / 78% 78% no-repeat
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   opacity: var(--tick);
-  /* --tick is driven by --p (scroll-position); no CSS transition here.
-     The transition would queue against JS-driven --p updates and stutter. */
 }
-.task__text {
-  text-decoration-line: line-through;
-  text-decoration-color:    color-mix(in oklab, var(--fg-dim) calc(var(--tick) * 100%), transparent);
-  text-decoration-thickness: 1.5px;
+.tbox--due { background: var(--urgency-red); border-color: var(--urgency-red); }
+.tmain { display: flex; flex-direction: column; gap: 0.12em; min-width: 0; }
+.ttitle {
   color: color-mix(in oklab, var(--fg-dim) calc(var(--tick) * 60%), var(--fg));
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration-line: line-through;
+  text-decoration-color: color-mix(in oklab, var(--fg-dim) calc(var(--tick) * 100%), transparent);
+  text-decoration-thickness: 1.5px;
+}
+.tproj { font-size: 0.82em; color: var(--fg-dim); }
+.tflag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+  color: var(--urgency-red);
+  font-size: 0.82em;
+  font-weight: 600;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-
-.hero__tagline {
-  margin: 0;
-  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
-  color: var(--fg-dim);
-  text-align: center;
-  max-width: 40rem;
-  /* Light tracking gives the tagline a deliberate, branded feel . the
-     wordmark's geometric weight reads as a logo above a "set-spec" line. */
-  letter-spacing: 0.035em;
-  /* Tagline fades as the user scrolls into the hero, ceding focus to the
-     spreading wordmark. */
-  opacity: calc(1 - var(--p) * 0.7);
-  transform: translateY(calc(var(--p) * -8px));
-}
-
-/* (Gold strikethrough was here for an earlier iteration of the tagline
-   where "stuff" was struck. The public-facing tagline is now plain text,
-   so those rules are removed. If we ever re-introduce a struck word the
-   pattern is: position: relative on <s>, ::after with rotated rounded
-   rectangle in var(--c-gold) at ~0.82 opacity.) */
 
 .hero__scroll-hint {
   position: absolute;
-  bottom: 1.75rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
@@ -528,37 +530,36 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0;
-  opacity: calc(1 - var(--p) * 2);  /* gone by the time scroll starts */
+  opacity: calc(1 - var(--p) * 2.4);
   pointer-events: none;
 }
 
-/* Fallbacks ---------------------------------------------------------------- */
-/* No-JS users: show the post-animation state (--p = 1). */
-html:not(.js) .hero { height: auto; }
-html:not(.js) .hero__stage { position: relative; height: auto; padding: 5rem 1.5rem; }
-html:not(.js) .hero { --p: 1; }
+/* Fallbacks . no JS or reduced motion show everything risen, no pin. */
+html:not(.js) .hero { height: auto; --p: 1; }
+html:not(.js) .hero__stage { position: relative; height: auto; padding: 4rem var(--pad-x); }
 html:not(.js) .hero__scroll-hint { display: none; }
-
-/* Reduced motion: also static. */
 @media (prefers-reduced-motion: reduce) {
   .hero { height: auto; --p: 1; }
-  .hero__stage { position: relative; height: auto; padding: 5rem 1.5rem; }
+  .hero__stage { position: relative; height: auto; padding: 4rem var(--pad-x); }
   .hero__scroll-hint { display: none; }
-  .chunks, .chunk__head, .task, .task__box::after { transition: none; }
+  .rise { transition: none; }
 }
 .hero[data-static="true"] { height: auto; --p: 1; }
-.hero[data-static="true"] .hero__stage { position: relative; height: auto; padding: 5rem 1.5rem; }
+.hero[data-static="true"] .hero__stage { position: relative; height: auto; padding: 4rem var(--pad-x); }
 
-/* Phone: gap opens wider relative to viewport because chunk content
-   needs both width AND vertical room. The wordmark shrinks to make the
-   trade. The grid still keeps the gap visually centered. */
-@media (max-width: 640px) {
-  .hero { height: 220vh; }
-  .hero__gap   { width: clamp(0px, calc(var(--p) * 22rem), 72vw); }
-  .chunks      { max-width: 18rem; gap: 0.85rem; }
-  .chunk__head { font-size: 0.68em; letter-spacing: 0.05em; }
-  .wordmark--hero { font-size: clamp(2.25rem, 16vw, 4.5rem); }
+/* Phone . single column. Wordmark + day fill the screen, no horizontal scroll;
+   the tagline yields first if vertical room is tight. */
+@media (max-width: 760px) {
+  .hero { height: 200vh; }
+  .hero__grid { grid-template-columns: 1fr; gap: clamp(1.1rem, 5vw, 1.8rem); max-width: 30rem; justify-items: start; }
+  .hero__copy { max-width: 100%; }
+  .wordmark--hero { font-size: clamp(2.4rem, 13vw, 4rem); }
+  .day { max-width: 22rem; }
 }
+@media (max-width: 760px) and (max-height: 720px) {
+  .hero__tagline { display: none; }
+}
+
 
 /* ============================================================================
    Bands . content sections below the hero
@@ -930,7 +931,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .btn:active { transform: translateY(1px); }
 .btn--primary {
   background: var(--accent);
-  color: #FFF;
+  color: var(--on-accent);
 }
 .btn--primary:hover {
   background: color-mix(in oklab, var(--accent) 88%, #000 12%);
@@ -1018,6 +1019,126 @@ html:not(.js) .hero__scroll-hint { display: none; }
   text-underline-offset: 3px;
 }
 .prose__body a:not(.btn):hover { text-decoration-thickness: 2px; }
+
+/* ============================================================================
+   Concept map (concepts page)
+   ----------------------------------------------------------------------------
+   A structural diagram of the container hierarchy: areas / sub-areas /
+   projects on the left, sections / tasks / subtasks on the right. This is
+   deliberately abstract . typographic indentation and checkboxes, not a
+   mock of app chrome . so it explains structure without promising pixels.
+   The checkbox idiom matches the hero's task rows (border fg-dim, 4px
+   radius, coral when done), the one product idiom the site already mirrors.
+   ============================================================================ */
+.concept-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin: 2.25em 0;
+  padding: 0;
+}
+@media (max-width: 720px) {
+  .concept-map { grid-template-columns: 1fr; }
+}
+.concept-map__panel {
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background: var(--code-bg);
+  padding: 1.5rem 1.75rem;
+  font-size: var(--t-sm);
+  line-height: 1.5;
+}
+.concept-map__title {
+  margin: 0 0 1rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 600;
+}
+
+/* Left panel: the containment tree. Indentation carries the hierarchy;
+   a faint guide line makes the nesting scannable. */
+.ctree, .ctree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ctree ul {
+  margin-left: 0.55rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--hairline);
+}
+.ctree li { margin: 0.45em 0; }
+.ctree__area {
+  font-weight: 600;
+  color: var(--fg);
+}
+.ctree__area + .ctree__area { margin-top: 1.1em; }
+.ctree__row {
+  font-weight: 400;
+  color: var(--fg);
+}
+.ctree__row--subarea { color: var(--fg); font-weight: 500; }
+.ctree__chip {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 3px;
+  margin-right: 0.5em;
+  vertical-align: baseline;
+}
+.ctree__chip--mint { background: var(--c-mint); }
+.ctree__chip--gold { background: var(--c-gold); }
+.ctree__note {
+  margin-left: 0.6em;
+  font-size: 0.8em;
+  color: var(--fg-dim);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Right panel: inside one project. Section dividers recede (muted, tracked
+   uppercase), task rows carry the weight . same hierarchy rule as the app
+   and the hero: elevate the tasks, mute everything else. */
+.cproj { margin: 0; }
+.cproj__section {
+  margin: 1.1em 0 0.5em;
+  font-size: 0.8em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 600;
+}
+.cproj__section:first-child { margin-top: 0; }
+.cproj__task {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0.45em 0;
+  color: var(--fg);
+}
+.cproj__task--sub { margin-left: 1.65em; }
+.cproj__task s {
+  color: var(--fg-dim);
+  text-decoration-thickness: 1.5px;
+}
+.cbox {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  border: 1.5px solid var(--fg-dim);
+  border-radius: 4px;
+}
+.cbox--done {
+  background: var(--accent);
+  border-color: var(--accent);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5l3 3 7-7' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80% 80%;
+}
 
 /* Changelog list (if Hugo generates one) */
 .page-list { list-style: none; padding: 0; margin: 0; }

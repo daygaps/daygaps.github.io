@@ -13,6 +13,15 @@
         <a href="{{ .URL | relURL }}">{{ .Name }}</a>
       {{- end }}
     </nav>
+    {{- /* Reference links (changelog, legal, support) live in their own row
+           so the page-level nav above stays scannable. */ -}}
+    {{- with site.Menus.footer }}
+    <nav class="site-footer__nav site-footer__nav--meta" aria-label="Reference">
+      {{- range . }}
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+      {{- end }}
+    </nav>
+    {{- end }}
     <p class="site-footer__meta">
       &copy; {{ now.Year }} {{ partial "brand-inline.html" . }}.
       Built with <a href="https://gohugo.io" rel="external nofollow">Hugo</a>.

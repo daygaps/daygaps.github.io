@@ -1,6 +1,6 @@
 # daygaps-site
 
-Marketing site for **Day Gaps** — a macOS task app built around the gap.
+Marketing site for **DayGaps**: a task app for Mac and iPhone built around the gap.
 
 Hand-rolled Hugo site, no external theme. Custom layouts under `layouts/`,
 single stylesheet under `assets/css/main.css`, single hero script under
@@ -22,7 +22,7 @@ hugo server -D
 ```
 
 The dev server runs at http://localhost:1313 with live reload. The hero
-scroll animation only works in a real browser — Hugo's reloader doesn't
+scroll animation only works in a real browser; Hugo's reloader doesn't
 interfere with it.
 
 To preview the production build (minified, fingerprinted CSS, etc.):
@@ -36,7 +36,7 @@ open public/index.html      # or `python3 -m http.server` inside public/
 
 ```
 daygaps-site/
-├── hugo.toml                       # site config — brand name lives here
+├── hugo.toml                       # site config; brand name lives here
 ├── content/
 │   ├── _index.md                   # home (uses layouts/index.html)
 │   ├── philosophy.md
@@ -66,7 +66,7 @@ nameRight = "OtherName"     # right half
 ```
 
 Templates and content always read `.Site.Params.brand.name`,
-`.Site.Params.brand.nameLeft`, etc. — there are no hardcoded references in
+`.Site.Params.brand.nameLeft`, etc.; there are no hardcoded references in
 the layouts. (Search the `content/` markdown files manually if you want to
 also rename in copy.)
 
@@ -90,7 +90,7 @@ configure DNS per GitHub's instructions.
 
 - Real favicon + apple-touch-icon (placeholder for now: none).
 - OG image for social previews (placeholder for now: none).
-- TestFlight link in `content/beta.md` is a placeholder — update when ready.
+- TestFlight link in `content/beta.md` is a placeholder; update when ready.
 - `baseURL` in `hugo.toml` is a placeholder (`https://daygaps.app/`). The
   workflow overrides it at build time from GitHub Pages settings, but
   update the value for local previews to match where the site lives.

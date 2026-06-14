@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 description: "Common questions about how DayGaps works, what's intentionally missing, and how to set things up."
-date: 2026-05-24
+date: 2026-06-10
 ---
 
 This page mirrors the **DayGaps Help** sheet inside the Mac app (open from the Help menu, or press ⌘?). If something here is out of sync with what the app shows, the in-app version is the source of truth.
@@ -12,7 +12,19 @@ A **gap** is a chunk of time between calendar commitments, the part of the day y
 
 To add a gap, click the inline *+ Add gap* button just above the day's footer, or press ⇧⌘N. To edit a gap, right-click its header for rename, delete, or set-reminder. A reminder fires a macOS banner at the gap's wall-clock time on every day it exists in the rolling seven-day window.
 
+A gap has a start time and no end time. The app derives the most a gap can hold from where the next fixed thing begins, the next gap or the next calendar event, and shows it with the gap's header. Change the plan and the math follows.
+
+A gap whose start time falls inside a calendar event renders with a background tint. The tint states the overlap and nothing more; whether that means work-during-the-seminar, an agenda for the meeting, or last-minute prep is your call. See [Concepts](/concepts/) for the full gap model.
+
 On iPhone, tap the gap's header to open the same editor. Swipe left on a gap header to delete it.
+
+## DayGaps and your calendar
+
+The relationship is read-only, in one direction, by your choice. You pick which calendars {{< brand >}} can see; it reads their events on-device and writes nothing back. Your calendar app, and whatever system or obligations come with it, stays exactly as it is.
+
+The per-calendar choice earns its keep quickly. Many people keep a calendar of events they only need to know about, kept visible to a workplace scheduler so the time reads as blocked. Leave that one out and let the calendars you act on come through: the events that shape your gaps are the ones that actually claim you.
+
+What the events buy you inside {{< brand >}}: a map of the day's fixed posts drawn alongside your gaps, a live list of the true open stretches between events (click one to claim it as a named gap starting at that time), the derived maximum each gap can hold, and the tint on any gap that sits inside an event. All of it is recomputed as the day changes, so nothing goes stale when a meeting moves.
 
 ## Scheduling tasks
 
@@ -20,36 +32,54 @@ Every task can be **dated**, **gap-assigned**, **both**, or **neither**. Dating 
 
 To reschedule on the Mac, click the calendar glyph on any task row. The popover offers a calendar and, for today, a row of "Today @ HH:mm" gap pills so you can pick the date and the gap in one click.
 
-On iPhone, swipe-right on a task moves it to a different gap on the same day; swipe-left opens a date picker. On a project view, swipe-left becomes *Assign date* for tasks that don't have one yet.
+On iPhone, the trailing swipe (drag left) opens Reschedule, one sheet for picking the new day and the gap on that day. The leading swipe (drag right) sets a due date instead; the two swipes cover the two dates a task can carry.
 
 Drag-and-drop also works on the Mac:
 
 - From the inbox onto a project or onto a day cell on the month calendar.
 - From one gap's row onto another gap's header within the same day, to re-assign the task.
 
+## Scheduled vs due
+
+**Scheduled** is when you plan to do a task: a day, optionally a gap. **Due** is when it must be done. They are independent fields; a task can carry both, either, or neither.
+
+Due dates are deliberately loud where scheduling is quiet: an arriving deadline turns red, the Deadlines view collects every dated commitment, and Today shows a DUE chip counting tasks due or overdue. The chip appears only when the count is above zero, so seeing it means something. Rescheduling a task is an everyday act; a due date is a commitment. [Concepts](/concepts/) covers the model in full.
+
+## Carried over
+
+A scheduled task you didn't finish shows at the top of Today as **Carried over** the next day. Carried over is calm on purpose: it means yesterday's plan had more in it than yesterday did, which is information, and common. Do the task, or reschedule it into a day with room.
+
+Due dates are the separate, loud channel. A carried-over task without a due date never turns red.
+
+## Tags
+
+Write `#tag` anywhere in a task's title and it's a tag. When the page you're viewing contains tagged tasks, the tags appear as filter chips at the top; tap one to filter the page to it.
+
+Tags are derived from the tasks in front of you each time and stored nowhere. There's no tag registry to maintain and no rename ceremony: edit the text and the tag follows, delete the last occurrence and the tag is gone. Matching is exact-string and deliberately dumb, which is what makes tags free to invent and free to abandon.
+
 ## Where your data lives
 
-Day Gaps stores areas, projects, tasks, headers, gaps, days, and inbox items in your private CloudKit zone. There's no shared backend, no Day Gaps server: the data lives between your devices and your iCloud account.
+{{< brand >}} stores areas, projects, tasks, headers, gaps, days, and inbox items in your private CloudKit zone. There's no shared backend, no {{< brand >}} server: the data lives between your devices and your iCloud account.
 
-On the Mac you can optionally turn on a **YAML bridge** in Settings → Sync. Point it at a folder and Day Gaps mirrors every change as plain YAML on disk: one file per project, one per day, plus `areas.yaml`, `inbox.yaml`, and `scratchpad.md`. Edit the YAML in your editor and the bridge picks it up; edit in the app and the YAML rewrites. The CloudKit zone stays the source of truth.
+On the Mac you can additionally use the **YAML bridge**. Open the bridge, pick which areas are in scope, and the app writes them to a folder as plain YAML, one file per project plus your inbox, then locks itself while you (or your AI, or your scripts) edit the files. Check the bridge back in and the app takes the YAML as the new truth for everything in scope. Every session starts with a backup, and the last several backups are kept.
 
 The bridge is Mac-only. The iPhone reads CloudKit directly.
 
-If you want the full schema (for an AI assistant, a custom script, or just curiosity), see the [AI assistant page](/ai/).
+If you want the full schema (for an AI assistant, a custom script, or just curiosity), see the [AI page](/ai/) and the [bridge protocol](/ai-bridge-protocol/).
 
-## Why a YAML mirror still matters
+## Why the YAML bridge matters
 
 Three reasons.
 
-**It's hand-editable.** You can fix a typo in Vim. You can paste a task into the right project with a text editor. You can ask Claude or ChatGPT to reorganize a project for you and apply the change directly to the file. The schema is meant to be operated by a person, not by a serializer.
+**It's hand-editable.** You can fix a typo in Vim. You can reorganize a whole project with your editor's block moves. You can ask Claude or ChatGPT to triage your inbox and apply the change directly to the files. The schema is meant to be operated by a person, not by a serializer.
 
-**It diffs cleanly.** YAML lines up nicely in version control. If you keep your bridged folder in git, every change shows up as a small, readable diff.
+**It diffs cleanly.** YAML lines up nicely in version control. If you keep your bridge folder in git, every check-in shows up as a small, readable diff.
 
-**It survives.** Markdown files from a decade ago still open. YAML files from a decade ago still parse. CloudKit is convenient today; the plaintext mirror is what survives if Apple ever changes the rules.
+**It survives.** Markdown files from a decade ago still open. YAML files from a decade ago still parse. CloudKit is convenient today; the plaintext copy is what survives if anything ever changes the rules.
 
 ## Syncing across devices
 
-Day Gaps syncs through your private iCloud zone via CloudKit. Sign into the same Apple ID on each device and the data is there. No folder to configure, no cloud provider to choose, no permissions to grant beyond "use iCloud."
+{{< brand >}} syncs through your private iCloud zone via CloudKit. Sign into the same Apple ID on each device and the data is there. No folder to configure, no cloud provider to choose, no permissions to grant beyond "use iCloud."
 
 What this means in practice:
 
@@ -68,7 +98,13 @@ What lives where:
 - **Planning and structural work on the Mac.** Creating projects, archiving, renaming areas, scheduling reminders, the menu-bar timer, drag-reorder of sections, the calendar inspector. Things you do at a desk with a keyboard.
 - **Last-minute replanning and capture on the iPhone.** Marking done, setting deadlines, rescheduling, focusing one gap, adding to the inbox between meetings. Things you do walking around.
 
-The iPhone is read-mostly for project structure. Renaming or deleting a project, renaming or deleting an area, drag-reordering within an area: all happen on the Mac.
+The iPhone is read-mostly for project structure. Renaming or deleting a project, and other structural surgery, happens on the Mac.
+
+## Sharing a project
+
+A project can be shared with other people through iCloud. Participants see the shared plan: the project's name and purpose, its sections, its tasks and their order, what's done, the project deadline, and every task's due date.
+
+Scheduling stays personal. Which day and which gap you put a task into, what you pin, and what you collapse are your own state, invisible to the people you share with. The plan is common ground; the days are yours. [Concepts](/concepts/) has the full picture.
 
 ## Daily flow
 
@@ -114,4 +150,12 @@ The iPhone app has no keyboard shortcut layer; gestures cover the same territory
 
 **Built-in moralizing about how you spend gaps.** DayGaps shows you the shape of your day. It doesn't tell you what to do with empty time.
 
-**An online account.** There is no DayGaps login. The folder is the account. The sync provider is the sync.
+**An online account.** There is no DayGaps login. Your iCloud account is the only account involved, and we never see it.
+
+## What it costs
+
+{{< brand >}} is a one-time purchase on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch will open with a reduced back-to-school price.
+
+## What's coming
+
+A Home Screen widget for iPhone: your nearest gap and its tasks at a glance, plus the count of anything due. It ships when it's ready; the [changelog](/changelog/) is where shipped things are announced.

@@ -1,10 +1,10 @@
 ---
 title: "Patterns"
 description: "Different ways DayGaps fits into a day."
-date: 2026-05-15
+date: 2026-06-10
 ---
 
-There's no one right way to use DayGaps. Below are five scenes from people who've already settled into a rhythm with it. Read whichever ones sound like your day.
+There's no one right way to use DayGaps. Below are seven scenes from people who've already settled into a rhythm with it. Read whichever ones sound like your day.
 
 ## Sunday evening
 
@@ -12,9 +12,7 @@ You sit down with a cup of tea and the week ahead. The calendar is already full 
 
 You open DayGaps. The calendar inspector shows the meetings you already know about, laid into the days like fence posts. Between the posts are blank spaces, and the blank spaces are what you're here to name. *Monday morning focus. Tuesday before lab. Wednesday writing. Thursday catch-up.* You don't fill every one of them. The gaps that stay unnamed will be there when you need them.
 
-For each named gap, you drag in tasks from the projects in your sidebar. Three or four per gap, never more. By the time you finish your tea, the week has shape. The deciding is done.
-
-{{< figure src="/screens/planning-week.png" alt="A weekly planning view in DayGaps, with gaps named across multiple days and tasks scheduled into them" caption="Sunday evening, the week takes shape." >}}
+For each named gap, you pull in tasks from the projects in your sidebar. Three or four per gap, never more. By the time you finish your tea, the week has shape. The deciding is done.
 
 ## The ten-minute gap before a meeting
 
@@ -32,9 +30,7 @@ You're deep in writing. An idea surfaces, something about chapter three that nee
 
 You press the capture shortcut. A small field opens in the inspector. You type one line. You press enter. The field closes. You're back in the writing.
 
-The captured line sits in the inbox until you triage it, which you'll do later when planning. The inbox holds one-line thoughts, nothing more. There is no folder structure to maintain inside it. Triage is just deciding which project the line belongs to, and dragging it there.
-
-{{< figure src="/screens/inbox.png" alt="DayGaps inbox in the right pane, holding a few captured one-line items" caption="The inbox: one-line capture, no ceremony." >}}
+The captured line sits in the inbox until you triage it, which you'll do later when planning. The inbox holds one-line thoughts, nothing more. There is no folder structure to maintain inside it. Triage is just deciding which project the line belongs to, and sending it there.
 
 ## Wrapping up Friday
 
@@ -42,7 +38,7 @@ You look at today's view at the end of the day. Six gaps. Most of them have stri
 
 You scan each unfinished task. Did it belong in that gap? Was the gap too short? Did something change? For a couple of tasks the answer is "move to next Monday's *deep work* gap." For one it's "this isn't going to happen and that's fine, drop it." For one it's "the whole project this lives under is done, archive it."
 
-The archive command moves the whole project file into the `archive/` folder. Its tasks, history, and notes go with it. You won't see it in queries anymore, but you can walk through it later if you need to.
+Archiving moves the whole project into Archives, tasks, history, and notes included. It steps out of your day-to-day views and keeps its record; you can walk through it later whenever you need to.
 
 By the time you close the laptop, the desk is clear. Monday is set up.
 
@@ -54,12 +50,28 @@ You're a writer. Or a retiree. Or a researcher between deadlines. You have a wid
 
 So you name the gaps yourself. *Morning deep work. After lunch. Evening reading.* The gaps aren't bounded by external events. They're bounded by *you*, by what you have energy for, by what kind of work fits which time of day.
 
-You drag the same tasks under those gaps that you'd drag under any other gaps. The app doesn't care that no meeting brackets your morning. It cares that you named the gap.
+You schedule the same tasks under those gaps that you'd schedule under any others. The app doesn't care that no meeting brackets your morning. It cares that you named the gap.
 
 By 9 AM you're in *Morning deep work*. The rest of the day is faded. You start.
 
 {{< figure src="/screens/standalone.png" alt="A standalone DayGaps window showing a single gap with its tasks, the rest of the app out of view" caption="No meetings on the calendar. The gaps are yours to draw." >}}
 
+## A Pomodoro afternoon
+
+Your afternoon is one long gap, *afternoon writing*, three hours wide. Three hours is too big a bite, and you know how you work: in pulls of forty-five minutes.
+
+On the Mac, you CMD-click the gap's header and arm the timer. The menu bar counts down while you write; the gap below holds the tasks so you never have to wonder what the next pull is for. A gentle ping at zero. You stand, stretch, look out the window, arm it again.
+
+The gap holds the *what*. The timer holds the *pace*. Each is welcome without the other, which is why the timer lives in the menu bar and asks nothing of the day's plan.
+
+## The agenda inside the meeting
+
+Monday, 14:00, lab meeting. The lab shares a project, so everyone sees the same sections, the same tasks, the same deadlines, each person scheduling their own part into their own days.
+
+Your move happened during the week, in ten-second increments: every time something came up that should be raised on Monday, you scheduled it into a gap you'd placed at 14:00, inside the meeting itself. The app tints that gap to show it overlaps a calendar event, and draws no conclusions about why.
+
+The meeting starts. Your phone shows the tinted gap and the items under it, assembled into an agenda by nothing more than where you chose to put them. You raise each one, check it off, and the shared project's progress updates for everyone in the room.
+
 ---
 
-These are five rhythms, not five rules. Yours will look different. The only commitment DayGaps asks of you is that you name your gaps before the time arrives, and trust the plan when it does.
+These are seven rhythms, not seven rules. Yours will look different. The only commitment DayGaps asks of you is that you name your gaps before the time arrives, and trust the plan when it does.

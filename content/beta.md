@@ -1,7 +1,7 @@
 ---
-title: "Beta"
-description: "Day Gaps is in private TestFlight. Here's how to get in."
-date: 2026-05-30
+title: "Get the app"
+description: "DayGaps is in private TestFlight. Here's how to get in, and what v1.0 will cost."
+date: 2026-06-10
 ---
 
 {{< brand >}} runs on Mac and iPhone. The Mac app is a universal binary on macOS 14 (Sonoma) and later. The iPhone app runs on iOS 17 and later. Both ship through TestFlight.
@@ -11,8 +11,8 @@ date: 2026-05-30
 Internal TestFlight is invite-only. Email the Apple ID you want to test under and we'll add you. You'll get a TestFlight invitation by email within a day or two; install the **TestFlight** app from the App Store and tap **Accept** in the invitation.
 
 <p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="mailto:daygaps@gmail.com?subject=Day%20Gaps%20beta%20access&body=Apple%20ID%3A%20%0A%0ADevices%20(Mac%2FiPhone%2FiPad)%3A%20%0A%0AHow%20I%20plan%20today%3A%20">Request beta access</a>
-  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=Day%20Gaps%20feedback">Send feedback</a>
+  <a class="btn btn--primary" href="mailto:daygaps@gmail.com?subject=DayGaps%20beta%20access&body=Apple%20ID%3A%20%0A%0ADevices%20(Mac%2FiPhone%2FiPad)%3A%20%0A%0AHow%20I%20plan%20today%3A%20">Request beta access</a>
+  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=DayGaps%20feedback">Send feedback</a>
 </p>
 
 ## Installing on Mac
@@ -21,13 +21,13 @@ Once accepted:
 
 1. Open the **TestFlight** app on your Mac (App Store has it).
 2. Sign in with the Apple ID you sent us.
-3. **Day Gaps** appears in the list. Tap **Install**.
+3. **DayGaps** appears in the list. Tap **Install**.
 
-That's it — no right-click-to-open dance, no Gatekeeper prompt. The build is signed and notarized through Apple's TestFlight pipeline.
+The build arrives signed and notarized through Apple's TestFlight pipeline, so it installs and opens like any App Store app.
 
 ## Installing on iPhone
 
-Same flow. Install the TestFlight app from the App Store, sign in, install Day Gaps.
+Same flow. Install the TestFlight app from the App Store, sign in, install DayGaps.
 
 No folder picker on first launch. The phone signs into your iCloud account automatically; your data syncs from the Mac across iCloud in the background.
 
@@ -41,7 +41,13 @@ The current build is **v0.6**. Universal Mac + iPhone + iPad, syncing through yo
 - Mac focus mode is a Pomodoro timer in the menu bar. iPhone focus mode is a visual filter on Today. (Different shapes for different surfaces.)
 - Optional YAML bridge on Mac for a plaintext mirror of your data.
 
-This is beta software. The format is stable and Day Gaps now runs the author's actual daily plans, but TestFlight is the right venue for it until external review is done.
+This is beta software. The format is stable and {{< brand >}} now runs the author's actual daily plans, but TestFlight is the right venue for it until external review is done.
+
+## When v1.0 ships
+
+{{< brand >}} will be a **one-time purchase** on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch opens with a reduced back-to-school price, timed for the season when days fill up with fixed commitments and the gaps between them start mattering.
+
+Beta testers will be the first to know; everyone else can watch this page or the [changelog](/changelog/).
 
 ## Known gaps
 

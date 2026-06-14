@@ -49,7 +49,7 @@ enableGitInfo    = false
 [params]
   author       = "DayGaps"           # publisher name for RSS / sitemap. Visible footer copyright renders DayGaps two-tone via the brand partial regardless.
   twitter      = ""                   # optional @handle, omitted from <head> when empty
-  releaseStage = "private alpha"      # shown on the beta page
+  releaseStage = "private beta"       # shown on the landing CTA and beta page
 
   # Direct-download CTA targets. The site is built around a download/TestFlight
   # link rather than an email waitlist. Update these when artifacts exist.
@@ -58,8 +58,26 @@ enableGitInfo    = false
     primaryHref   = "/beta/"
     secondaryLabel = "Read the philosophy"
     secondaryHref  = "/philosophy/"
+    # At App Store launch, flip the primary to the store listing:
+    #   primaryLabel = "Get it on the App Store"
+    #   primaryHref  = "https://apps.apple.com/app/daygaps/idXXXXXXXXX"
+    # and update releaseStage above. The beta page becomes the download page
+    # (same /beta/ URL, retitled; see content/beta.md).
 
 # Top-of-page navigation. Order matters; templates iterate in declared order.
+# Reading order mirrors a visitor's deepening interest: get started, learn
+# the model, see it in a day, read the reasoning, then platform + AI depth.
+# Changelog and the legal pages live in the footer menu below.
+[[menu.main]]
+  name   = "Start"
+  url    = "/start/"
+  weight = 5
+
+[[menu.main]]
+  name   = "Concepts"
+  url    = "/concepts/"
+  weight = 8
+
 [[menu.main]]
   name   = "Patterns"
   url    = "/patterns/"
@@ -81,7 +99,7 @@ enableGitInfo    = false
   weight = 28
 
 [[menu.main]]
-  name   = "Beta"
+  name   = "Get the app"
   url    = "/beta/"
   weight = 30
 
@@ -90,9 +108,26 @@ enableGitInfo    = false
   url    = "/faq/"
   weight = 35
 
-[[menu.main]]
+# Footer-only navigation: reference pages a visitor seeks out rather than
+# browses to. Rendered by layouts/partials/footer.html after the main menu.
+[[menu.footer]]
   name   = "Changelog"
   url    = "/changelog/"
+  weight = 10
+
+[[menu.footer]]
+  name   = "Privacy"
+  url    = "/privacy/"
+  weight = 20
+
+[[menu.footer]]
+  name   = "Terms"
+  url    = "/terms/"
+  weight = 30
+
+[[menu.footer]]
+  name   = "Support"
+  url    = "/support/"
   weight = 40
 
 # Don't generate per-section RSS pages we won't use. Home + changelog only.

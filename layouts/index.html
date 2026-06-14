@@ -3,22 +3,26 @@
 {{- $brand := site.Params.brand -}}
 {{- $cta := site.Params.cta -}}
 
-{{/* ---------- HERO: split-logo scroll reveal ---------------------------- */}}
-{{/* Untouched. The animated wordmark is the brand's signature moment and  */}}
-{{/* the conceptual anchor of the whole site: a gap in the name literally  */}}
-{{/* becomes the workspace.                                                */}}
+{{/* ---------- HERO: the day fills as you scroll ------------------------- */}}
+{{/* Logo and the day's gap headers are static and fill the viewport. The   */}}
+{{/* sticky stage pins while scroll fills each gap with its tasks (hero.js   */}}
+{{/* drives one --p value); when the gaps are full the pin releases into     */}}
+{{/* plain scroll. The panel mirrors the app's Today view.                   */}}
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero__stage">
-    <h1 id="hero-heading" class="hero__wordmark wordmark wordmark--hero" aria-label="{{ $brand.name }}">
-      <span class="wordmark__left" aria-hidden="true">{{ $brand.nameLeft }}</span>
-      <span class="hero__gap" aria-hidden="true">
-        {{- partial "hero-checklist.html" . -}}
-      </span>
-      <span class="wordmark__right" aria-hidden="true">{{ $brand.nameRight }}</span>
-    </h1>
-    <p class="hero__tagline">{{ $brand.tagline | safeHTML }}</p>
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <div class="hero__lockup">
+          <h1 id="hero-heading" class="wordmark wordmark--hero" aria-label="{{ $brand.name }}"><span class="wordmark__left" aria-hidden="true">{{ $brand.nameLeft }}</span><span class="wordmark__right" aria-hidden="true">{{ $brand.nameRight }}</span></h1>
+          <p class="hero__tagline">{{ replace $brand.tagline "done" "<em class=\"t-done\">done</em>" | safeHTML }}</p>
+        </div>
+      </div>
+      <div class="hero__panel">
+        {{- partial "hero-today.html" . -}}
+      </div>
+    </div>
     <p class="hero__scroll-hint" aria-hidden="true">
-      <span>Scroll</span>
+      <span>Scroll to fill</span>
       <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <rect x="1" y="1" width="12" height="20" rx="6" />
         <line x1="7" y1="6" x2="7" y2="10" />
@@ -109,6 +113,59 @@
   </div>
 </section>
 
+{{/* ---------- CALENDAR BAND: alongside, never inside ---------------------- */}}
+{{/* The calendar-task relationship, stated entirely as what we do: read    */}}
+{{/* the calendars you choose, write nothing, derive the true gaps live,    */}}
+{{/* click one to claim it. Carries the derive-don't-store thesis: the      */}}
+{{/* room in a gap is computed, so a moved day has nothing to repair.       */}}
+<section class="band band--scene band--scene--center">
+  <div class="band__inner">
+    <p class="band__kicker">Alongside your calendar</p>
+    <h2 class="band__heading">The calendar keeps the events. You get the gaps.</h2>
+    <div class="band__body band__body--narrow">
+      <p>
+        Your calendar is already the system of record for the committed parts of your day, and it stays that way. {{ partial "brand-inline.html" . }} reads the calendars you choose to share and writes nothing back, ever. The events appear alongside your gaps as the fixed posts of the day: a map of where the open time actually is.
+      </p>
+      <p>
+        Between those posts, the app derives the true gaps and keeps them current. Click one in the calendar pane and it becomes a named gap, starting right where the open time starts. Schedule a task somewhere that turns out to sit inside an event, a meeting or an hour you blocked for something else, and a quiet tint says so.
+      </p>
+      <p>
+        And because the room in every gap is derived rather than stored, a meeting that runs long leaves nothing to repair. The day moves; the math moves with it.
+      </p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- BELIEF II: the judgment stays human -------------------------- */}}
+{{/* Second one-liner, bookending the opening belief. The app computes      */}}
+{{/* geometry; energy, mood, and the weight of tasks stay with the person.  */}}
+<section class="band band--short">
+  <div class="band__inner">
+    <p class="band__one-liner">
+      {{ partial "brand-inline.html" . }} computes the shape of your time. What fills it, and what it costs you, <em>stays yours to judge.</em>
+    </p>
+  </div>
+</section>
+
+{{/* ---------- METHOD BAND: bring your own process ------------------------- */}}
+{{/* The day-shape scene above says "any day works"; this one says "any     */}}
+{{/* method works." Stated positively, per the no-critique rule: each       */}}
+{{/* method maps to a thing the app already does.                           */}}
+<section class="band band--scene band--scene--center">
+  <div class="band__inner">
+    <p class="band__kicker">However you work</p>
+    <h2 class="band__heading">It adapts to how you work.</h2>
+    <div class="band__body band__body--narrow">
+      <p>
+        If you time-block, gaps are your blocks: name them, fill them, live them. If you Pomodoro, arm the Mac's menu-bar timer for the gap you're in. If you run a GTD-shaped system, capture everything to the inbox, triage into projects, and review on whatever cadence suits you. A hybrid of all three works too, and so does pure improvisation: a gap created at 4pm for the evening is as much a plan as one named on Sunday.
+      </p>
+      <p>
+        Your process can change between projects, between semesters, between Tuesday and Wednesday. {{ partial "brand-inline.html" . }} holds whichever one you bring and asks for nothing back.
+      </p>
+    </div>
+  </div>
+</section>
+
 {{/* ---------- SCENE 4: quiet by design ----------------------------------- */}}
 <section class="band band--scene band--scene--center">
   <div class="band__inner">
@@ -116,7 +173,13 @@
     <h2 class="band__heading">Every pixel earns its place.</h2>
     <div class="band__body band__body--narrow">
       <p>
-        The colors don't call attention to themselves. Completed work fades to muted strikethrough instead of disappearing. When you focus a gap, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
+        The palette is muted, warm, and calm, and it stays that way so that when color does speak, it means something. Red is a deadline arriving. Coral is the gap you're working in right now. Everything else keeps its voice down.
+      </p>
+      <p>
+        That restraint extends to how the app treats your plans. Tasks you didn't get to ride forward to the top of Today as <em>Carried over</em>, in the same calm voice as everything else: they're yesterday's plan meeting today's, never a verdict. Real deadlines live in a separate register, and when one needs you, it is allowed to interrupt. The difference between "didn't get to it" and "must be done" is built into the pixels.
+      </p>
+      <p>
+        Completed work fades to muted strikethrough instead of disappearing. When you focus a gap, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
       </p>
       <p>
         These are not absences. They are decisions. Every choice the app makes is pointed at the same thing: keeping you in the work and out of the app. {{ partial "brand-inline.html" . }} gets quieter the more you use it.
@@ -134,10 +197,10 @@
       <p class="band__kicker">And on your phone</p>
       <h2 class="band__heading">The same gaps follow you off the desk.</h2>
       <p>
-        The iPhone app reads the same folder as the Mac. Open it between meetings or on the walk to lunch. The Today view is right there, the inbox is one tap away, and the gestures match the way the day actually changes.
+        The iPhone app reads the same iCloud zone as the Mac, so the day in your pocket is the day on your desk. Open it between meetings or on the walk to lunch. The Today view is right there, the inbox is one tap away, and the gestures match the way the day actually changes.
       </p>
       <p>
-        <strong>Tap</strong> to mark a task done. <strong>Swipe right</strong> to move it to a different gap. <strong>Swipe left</strong> to reschedule it for another day. The vocabulary is the same in Today, in This Week, and inside a project. <a href="{{ "/ios/" | relURL }}">See the phone in more detail</a>.
+        <strong>Tap</strong> to mark a task done. <strong>One swipe</strong> sets a due date. <strong>The other</strong> opens reschedule, where a new day and a new gap are one motion. The vocabulary is the same in Today, in This Week, and inside a project. <a href="{{ "/ios/" | relURL }}">See the phone in more detail</a>.
       </p>
     </div>
     <div class="scene__figure">
@@ -148,14 +211,39 @@
   </div>
 </section>
 
-{{/* ---------- PLAIN FILES ----------------------------------------------- */}}
+{{/* ---------- SHARING ----------------------------------------------------- */}}
+{{/* Shared projects: the plan is common ground, the schedule is personal.  */}}
+{{/* Self-contained band; if sharing slips out of the v1.0 build, this      */}}
+{{/* section and the matching /concepts/ section lift out cleanly.          */}}
+<section class="band band--scene band--scene--center">
+  <div class="band__inner">
+    <p class="band__kicker">Shared plans, personal days</p>
+    <h2 class="band__heading">Share the project. Keep your schedule.</h2>
+    <div class="band__body band__body--narrow">
+      <p>
+        A project can be shared with other people through iCloud. Everyone you invite sees the same plan: the sections, the tasks and their order, what's done, the deadlines. When each task happens stays personal. You schedule your part into your own gaps, they schedule theirs into theirs, and the plan agrees while the days differ.
+      </p>
+      <p>
+        One thing this unlocks: put a gap inside the weekly meeting itself and schedule the points you want to raise. Your agenda assembles itself from the shared plan, on your phone, in the room. <a href="{{ "/concepts/" | relURL }}">More in Concepts</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- DATA: private by architecture ------------------------------- */}}
+{{/* Two promises in one band: the sync story (private iCloud zone, no      */}}
+{{/* servers of ours) and the ownership story (bridge YAML for editors,     */}}
+{{/* git, and AI). The day-file sample shows bridge output.                 */}}
 <section class="band band--files">
   <div class="band__inner band__inner--split">
     <div>
-      <p class="band__kicker">Plain files. Yours forever.</p>
-      <h2 class="band__heading">YAML and Markdown in your own folder.</h2>
+      <p class="band__kicker">Private by architecture</p>
+      <h2 class="band__heading">Your data lives in your iCloud. Nowhere else.</h2>
       <p class="band__body band__body--narrow">
-        Every project is a YAML file. Every day is a YAML file. Your notebook is Markdown. There is no proprietary database, no cloud account, no migration story when {{ partial "brand-inline.html" . }} eventually goes away. You can read your data with <code>cat</code>. You can edit it in Vim. You can <a href="{{ "/ai/" | relURL }}">hand the schema to your AI assistant</a> and ask it to reorganize a project for you. The app is meant to be operated <em>with</em> an AI, not despite one.
+        Your areas, projects, and days sync between your devices through your own private iCloud zone. There are no {{ partial "brand-inline.html" . }} servers, no account to create, and no analytics watching you work. <a href="{{ "/privacy/" | relURL }}">The privacy page</a> is short because there is nothing to disclose.
+      </p>
+      <p class="band__body band__body--narrow">
+        And when you want your plans as text, the bridge writes them to a folder as plain YAML: readable in any editor, diffable in git, and ready to <a href="{{ "/ai/" | relURL }}">hand to the AI assistant of your choice</a>. The app is meant to be operated <em>with</em> an AI, on your terms.
       </p>
     </div>
     <pre class="band__file" aria-label="Example day file">date: 2026-05-15
@@ -181,10 +269,11 @@ gaps:
   <div class="band__inner">
     <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager for Mac and iPhone, in {{ site.Params.releaseStage }}.</h2>
     <p class="band__body band__body--center">Native apps. Universal binary on the Mac (macOS 14+). iPhone via TestFlight (iOS 17+).</p>
+    <p class="band__body band__body--center">One-time purchase when v1.0 ships. All 1.x updates included, and there is no subscription to manage.</p>
     <p class="cta-row">
       <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
+      <a class="btn btn--ghost"   href="{{ "/start/" | relURL }}">Start in one sitting</a>
       <a class="btn btn--ghost"   href="{{ "/patterns/" | relURL }}">See how it fits a day</a>
-      <a class="btn btn--ghost"   href="{{ $cta.secondaryHref | relURL }}">{{ $cta.secondaryLabel }}</a>
     </p>
   </div>
 </section>

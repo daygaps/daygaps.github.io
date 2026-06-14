@@ -1,0 +1,51 @@
+{{- /*
+  Hero day panel. Three fixed calendar events (static, present on load) bound
+  two open gaps. Each gap's header and tasks carry a --s start offset and rise
+  in as the hero's --p advances, so the gaps appear between the fixed events as
+  you scroll. Content is fabricated; do not substitute real user data here.
+*/ -}}
+<div class="day" aria-hidden="true">
+  <div class="event event--blue">
+    <span class="event__time">9:30 – 10:30</span>
+    <span class="event__name">Lab meeting</span>
+    <span class="event__src">Calendar</span>
+  </div>
+
+  <div class="gap">
+    <header class="gap__head rise" style="--s:0.04">
+      <span class="gap__time">10:30 – 12:00</span>
+      <span class="gap__sep" aria-hidden="true">·</span>
+      <span class="gap__label">Focus</span>
+      <svg class="gap__bell" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2a3.5 3.5 0 0 0-3.5 3.5c0 3-1.6 4-1.6 4h10.2s-1.6-1-1.6-4A3.5 3.5 0 0 0 8 2Z"/><path d="M6.5 13a1.5 1.5 0 0 0 3 0"/></svg>
+    </header>
+    <ul class="gap__tasks">
+      <li class="trow rise" style="--s:0.10; --c:0.21"><span class="tbox"></span><span class="tmain"><span class="ttitle">Draft results, section 3</span><span class="tproj">Soil carbon paper</span></span></li>
+      <li class="trow rise" style="--s:0.17; --c:0.27"><span class="tbox"></span><span class="tmain"><span class="ttitle">Re-run figure 2</span><span class="tproj">Soil carbon paper</span></span></li>
+    </ul>
+  </div>
+
+  <div class="event event--green">
+    <span class="event__time">12:00 – 1:00</span>
+    <span class="event__name">Brownbag Seminar</span>
+    <span class="event__src">Calendar</span>
+  </div>
+
+  <div class="gap">
+    <header class="gap__head rise" style="--s:0.35">
+      <span class="gap__time">1:00 – 3:30</span>
+      <span class="gap__sep" aria-hidden="true">·</span>
+      <span class="gap__label">Writing</span>
+      <svg class="gap__bell" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2a3.5 3.5 0 0 0-3.5 3.5c0 3-1.6 4-1.6 4h10.2s-1.6-1-1.6-4A3.5 3.5 0 0 0 8 2Z"/><path d="M6.5 13a1.5 1.5 0 0 0 3 0"/></svg>
+    </header>
+    <ul class="gap__tasks">
+      <li class="trow rise" style="--s:0.42"><span class="tbox"></span><span class="tmain"><span class="ttitle">Skim the shared draft</span><span class="tproj">Lab</span></span></li>
+      <li class="trow trow--due rise" style="--s:0.49"><span class="tbox tbox--due"></span><span class="tmain"><span class="ttitle">Send the reviewer reply</span><span class="tproj">Resubmission</span></span><span class="tflag"><svg viewBox="0 0 12 14" width="9" height="11" aria-hidden="true"><path d="M1.4 1v12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1.4 1.4h7.6l-1.9 2.7 1.9 2.7H1.4Z" fill="currentColor"/></svg> Today</span></li>
+    </ul>
+  </div>
+
+  <div class="event event--blue">
+    <span class="event__time">3:30 – 4:00</span>
+    <span class="event__name">Mary Weekly 1:1</span>
+    <span class="event__src">Calendar</span>
+  </div>
+</div>

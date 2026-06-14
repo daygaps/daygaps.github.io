@@ -1,7 +1,7 @@
 ---
 title: "Philosophy"
 description: "Why DayGaps exists, and how it's meant to be used."
-date: 2026-05-13
+date: 2026-06-10
 ---
 
 It's 9:30. The gap you named *morning focus* is the next slice of your day, and three tasks sit under it: the ones you decided belonged there. Yesterday evening, or first thing this morning, you opened the app in planning mode and gave each gap its work. That's real labor, and it has its own surface in {{< brand >}}.
@@ -34,71 +34,80 @@ Or open the gap as its own window, with no sidebar and no way to navigate elsewh
 
 Both modes are calm. Neither asks for grooming.
 
+## Alongside the calendar
+
+Your calendar is the system of record for events, and {{< brand >}} treats it that way. The app reads the calendars you choose to share and writes nothing back. Events arrive as facts: the fixed posts of the day, drawn alongside your gaps so the open time is visible at a glance.
+
+From those facts the app derives everything else it shows you. The true gaps between events, listed live in the calendar pane, one click away from becoming a named gap that starts where the open time starts. The most each gap can hold, read from where the next fixed thing begins. The quiet tint on a gap that sits inside an event, whether that event is a seminar or an hour you blocked to think.
+
+Derived means never stored, and never stored means never stale. When a meeting runs long or a class moves, there is no saved schedule waiting to be repaired; the geometry recomputes and the day reads true again. The plan you keep is the part you meant: the gaps you named and the tasks you placed. The arithmetic around them is the app's job, every time, from scratch.
+
+## You hold the nuance
+
+Only you know what Thursday at 4pm costs after a hard committee meeting. Which task is heavier than its size. What kind of work fits the hour before a seminar and what fits the hour after. None of that is in the data, and {{< brand >}} doesn't pretend otherwise: it hands you the true shape of your time and trusts you with everything that can't be computed. Every task lands where you put it, for reasons that are yours and stay yours.
+
+The same boundary decides how the app speaks. What it can know as fact, it states plainly: this gap overlaps that event, this much room remains, this task wasn't checked off yesterday. Unfinished tasks ride forward to the top of Today as *Carried over*, in the same calm voice as everything else, because "didn't get to it" is history, not judgment. A deadline is different. A deadline is a fact you committed to, so it gets the one loud register in the app: color that interrupts the calm, on purpose, as your nudge to act.
+
+## The method is yours
+
+{{< brand >}} has strong opinions about chrome and none about process. Time blocking maps onto gaps. Pomodoro maps onto the Mac's menu-bar timer. GTD-shaped capture and review map onto the inbox and the projects it drains into. Hybrids work, and so does improvising a gap at 4pm for the evening. Process changes from project to project and season to season; the app's job is to hold the current one, not to enforce the last one.
+
 ## Your data is yours
 
-Every project is a YAML file. Every day is a YAML file. Captured thoughts live in `inbox.yaml`. The whole structure of your work sits in a folder of your choosing: Dropbox, iCloud, a Git repo, anywhere you trust.
+Your areas, projects, and days live in a private CloudKit zone inside your own iCloud account, with a local cache on every device. Sign into the same Apple ID and each device sees the same plans. There are no {{< brand >}} servers, and the only account involved is the one you already have.
+
+The data also has a second life as text. Open the bridge on the Mac and your projects land in a folder as plain YAML, one file per project:
 
 ```yaml
 project:
   id: p-4389e6
-  name: Q2 Paper Draft
+  name: Q2 paper draft
   status: active
-  created: 2026-05-13
-  notebook: false
-
   purpose: |-
-    Submit the methods paper by the Q2 cutoff. Audience leans methods-heavy. Co-authored with Marie; she gets one editing pass before submission. The goal is a tight first draft, not a perfect manuscript.
+    Submit the methods paper by the Q2 cutoff. Audience leans
+    methods-heavy. Marie gets one editing pass before submission.
+  last_edited: 2026-06-10T14:22:07Z
 
 tasks:
   - header: Drafting
 
   - id: t-c351bc
-    date: 2026-05-13
-    gap: "12:30"
-    title: Sketch §3 figure
+    title: Sketch the section 3 figure
     done: false
+    me:
+      date: 2026-06-12
+      gap: "12:30"
     subtasks:
-      - id: t-c351bc-s1
+      - id: t-8a01f2
         title: Pull source data
         done: true
-
-      - id: t-c351bc-s2
+      - id: t-77b3c9
         title: Decide on color scheme
         done: false
-
-  - id: t-4b91ef
-    date: 2026-05-14
-    title: Pull citation list
-    done: false
 
   - header: Review
 
   - id: t-ebb896
     title: Send first pass to Marie
     done: false
-
-  - id: t-54b792
-    title: Incorporate Marie's edits
-    done: false
+    due_date: 2026-06-26
 ```
 
-{{< figure src="/screens/project.png" alt="The Q2 Paper Draft project as it appears in DayGaps" caption="The same project, opened in DayGaps." >}}
+{{< figure src="/screens/project.png" alt="The Q2 paper draft project as it appears in DayGaps" caption="The same project, opened in DayGaps." >}}
 
-The app reads those files and writes them back. It doesn't own them. There's no database to corrupt, no cloud account to lose. The file is the export.
-
-Edit the YAML directly and the app reflects the change the next time you open the project. The file is the storage. You're never locked in because there's nothing to be locked into.
+Read it with `cat`. Edit it in Vim. Keep the folder in git. [Hand it to your AI](/ai/) and ask for a triage pass. When you check the bridge back in, the YAML becomes the new truth, and every session starts with a backup. The schema is documented in full and ships with the app, so the text copy of your work stays legible to you, your scripts, and whatever assistant you choose. You're never locked in, because the way out is built into the way the app thinks.
 
 ## Projects end. Areas hold.
 
-A project is something with a finish line: write the paper, host the conference, renovate the kitchen, teach the semester. When you complete it, the whole file moves into an archive folder. Tasks, history, notes intact. You can still walk through it months later.
+A project is something with a finish line: write the paper, host the conference, renovate the kitchen, teach the semester. When you complete it, the whole project moves into Archives. Tasks, history, notes intact, readable months later, and deliberately read-only: finished work is a record, not a workspace.
 
-Areas don't conclude; they hold the projects that pass through them. *Research. Teaching. Personal.* An area is a folder, and that's the only thing it is.
+Areas don't conclude; they hold the projects that pass through them. *Research. Teaching. Personal.*
 
 The shape matters. The alternative is a perpetual project called *Research* with five hundred floating items, the thing you start grooming once a quarter and never finish. {{< brand >}} doesn't let that exist. If a task doesn't fit in a project that ends, it probably doesn't belong on this list.
 
 ## The app sorts
 
-Inside a gap, tasks appear in a deterministic order: by area, then by project, then by their position in the file. You don't reorder them. There are no priority flags, no high-medium-low buckets, no drag handles.
+Inside a gap, tasks appear in a deterministic order: by area, then by project, then by their position in the project. You don't reorder them. There are no priority flags, no high-medium-low buckets, no drag handles.
 
 If a task feels like it should be first and the computed order disagrees, the answer is not to override the sort. The answer is to fix the plan. Move the task to a different gap, a different project, or an earlier day. The order is a symptom; the plan is the cause.
 
