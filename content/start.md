@@ -4,7 +4,11 @@ description: "From install to a planned day, in one sitting."
 date: 2026-06-10
 ---
 
-{{< brand >}} is built around a simple loop: name the gaps in your day, put a few tasks under each, and check them off when the time arrives. This page walks you from install to your first planned day.
+{{< bigquote >}}
+Name the gaps in your day. Put a few tasks under each. Check them off when the time comes.
+{{< /bigquote >}}
+
+That is the whole loop, and very nearly the whole app. This page walks you from install to your first planned day, in one sitting.
 
 ## Install
 
@@ -69,4 +73,8 @@ A task can have both, either, or neither. The [Concepts](/concepts/) page explai
 
 ## Where to go next
 
-[Concepts](/concepts/) lays out the whole structure in one read: areas, projects, sections, subtasks, gaps, tags, and sharing. [Patterns](/patterns/) shows full days lived with {{< brand >}}, from meeting-fractured to wide open. The [FAQ](/faq/) covers the details, including every keyboard shortcut on the Mac.
+{{< cards >}}
+{{< card title="Concepts" >}}The whole structure in one read: areas, projects, sections, subtasks, gaps, tags, and sharing. [Read it →](/concepts/){{< /card >}}
+{{< card title="Patterns" >}}Full days lived with DayGaps, from meeting-fractured to wide open. [See the days →](/patterns/){{< /card >}}
+{{< card title="FAQ" >}}The details, including every keyboard shortcut on the Mac. [Browse the FAQ →](/faq/){{< /card >}}
+{{< /cards >}}
