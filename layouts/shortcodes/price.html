@@ -1,0 +1,3 @@
+{{- $amount := .Get "amount" | default "$XX" -}}
+{{- $unit := .Get "unit" | default "one-time" -}}
+<div class="sc-price"><span class="sc-price__amount">{{ $amount }}</span><span class="sc-price__unit">{{ $unit }}</span></div>

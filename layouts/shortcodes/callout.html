@@ -1,0 +1,2 @@
+{{- $tone := .Get "tone" | default "accent" -}}
+<aside class="sc-callout sc-callout--{{ $tone }}">{{ .Inner | markdownify }}</aside>

@@ -1,0 +1,2 @@
+{{- $href := .Get "href" -}}
+<p class="sc-cta"><a class="btn btn--primary" href="{{ $href | relURL }}">{{ trim .Inner " " }}</a></p>
