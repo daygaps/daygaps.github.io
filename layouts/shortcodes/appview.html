@@ -1,0 +1,6 @@
+{{- $mode := .Get "mode" | default "all" -}}
+{{- $device := .Get "device" | default "mac" -}}
+<figure class="appview appview--{{ $device }} appview--{{ $mode }}">
+{{ partial "app-view.html" (dict "mode" $mode "device" $device) }}
+{{- with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

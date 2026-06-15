@@ -1,0 +1,29 @@
+{{- $mode := .mode | default "all" -}}
+{{- $device := .device | default "mac" -}}
+<div class="appview__win">
+  {{- if eq $device "mac" }}<div class="appview__bar"><span></span><span></span><span></span></div>{{ end }}
+  <div class="appview__body">
+    <h3 class="appview__today">Today</h3>
+    {{- if ne $mode "solo" }}
+    <section class="av-sec av-dim">
+      <header class="av-head av-head--carried">Carried over</header>
+      <div class="av-row"><span class="av-box"></span><span class="av-main"><span class="av-t av-t--carried">Outline the methods section</span><span class="av-p">Soil carbon paper</span></span></div>
+    </section>
+    <section class="av-gap av-dim">
+      <header class="av-head"><span>10:30 &ndash; 12:00</span><span class="av-sep">&middot;</span><span>Before seminar</span></header>
+      <div class="av-row"><span class="av-box"></span><span class="av-main"><span class="av-t">Skim the shared draft</span><span class="av-p">Lab</span></span></div>
+    </section>
+    {{ end -}}
+    <section class="av-gap av-focus">
+      <header class="av-head"><span>1:00 &ndash; 3:30</span><span class="av-sep">&middot;</span><span>Writing</span></header>
+      <div class="av-row"><span class="av-box av-box--done"></span><span class="av-main"><span class="av-t av-t--done">Draft results, section 3</span><span class="av-p">Soil carbon paper</span></span></div>
+      <div class="av-row"><span class="av-box"></span><span class="av-main"><span class="av-t">Re-run figure 2</span><span class="av-p">Soil carbon paper</span></span></div>
+    </section>
+    {{- if ne $mode "solo" }}
+    <section class="av-sec av-dim">
+      <header class="av-head">Anytime</header>
+      <div class="av-row"><span class="av-box av-box--due"></span><span class="av-main"><span class="av-t">Send the reviewer reply</span><span class="av-p">Resubmission</span></span><span class="av-flag">Today</span></div>
+    </section>
+    {{ end -}}
+  </div>
+</div>

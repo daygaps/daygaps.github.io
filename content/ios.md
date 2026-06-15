@@ -12,7 +12,7 @@ A hamburger sidebar opens to the same destinations the Mac has. **Today**, **Thi
 
 Today is the default view. Same gaps the Mac is reading, in a single vertical column: a section per gap, tasks under each gap. Your calendar events appear alongside the gaps, a gap that overlaps an event is tinted to show it, and when the tasks on screen carry `#tags`, filter chips surface at the top, same as the Mac.
 
-{{< figure src="/screens/ios/today.png" alt="The iPhone Today view, with named gaps across the day and tasks under each one" caption="The Today view on iPhone. Same data the Mac is reading, sized for your thumb." >}}
+{{< appview device="iphone" mode="all" caption="The Today view on iPhone. Same data the Mac is reading, sized for your thumb." >}}
 
 ## Four gestures, same vocabulary everywhere
 
@@ -26,8 +26,6 @@ Today is the default view. Same gaps the Mac is reading, in a single vertical co
 
 **Long-press** opens "Move to project." An area-grouped picker comes up; pick a destination project (or an area's General bucket), the task moves.
 
-{{< figure src="/screens/ios/swipe-actions.png" alt="A task row showing the leading-swipe Deadline and trailing-swipe Reschedule reveals" caption="The two halves of last-minute replanning. Pull one way to commit to a date; pull the other to push it." >}}
-
 ## Focus on one gap
 
 Plans crowd up. The morning you'd named *deep work* now looks like a stack of mid-morning interruptions and your eye keeps drifting to them.
@@ -40,8 +38,6 @@ Plans crowd up. The morning you'd named *deep work* now looks like a stack of mi
 
 The floating bottom bar carries the right buttons for the screen you're on. On Today, that's a quick-jump to today, a coral capture (+) for inbox, and a tray to open the inbox itself. The bar floats above the safe area in a glass material so the content behind stays visible.
 
-{{< figure src="/screens/ios/capture.png" alt="The capture sheet on iPhone: one text field, save, cancel" caption="Capture lives in your pocket. Triage lives on the desk." >}}
-
 ## This Week, vertical
 
 Tap **This Week** in the sidebar to see the next seven days as scrollable sections. *Today · Sat, May 30*, *Tomorrow · Sun, May 31*, *Mon, Jun 1*, and so on. Each section lists what's scheduled for that day. Today's section title reads in coral so your eye lands there first.
@@ -49,8 +45,6 @@ Tap **This Week** in the sidebar to see the next seven days as scrollable sectio
 A work-week toggle in the trailing menu hides Sat / Sun if Mon-Fri is the week you actually want to see. Setting persists.
 
 (Mac's This Week is horizontal columns side-by-side. iPhone's is a vertical list. Same data, different shape per platform.)
-
-{{< figure src="/screens/ios/this-week.png" alt="The This Week view on iPhone, showing seven days as scrollable sections" caption="A whole week of gaps, in your pocket." >}}
 
 ## Inbox is a pile, not a queue
 

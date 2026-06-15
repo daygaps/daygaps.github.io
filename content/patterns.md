@@ -22,7 +22,7 @@ You open the app and the only thing in front of you is *Before 11am call*. Two t
 
 You do them. You close the app. The meeting starts.
 
-{{< figure src="/screens/focus.png" alt="A single gap focused in DayGaps with the rest of the day quieted down" caption="The ten minutes before a meeting, in focus." >}}
+{{< appview mode="focus" caption="The ten minutes before a meeting, in focus." >}}
 
 ## Capturing mid-day without breaking flow
 
@@ -42,7 +42,7 @@ Archiving moves the whole project into Archives, tasks, history, and notes inclu
 
 By the time you close the laptop, the desk is clear. Monday is set up.
 
-{{< figure src="/screens/today.png" alt="A Today view in DayGaps showing the day with completed tasks struck through and a few still open" caption="End of Friday: the day reads as a record of what happened." >}}
+{{< appview mode="all" caption="End of Friday: the day reads as a record of what happened." >}}
 
 ## A day without meetings
 
@@ -54,7 +54,7 @@ You schedule the same tasks under those gaps that you'd schedule under any other
 
 By 9 AM you're in *Morning deep work*. The rest of the day is faded. You start.
 
-{{< figure src="/screens/standalone.png" alt="A standalone DayGaps window showing a single gap with its tasks, the rest of the app out of view" caption="No meetings on the calendar. The gaps are yours to draw." >}}
+{{< appview mode="solo" caption="No meetings on the calendar. The gaps are yours to draw." >}}
 
 ## A Pomodoro afternoon
 

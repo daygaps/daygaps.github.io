@@ -18,7 +18,7 @@ You don't live your day in twenty-minute increments, and you don't live it as "T
 
 {{< brand >}} takes this seriously. A task isn't just due today; it's in *this* gap. When the gap arrives, the tasks under it are what you do. You decided where each task belonged earlier: first thing in the morning, the night before, whenever planning fit. By the time the gap is in front of you, the deciding is done.
 
-{{< figure src="/screens/today.png" alt="Today view in DayGaps, with named gaps across the day and the tasks scheduled into each" caption="Today. Each gap is named and holds the tasks you put there. Tasks are queried in from project files by their date." >}}
+{{< appview mode="all" caption="Today. Each gap is named and holds the tasks you put there." >}}
 
 ## Planning and executing
 
@@ -26,11 +26,11 @@ Your day has two halves. One half is already structured: meetings, classes, meal
 
 {{< brand >}} has two modes for the two halves, though it doesn't label them on the screen. Before the day starts, you're planning. The whole interface exists to help you decide what each gap is for. Once you're inside a gap, you're executing. The other gaps fade and the other projects step out of the way, and what's in front of you is one slice of time and a few tasks beneath it.
 
-{{< figure src="/screens/focus.png" alt="A single gap focused in DayGaps, with the rest of the day's gaps muted" caption="Click a gap to focus it. The others quiet down." >}}
+{{< appview mode="focus" caption="Click a gap to focus it. The others quiet down." >}}
 
 Or open the gap as its own window, with no sidebar and no way to navigate elsewhere. The friction is the feature. The next time you want to switch contexts, you close the window. That's the only gesture there is.
 
-{{< figure src="/screens/standalone.png" alt="A standalone focused window in DayGaps showing a single gap with its tasks and nothing else" caption="A gap opened as a standalone window. No sidebar, no inspector, no escape hatch." >}}
+{{< appview mode="solo" caption="A gap opened as a standalone window. No sidebar, no inspector, no escape hatch." >}}
 
 Both modes are calm. Neither asks for grooming.
 
@@ -92,8 +92,6 @@ tasks:
     done: false
     due_date: 2026-06-26
 ```
-
-{{< figure src="/screens/project.png" alt="The Q2 paper draft project as it appears in DayGaps" caption="The same project, opened in DayGaps." >}}
 
 Read it with `cat`. Edit it in Vim. Keep the folder in git. [Hand it to your AI](/ai/) and ask for a triage pass. When you check the bridge back in, the YAML becomes the new truth, and every session starts with a backup. The schema is documented in full and ships with the app, so the text copy of your work stays legible to you, your scripts, and whatever assistant you choose. You're never locked in, because the way out is built into the way the app thinks.
 

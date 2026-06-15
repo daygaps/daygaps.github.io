@@ -120,9 +120,7 @@
       </p>
     </div>
     <div class="scene__figure">
-      <figure class="prose__figure">
-        <img src="{{ "/screens/ios/today.png" | relURL }}" alt="The DayGaps iPhone Today view, the same gaps and tasks the Mac shows, in a single column">
-      </figure>
+      <div class="appview appview--iphone appview--all">{{ partial "app-view.html" (dict "mode" "all" "device" "iphone") }}</div>
     </div>
   </div>
 </section>
