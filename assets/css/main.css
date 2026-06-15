@@ -266,8 +266,8 @@ body {
 
 .site-footer {
   border-top: 1px solid var(--hairline);
-  margin-top: 6rem;
-  padding: 3rem var(--pad-x) 4rem;
+  margin-top: clamp(4rem, 10vw, 8rem);
+  padding: clamp(2.5rem, 5vw, 4rem) var(--pad-x) 2.5rem;
   font-size: var(--t-sm);
   color: var(--fg-dim);
 }
@@ -275,35 +275,38 @@ body {
   max-width: 72rem;
   margin: 0 auto;
   display: grid;
-  gap: 0.5rem;
+  grid-template-columns: 1.6fr 2fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
 }
-/* Footer mark: pill logo above small wordmark text. Stacked, left-aligned. */
-.site-footer__mark {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: var(--fg);
-  margin-bottom: 0.25rem;
-}
-.site-footer__mark .pill-mark { width: auto; height: 1.6rem; display: block; }
+.site-footer__brand { max-width: 22rem; }
+.site-footer__mark { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none; color: var(--fg); }
+.site-footer__icon { width: auto; height: 1.6rem; display: block; }
 .site-footer__mark .wordmark--small { color: var(--fg); }
-.site-footer__tag { margin: 0; color: var(--fg-dim); }
-.site-footer__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.25rem;
-  margin-top: 0.5rem;
-}
-.site-footer__nav a { color: var(--fg-dim); text-decoration: none; }
-.site-footer__nav a:hover { color: var(--fg); }
-/* Second footer row: reference links (changelog, legal, support). Smaller
-   and quieter than the page nav above it . sought out, not browsed to. */
-.site-footer__nav--meta {
-  margin-top: 0.25rem;
+.site-footer__tag { margin: 0.7rem 0 0; color: var(--fg-dim); }
+.site-footer__pitch { margin: 0.5rem 0 0; color: var(--fg-dim); line-height: 1.5; }
+.site-footer__h { font-size: var(--t-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-dim); margin: 0 0 0.9rem; }
+.site-footer__col ul { list-style: none; margin: 0; padding: 0; }
+.site-footer__col li { margin: 0 0 0.55rem; }
+.site-footer__col--wide ul { columns: 2; column-gap: 1.5rem; }
+.site-footer__col a { color: var(--fg-dim); text-decoration: none; transition: color 150ms ease; }
+.site-footer__col a:hover, .site-footer__col a[aria-current="page"] { color: var(--fg); }
+.site-footer__base {
+  max-width: 72rem; margin: clamp(2rem, 4vw, 3rem) auto 0; padding-top: 1.5rem;
+  border-top: 1px solid var(--hairline);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
   font-size: var(--t-xs);
 }
-.site-footer__meta { margin: 1.25rem 0 0; font-size: var(--t-xs); }
+.site-footer__meta, .site-footer__note { margin: 0; }
+.site-footer__base a { color: var(--fg-dim); }
+.site-footer__base a:hover { color: var(--fg); }
+@media (max-width: 720px) {
+  .site-footer__inner { grid-template-columns: 1fr 1fr; }
+  .site-footer__brand { grid-column: 1 / -1; max-width: none; }
+}
+@media (max-width: 460px) {
+  .site-footer__inner { grid-template-columns: 1fr; }
+  .site-footer__col--wide ul { columns: 1; }
+}
 
 /* ============================================================================
    Wordmark
