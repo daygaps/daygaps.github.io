@@ -47,6 +47,8 @@ This is beta software. The format is stable and {{< brand >}} now runs the autho
 
 {{< brand >}} will be a **one-time purchase** on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch opens with a reduced back-to-school price, timed for the season when days fill up with fixed commitments and the gaps between them start mattering.
 
+{{< button href="/pricing/" >}}See what it costs{{< /button >}}
+
 Beta testers will be the first to know; everyone else can watch this page or the [changelog](/changelog/).
 
 ## Known gaps

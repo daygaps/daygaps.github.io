@@ -103,4 +103,9 @@ One pattern this enables: a project shared with your weekly meeting, and a gap y
 
 ## Where to go from here
 
-[Start](/start/) walks you from install to a planned day. [Patterns](/patterns/) shows whole days lived with {{< brand >}}. The [FAQ](/faq/) holds the operational details, and the [AI page](/ai/) shows how to hand your data to an assistant on your own terms.
+{{< cards >}}
+{{< card title="Start" >}}From install to a planned day, in one sitting. [Walk through it &rarr;](/start/){{< /card >}}
+{{< card title="Patterns" >}}Whole days lived with DayGaps, meeting-fractured to wide open. [See the days &rarr;](/patterns/){{< /card >}}
+{{< card title="FAQ" >}}The operational details, every shortcut, every edge. [Open the FAQ &rarr;](/faq/){{< /card >}}
+{{< card title="Your AI" >}}Hand your data to an assistant on your own terms. [How it works &rarr;](/ai/){{< /card >}}
+{{< /cards >}}

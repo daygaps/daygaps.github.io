@@ -1,0 +1,14 @@
+{{ define "body-class" }}page page--404{{ end }}
+{{ define "main" }}
+<section class="band band--short" aria-labelledby="nf-h">
+  <div class="band__inner" style="text-align:center">
+    <p class="band__kicker">404</p>
+    <h1 class="band__heading" id="nf-h">A gap where a page should be.</h1>
+    <p class="band__body band__body--center">This link points somewhere that no longer exists. The day moves; sometimes a page moves with it.</p>
+    <p class="cta-row" style="justify-content:center">
+      <a class="btn btn--primary" href="{{ "/" | relURL }}">Back to the start</a>
+      <a class="btn btn--ghost" href="{{ "/concepts/" | relURL }}">Read the concepts</a>
+    </p>
+  </div>
+</section>
+{{ end }}

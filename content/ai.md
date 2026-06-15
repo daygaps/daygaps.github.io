@@ -18,7 +18,11 @@ The lifecycle is deliberate. A snapshot with a clear start and a clear end means
 
 ## What this means for privacy
 
-The bridge writes to a local folder on your Mac. {{< brand >}} does not transmit your data to us or to any AI provider, does not monitor what you do with the snapshot, and cannot see your conversation with your assistant. The relationship between you and your AI, including which AI it is, whether it runs in the cloud or on your own machine, and what you let it read, is entirely yours. The [privacy page](/privacy/) covers the app's full posture; the short version is that there is nothing on our side to trust because there is nothing on our side.
+The bridge writes to a local folder on your Mac. {{< brand >}} does not transmit your data to us or to any AI provider, does not monitor what you do with the snapshot, and cannot see your conversation with your assistant. The relationship between you and your AI, including which AI it is, whether it runs in the cloud or on your own machine, and what you let it read, is entirely yours. The [privacy page](/privacy/) covers the app's full posture; the short version is simple.
+
+{{< callout >}}
+There is nothing on our side to trust, because there is nothing on our side.
+{{< /callout >}}
 
 ## What the assistant can and cannot touch
 
@@ -30,7 +34,9 @@ The snapshot draws its own boundaries, and they mirror the app's:
 
 ## The protocol
 
-Everything an assistant needs to do this cleanly lives in one document: the [AI bridge protocol](/ai-bridge-protocol/). It is written to be pasted into a chat, and it covers the file formats, the editing rules, id minting, the scheduling rule that keeps tasks from silently vanishing off Today, and the handshake your assistant should perform before touching anything.
+Everything an assistant needs to do this cleanly lives in one document: the AI bridge protocol. It is written to be pasted into a chat, and it covers the file formats, the editing rules, id minting, the scheduling rule that keeps tasks from silently vanishing off Today, and the handshake your assistant should perform before touching anything.
+
+{{< button href="/ai-bridge-protocol/" >}}Read the protocol{{< /button >}}
 
 A typical first session:
 
