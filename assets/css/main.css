@@ -93,7 +93,7 @@
   --t-4xl:   clamp(2.4rem, 5vw, 4rem);
 
   /* Layout */
-  --measure: 38rem;   /* prose width . ~75 chars */
+  --measure: 46rem;   /* prose reading width (~80 chars); wider so it doesn't read as a thin ribbon on big monitors */
   --pad-x:   clamp(1.25rem, 4vw, 3rem);
   --band-y:  clamp(4rem, 8vw, 7rem);
   /* Approx height of the sticky site-header (0.875rem padding × 2 + 1.75rem
@@ -1381,7 +1381,7 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
 .prose__body .concept-map,
 .prose__body table,
 .prose__body > pre {
-  width: min(60rem, calc(100vw - 2 * var(--pad-x)));
+  width: min(72rem, calc(100vw - 2 * var(--pad-x)));
   margin-left: 50%;
   transform: translateX(-50%);
 }
