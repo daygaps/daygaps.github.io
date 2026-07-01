@@ -1386,3 +1386,58 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
   transform: translateX(-50%);
 }
 .prose__body .sc-cards { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+
+/* ============================================================================
+   Mac download card + iPhone beta signup (content/beta.md)
+   Card recipe matches .sc-card / .fcard (gap-surface + hairline + radius), so
+   light/dark and spacing stay consistent. Buttons reuse .btn--primary.
+   ============================================================================ */
+.mac-dl {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  background: var(--gap-surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  margin: 1.6rem 0;
+}
+.mac-dl__icon { flex: none; width: 48px; height: 48px; border-radius: 11px; }
+.mac-dl__body { min-width: 0; }
+.mac-dl__title { margin: 0; font-weight: 700; font-size: var(--t-lg); letter-spacing: -0.01em; color: var(--fg); }
+.mac-dl__meta { margin: 0.2rem 0 0; font-size: var(--t-sm); color: var(--fg-dim); }
+.mac-dl__cta { margin-top: 0.9rem; justify-content: flex-start; }
+.mac-dl__note { margin: 0.85rem 0 0; font-size: var(--t-xs); color: var(--fg-dim); line-height: 1.5; max-width: 46ch; }
+
+.beta-signup {
+  background: var(--gap-surface);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  margin: 1.6rem 0;
+}
+.beta-signup__title { margin: 0; font-weight: 700; font-size: var(--t-lg); letter-spacing: -0.01em; color: var(--fg); }
+.beta-signup__body { margin: 0.35rem 0 1rem; font-size: var(--t-sm); color: var(--fg-dim); line-height: 1.55; max-width: 56ch; }
+.beta-signup__form { display: flex; flex-direction: column; gap: 0.8rem; }
+.beta-signup__row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.beta-signup__input {
+  flex: 1 1 16rem;
+  min-width: 0;
+  padding: 0.7rem 0.95rem;
+  font-size: var(--t-sm);
+  font-family: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+}
+.beta-signup__input::placeholder { color: var(--ink-light); }
+.beta-signup__input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.beta-signup__form .btn { flex: none; }
+.beta-signup__check { display: flex; align-items: center; gap: 0.5rem; font-size: var(--t-sm); color: var(--fg-dim); cursor: pointer; }
+.beta-signup__check input { accent-color: var(--accent); width: 1rem; height: 1rem; flex: none; }
+
+@media (max-width: 30rem) {
+  .mac-dl { flex-direction: column; gap: 0.9rem; }
+  .beta-signup__row .btn { width: 100%; }
+}

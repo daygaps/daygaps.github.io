@@ -4,6 +4,45 @@ description: "What's shipped, and what's next."
 date: 2026-05-30
 ---
 
+## v1.0.1 · June 30, 2026
+
+The 1.0 release candidate. The headline is sync: DayGaps now shows you exactly what iCloud is doing and protects your edits when two devices disagree. Around that, a long polish pass tightens planning on the phone and the small visual details on both platforms.
+
+### Sync you can see, and trust (new)
+
+- **A sync status row on both platforms.** The Mac sidebar floor and the iPhone Today footer show a health dot and a plain caption: "Synced 2m ago · 142 records" when all is well, "Saving 3 changes…" while writes are in flight, amber when something needs attention. Tap it for the details.
+- **Refresh from iCloud.** A new Settings action (with a matching File-menu item on Mac) rebuilds the local copy from what is actually on iCloud, without touching the server. It refuses when a bridge session is open or when you still have unsent changes waiting, so a refresh can never quietly discard work.
+- **Your edits are protected when devices disagree.** If two devices change the same task, the one that loses the race now tells you so, "An edit to 'X' was overwritten by another device. Check it and re-do if needed," instead of silently dropping it. Offline edits are guarded against being overwritten when a device reconnects.
+- **Records by type.** Settings → iCloud Sync Status expands to show how many Areas, Projects, Tasks, and Gaps iCloud is holding, so a sync question is something you can look at rather than guess at.
+- **Diagnostics export.** One tap writes a metadata-only report (versions, counts, status, file sizes, and deliberately no task titles or area names) to send with a bug report. A test keeps that privacy invariant in place.
+- **The phone keeps itself current.** iPhone now refreshes every 60 seconds while it is open, closing the old lag where a change on the Mac took a while to appear on the phone.
+
+### Planning on iPhone
+
+- **A pull-up planner.** The calendar planner card is now a bottom sheet that rests as a pill under Today and rises when you pull it up, so your tasks own the screen until you want the calendar.
+- **A permanent Today button** in the top-right, always one tap from the current day.
+- **Tap a section header to collapse it,** the same quiet gesture the Mac has.
+- **Enter starts the next task** instead of inserting a line break, so capturing a list is one keystroke per item. A new task with a subtask renders already open.
+- **Ephemeral tag chips are back** on Today, and in-list reordering is fixed.
+
+### Focus and finish
+
+- **A clearer focused gap.** The gap you are working in is marked by a coral underline and a bolder heading rather than a filled pill: quieter, and easier to read.
+- **One consistent glyph family.** Projects, areas, and the rest now draw from a single stock SF Symbols set instead of a custom one, so the app looks native at every size. Anyday picks up a cleaner mark.
+- **Live links in task titles.** Phone numbers, URLs, and email addresses in a title are detected and underlined; tapping one opens it, and a tap on a link never triggers a rename.
+
+### Mac
+
+- **Undo an accidental delete.** Cmd+Z brings back a task you just deleted (one level).
+- **Tap any day in the calendar** to see that day's gaps and events.
+- **Click an inbox item to triage it** straight away.
+- **Selection reaches the bottom bar,** so scheduling and deadlines apply to a multi-selection in one move.
+- **Toolbar cleanup.** The title-bar chrome is quieter and better aligned, and the sidebar toggle returns to the native control.
+
+### Under the hood
+
+- **Swift 6.** The codebase moved to the Swift 6 language mode and strict concurrency. Invisible day to day, but it pays off in fewer subtle timing bugs, especially around rapid edits and sync.
+
 ## v0.6 · May 30, 2026
 
 The release where DayGaps becomes a real two-device product. Sync stops being "open the same Dropbox folder on every Mac" and becomes iCloud, end to end. The iPhone app stops being a preview and becomes the whole app, screen for screen. The visual language across both platforms tightens into one set of glyphs, one palette, one rhythm.

@@ -1,0 +1,25 @@
+{{- /* Email capture: iPhone TestFlight invite + launch waitlist. POSTs to
+       site.Params.betaSignup.action when set; mailto fallback when empty so the
+       page is never broken. Field names (email, ios_beta) are generic; rename
+       to your service's convention if needed (e.g. Buttondown metadata__*). */ -}}
+{{- $s := site.Params.betaSignup -}}
+<div class="beta-signup">
+  <p class="beta-signup__title">Want the iPhone beta too?</p>
+  <p class="beta-signup__body">DayGaps for iPhone is invite-only through TestFlight. Leave your <strong>iCloud (Apple ID) email</strong> and we&rsquo;ll send an invitation, and tell you when v1.0 ships. Nothing else, ever.</p>
+  {{- if $s.action }}
+  <form class="beta-signup__form" action="{{ $s.action }}" method="post" target="_blank">
+    <div class="beta-signup__row">
+      <input class="beta-signup__input" type="email" name="email" aria-label="iCloud email address" inputmode="email" autocomplete="email" placeholder="you@icloud.com" required>
+      <button class="btn btn--primary" type="submit">Keep me posted</button>
+    </div>
+    <label class="beta-signup__check">
+      <input type="checkbox" name="ios_beta" value="yes" checked>
+      <span>Also invite me to the iPhone TestFlight beta</span>
+    </label>
+  </form>
+  {{- else }}
+  <p class="cta-row cta-row--inline">
+    <a class="btn btn--primary" href="mailto:{{ $s.email }}?subject=DayGaps%3A%20updates%20%2B%20iPhone%20beta&body=iCloud%20(Apple%20ID)%20email%20for%20the%20TestFlight%20invite%3A%0A%0A(Leave%20blank%20if%20you%20only%20want%20launch%20updates.)">Email to get on the list</a>
+  </p>
+  {{- end }}
+</div>

@@ -1,51 +1,38 @@
 ---
 title: "Get the app"
-description: "DayGaps is in private TestFlight. Here's how to get in, and what v1.0 will cost."
+description: "DayGaps for Mac is a direct download. The iPhone app is in private TestFlight. Here is how to get both."
 date: 2026-06-10
 ---
 
-{{< brand >}} runs on Mac and iPhone. The Mac app is a universal binary on macOS 14 (Sonoma) and later. The iPhone app runs on iOS 17 and later. Both ship through TestFlight.
+{{< brand >}} runs on Mac and iPhone. The Mac app is a direct download you can run today. The iPhone app is in private TestFlight, by invitation. Leave your iCloud email at the download and we will bring you into the phone beta too.
 
-## Request beta access
+## Download for Mac
 
-Internal TestFlight is invite-only. Email the Apple ID you want to test under and we'll add you. You'll get a TestFlight invitation by email within a day or two; install the **TestFlight** app from the App Store and tap **Accept** in the invitation.
+{{< mac-download >}}
 
-<p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="mailto:daygaps@gmail.com?subject=DayGaps%20beta%20access&body=Apple%20ID%3A%20%0A%0ADevices%20(Mac%2FiPhone%2FiPad)%3A%20%0A%0AHow%20I%20plan%20today%3A%20">Request beta access</a>
-  <a class="btn btn--ghost" href="mailto:daygaps@gmail.com?subject=DayGaps%20feedback">Send feedback</a>
-</p>
+This is a release-candidate build of v1.0: the format is stable and {{< brand >}} now runs the author's actual daily plans. It syncs through your private iCloud zone, so signing into the same iCloud account on your other devices is the whole setup.
 
-## Installing on Mac
+## The iPhone beta
 
-Once accepted:
+{{< beta-signup >}}
 
-1. Open the **TestFlight** app on your Mac (App Store has it).
-2. Sign in with the Apple ID you sent us.
-3. **DayGaps** appears in the list. Tap **Install**.
-
-The build arrives signed and notarized through Apple's TestFlight pipeline, so it installs and opens like any App Store app.
-
-## Installing on iPhone
-
-Same flow. Install the TestFlight app from the App Store, sign in, install DayGaps.
-
-No folder picker on first launch. The phone signs into your iCloud account automatically; your data syncs from the Mac across iCloud in the background.
+Once you are invited, install the **TestFlight** app from the App Store, sign in with the Apple ID you gave us, and tap **Install** next to DayGaps. The phone signs into your iCloud automatically and your data syncs from the Mac in the background, with no folder to pick.
 
 ## What's in this build
 
-The current build is **v0.6**. Universal Mac + iPhone + iPad, syncing through your private iCloud zone. The full feature surface is on the [changelog](/changelog/); the short version:
+Version **1.0.1**. The headline of this build is a hardened sync layer you can actually see: a status row on both platforms, a safe Refresh from iCloud, and a clear warning when two devices disagree about the same task. Universal Mac plus iPhone and iPad, syncing through your private iCloud zone. The full surface is on the [changelog](/changelog/); the short version:
 
 - Today, This Week, Deadlines, Anyday, Inbox, Areas, Projects, Settings, all native on iPhone.
 - One gesture vocabulary across every list: tap for done, leading swipe for deadline, trailing swipe for reschedule, long-press for move.
-- iCloud sync end to end. Local cache for offline writes.
+- iCloud sync end to end, with a local cache for offline writes.
 - Mac focus mode is a Pomodoro timer in the menu bar. iPhone focus mode is a visual filter on Today. (Different shapes for different surfaces.)
-- Optional YAML bridge on Mac for a plaintext mirror of your data.
+- An optional YAML bridge on Mac for a plaintext mirror of your data.
 
-This is beta software. The format is stable and {{< brand >}} now runs the author's actual daily plans, but TestFlight is the right venue for it until external review is done.
+This is beta software. The format is stable, but TestFlight and a direct release candidate are the right venues for it until external review is done.
 
 ## When v1.0 ships
 
-{{< brand >}} will be a **one-time purchase** on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch opens with a reduced back-to-school price, timed for the season when days fill up with fixed commitments and the gaps between them start mattering.
+{{< brand >}} will be a **one-time purchase** on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch opens at a reduced introductory price.
 
 {{< button href="/pricing/" >}}See what it costs{{< /button >}}
 
@@ -65,6 +52,6 @@ The roadmap is on the [changelog page](/changelog/). Items still in flight:
 - Anywhere the chrome feels too loud at rest?
 - Anywhere a feature feels like more work than it saves?
 - Sync timing across devices: does an edit on the Mac surface fast enough on the iPhone, and vice versa?
-- Anywhere a Mac idiom leaked into the iPhone or the iPhone idiom leaked back to Mac?
+- Anywhere a Mac idiom leaked into the iPhone, or the iPhone idiom leaked back to the Mac?
 
 Send notes, bug reports, or rants to <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a>.

@@ -1,0 +1,16 @@
+{{- /* Mac direct-download card. Reads site.Params.macApp so the version, size,
+       OS floor, and filename live in hugo.toml (one place). The button links to
+       /downloads/<file>; ditto-zip the signed .app to that exact name. */ -}}
+{{- $m := site.Params.macApp -}}
+{{- $href := printf "/downloads/%s" $m.file | relURL -}}
+<div class="mac-dl">
+  <img class="mac-dl__icon" src="{{ "/favicon.svg" | relURL }}" alt="" width="48" height="48">
+  <div class="mac-dl__body">
+    <p class="mac-dl__title">DayGaps for Mac</p>
+    <p class="mac-dl__meta">Version {{ $m.version }}{{ with $m.size }} &middot; {{ . }}{{ end }} &middot; macOS {{ $m.minOS }} or later</p>
+    <p class="cta-row cta-row--inline mac-dl__cta">
+      <a class="btn btn--primary" href="{{ $href }}" download>Download for Mac</a>
+    </p>
+    <p class="mac-dl__note">A signed, notarized direct download. On first launch macOS asks once to confirm an app downloaded from the internet: click <strong>Open</strong>. If it is ever refused, right-click the app and choose <strong>Open</strong>.</p>
+  </div>
+</div>
