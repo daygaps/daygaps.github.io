@@ -500,7 +500,17 @@ body {
 .event--green .event__name,
 .event--green .event__src  { color: var(--event-green-ink); }
 
-.gap { display: flex; flex-direction: column; padding: 0 0.1em; }
+.gap {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.1em;
+  /* Phase 1 (open): gap grows from collapsed to full over --p 0 .. 0.4, pushing
+     the fixed events apart. Phase 2 (fill): tasks fade in over --p 0.45 .. 0.8,
+     never before the gap is fully open. */
+  --open: clamp(0, calc(var(--p) / 0.32), 1);
+  overflow: hidden;
+  max-height: calc(9em * var(--open));
+}
 .gap__head {
   display: flex;
   align-items: center;
@@ -512,7 +522,9 @@ body {
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--ink-gap);
+  opacity: var(--open);
 }
+.gap__head--focus { color: var(--coral); border-bottom-color: color-mix(in oklab, var(--coral) 40%, transparent); }
 .gap__time { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
 .gap__sep  { color: var(--fg-dim); font-weight: 400; }
 .gap__label { text-transform: uppercase; }
@@ -1308,7 +1320,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__body.is-focusing .dimmable:not(.is-focused){opacity:.26}
 .fgap.is-focused .fgap__head{color:var(--accent);border-bottom-color:var(--accent)}
 .fdemo__try{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:1.4rem 0 1rem;color:var(--fg-dim);font-size:.92rem}
-.fdemo__try-badge{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.28em .7em}
+.fdemo__try-badge{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.3em .8em}
 
 
 /* ---------- Global polish: balanced display headings, responsive media,

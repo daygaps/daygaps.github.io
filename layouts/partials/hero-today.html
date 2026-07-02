@@ -1,8 +1,10 @@
 {{- /*
-  Hero day panel. Three fixed calendar events (static, present on load) bound
-  two open gaps. Each gap's header and tasks carry a --s start offset and rise
-  in as the hero's --p advances, so the gaps appear between the fixed events as
-  you scroll. Content is fabricated; do not substitute real user data here.
+  Hero day panel. Three fixed calendar events (static, present on load) sit
+  compressed together at rest. As the hero's --p advances the two gaps between
+  them OPEN (max-height driven by --open, phase 1), revealing the room hiding
+  between fixed events; then their tasks FILL in (opacity driven by --fill,
+  phase 2). Only the second gap is the focused one (coral header + bell).
+  Content is fabricated; do not substitute real user data here.
 */ -}}
 <div class="day" aria-hidden="true">
   <div class="event event--blue">
@@ -12,15 +14,14 @@
   </div>
 
   <div class="gap">
-    <header class="gap__head rise" style="--s:0.04">
+    <header class="gap__head">
       <span class="gap__time">10:30 – 12:00</span>
       <span class="gap__sep" aria-hidden="true">·</span>
       <span class="gap__label">Focus</span>
-      <svg class="gap__bell" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2a3.5 3.5 0 0 0-3.5 3.5c0 3-1.6 4-1.6 4h10.2s-1.6-1-1.6-4A3.5 3.5 0 0 0 8 2Z"/><path d="M6.5 13a1.5 1.5 0 0 0 3 0"/></svg>
     </header>
     <ul class="gap__tasks">
-      <li class="trow rise" style="--s:0.10; --c:0.21"><span class="tbox"></span><span class="tmain"><span class="ttitle">Draft results, section 3</span><span class="tproj">Soil carbon paper</span></span></li>
-      <li class="trow rise" style="--s:0.17; --c:0.27"><span class="tbox"></span><span class="tmain"><span class="ttitle">Re-run figure 2</span><span class="tproj">Soil carbon paper</span></span></li>
+      <li class="trow rise" style="--s:0.35; --c:0.55"><span class="tbox"></span><span class="tmain"><span class="ttitle">Draft results, section 3</span><span class="tproj">Soil carbon paper</span></span></li>
+      <li class="trow rise" style="--s:0.42; --c:0.62"><span class="tbox"></span><span class="tmain"><span class="ttitle">Re-run figure 2</span><span class="tproj">Soil carbon paper</span></span></li>
     </ul>
   </div>
 
@@ -31,15 +32,15 @@
   </div>
 
   <div class="gap">
-    <header class="gap__head rise" style="--s:0.35">
+    <header class="gap__head gap__head--focus">
       <span class="gap__time">1:00 – 3:30</span>
       <span class="gap__sep" aria-hidden="true">·</span>
       <span class="gap__label">Writing</span>
-      <svg class="gap__bell" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M8 2a3.5 3.5 0 0 0-3.5 3.5c0 3-1.6 4-1.6 4h10.2s-1.6-1-1.6-4A3.5 3.5 0 0 0 8 2Z"/><path d="M6.5 13a1.5 1.5 0 0 0 3 0"/></svg>
+      <svg class="gap__bell" viewBox="0 0 23.2129 24.9614" width="13" height="14" aria-hidden="true"><path fill="currentColor" d="M0.756285 21.0227L22.0926 21.0227C22.5457 21.0227 22.8516 20.7316 22.8516 20.2894C22.8516 19.0058 21.7071 17.9488 20.7129 16.8426C19.3762 15.3391 19.4688 12.293 19.0707 9.4372C18.6657 6.20746 17.4075 3.66056 14.4578 2.90156C14.2039 1.14024 13.002 0 11.4258 0C9.84962 0 8.64766 1.14024 8.39375 2.90156C5.43709 3.66056 4.17889 6.20746 3.78085 9.4372C3.38281 12.293 3.47538 15.3391 2.13165 16.8426C1.1418 17.9488 0 19.0058 0 20.2894C0 20.7316 0.305872 21.0227 0.756285 21.0227ZM11.4258 24.9473C13.302 24.9473 14.5895 23.6473 14.893 22.0692L7.95156 22.0692C8.25937 23.6473 9.54258 24.9473 11.4258 24.9473Z"/></svg>
     </header>
     <ul class="gap__tasks">
-      <li class="trow rise" style="--s:0.42"><span class="tbox"></span><span class="tmain"><span class="ttitle">Skim the shared draft</span><span class="tproj">Lab</span></span></li>
-      <li class="trow trow--due rise" style="--s:0.49"><span class="tbox tbox--due"></span><span class="tmain"><span class="ttitle">Send the reviewer reply</span><span class="tproj">Resubmission</span></span><span class="tflag"><svg viewBox="0 0 12 14" width="9" height="11" aria-hidden="true"><path d="M1.4 1v12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1.4 1.4h7.6l-1.9 2.7 1.9 2.7H1.4Z" fill="currentColor"/></svg> Today</span></li>
+      <li class="trow rise" style="--s:0.55"><span class="tbox"></span><span class="tmain"><span class="ttitle">Skim the shared draft</span><span class="tproj">Lab</span></span></li>
+      <li class="trow trow--due rise" style="--s:0.62"><span class="tbox tbox--due"></span><span class="tmain"><span class="ttitle">Send the reviewer reply</span><span class="tproj">Resubmission</span></span><span class="tflag"><svg viewBox="0 0 12 14" width="9" height="11" aria-hidden="true"><path d="M1.4 1v12" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M1.4 1.4h7.6l-1.9 2.7 1.9 2.7H1.4Z" fill="currentColor"/></svg> Today</span></li>
     </ul>
   </div>
 
