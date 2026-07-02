@@ -825,7 +825,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 }
 
 .scene__text { max-width: 34rem; }
-.scene__text > p {
+.scene__text > p:not(.band__kicker) {
   font-size: var(--t-lg);
   line-height: 1.6;
   color: var(--fg-dim);
@@ -1252,8 +1252,8 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .ftime{font-variant-numeric:tabular-nums}
 .fsep{font-weight:400}
 .fbell,.ffocus{margin-left:auto;color:var(--fg-dim);opacity:.7;flex:none}
-.frow{display:grid;grid-template-columns:1.2em 1fr auto;gap:.6em;align-items:start;padding:.3rem 0}
-.fbox{width:1.2em;height:1.2em;border:1.6px solid var(--fg-dim);border-radius:5px;margin-top:.1em}
+.frow{display:grid;grid-template-columns:1em 1fr auto;gap:.6em;align-items:start;padding:.3rem 0}
+.fbox{width:.9em;height:.9em;border:1.5px solid var(--fg-dim);border-radius:2px;margin-top:.18em}
 .fbox--due{background:var(--urgency-red);border-color:var(--urgency-red)}
 .fmain{display:flex;flex-direction:column;gap:.1em;min-width:0}
 .ftitle{color:var(--fg);font-weight:500;line-height:1.3}
@@ -1261,7 +1261,7 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fflag{color:var(--urgency-red);font-size:.8em;font-weight:600;white-space:nowrap}
 .fdemo__note{text-align:center;color:var(--fg-dim);font-size:.85rem;margin:1rem 0 0}
 
-.fcards__lede{margin-bottom:2rem}
+.fcards__lede{max-width:52rem;margin-bottom:2rem}
 .fcards__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;grid-auto-flow:dense}
 .fcard{background:var(--gap-surface);border:1px solid var(--hairline);border-radius:16px;padding:1.15rem 1.25rem 1.25rem}
 .fcard h3{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;margin:0 0 .45rem;line-height:1.25;color:var(--fg)}
@@ -1276,7 +1276,8 @@ html:not(.js) .hero__scroll-hint { display: none; }
 /* Focus-demo: header chips, status bar, click-to-filter (data-filter set by JS). */
 .fdemo__head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
 .fdemo__today{margin:0}
-.fdemo__chips{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:flex-end}
+.fdemo__chips{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.fdemo__chiprow{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:flex-end}
 .chip{font:600 .7rem/1 var(--font-sans);letter-spacing:.04em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.35em;padding:.45em .75em;border-radius:999px;border:1.5px solid currentColor;background:transparent;cursor:pointer;white-space:nowrap}
 .chip--due{color:var(--urgency-red)}
 .chip--area{color:#6E6AB5}
@@ -1289,6 +1290,9 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__body[data-filter=methods] .taghl{background:var(--accent-soft);color:var(--accent)}
 .fdemo__status{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1rem;border-top:1px solid var(--hairline);color:var(--fg-dim)}
 .fdemo__status-right{display:flex;align-items:center;gap:1.25rem}
+.fdemo__status-left{display:flex;align-items:center;gap:1.25rem}
+.fstat{display:inline-flex;align-items:center;gap:.4em}
+.fstat svg{height:15px;width:auto;fill:currentColor;flex:none}
 .fstat{display:inline-flex;align-items:center;gap:.4em;font-size:.85rem}
 .fdemo__body[data-filter=due] .frow:not(.is-due){display:none}
 .fdemo__body[data-filter=research] .frow:not(.a-research){display:none}
@@ -1296,12 +1300,13 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fdemo__body[data-filter=due] .fgap:not(:has(.is-due)),.fdemo__body[data-filter=due] .fsec:not(:has(.is-due)),
 .fdemo__body[data-filter=research] .fgap:not(:has(.a-research)),.fdemo__body[data-filter=research] .fsec:not(:has(.a-research)),
 .fdemo__body[data-filter=methods] .fgap:not(:has(.t-methods)),.fdemo__body[data-filter=methods] .fsec:not(:has(.t-methods)){display:none}
-@media(max-width:560px){.fdemo__status{font-size:.8rem;padding:.6rem .8rem}.fdemo__status-right{gap:.9rem}.fdemo__chips{justify-content:flex-start}}
+@media(max-width:560px){.fdemo__status{font-size:.8rem;padding:.6rem .8rem}.fdemo__status-left{gap:.9rem}.fdemo__chips{align-items:flex-start}.fdemo__chiprow{justify-content:flex-start}}
 
 /* Focus by clicking a gap header (JS toggles .is-focusing / .is-focused). */
-.fgap__head{cursor:pointer;border-radius:6px}
+.fgap__head{cursor:pointer}
 .fgap__head:hover{color:var(--fg)}
 .fdemo__body.is-focusing .dimmable:not(.is-focused){opacity:.26}
+.fgap.is-focused .fgap__head{color:var(--accent);border-bottom-color:var(--accent)}
 .fdemo__try{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;margin:1.4rem 0 1rem;color:var(--fg-dim);font-size:.92rem}
 .fdemo__try-badge{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:.28em .7em}
 
@@ -1396,13 +1401,13 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
   display: flex;
   gap: 1.1rem;
   align-items: flex-start;
-  background: var(--gap-surface);
+  background: color-mix(in oklab, var(--gap-surface) 92%, var(--ink) 8%);
   border: 1px solid var(--hairline);
   border-radius: 16px;
   padding: 1.4rem 1.5rem;
   margin: 1.6rem 0;
 }
-.mac-dl__icon { flex: none; width: 48px; height: 48px; border-radius: 11px; }
+.mac-dl__icon { flex: none; width: 96px; height: 96px; }
 .mac-dl__body { min-width: 0; }
 .mac-dl__title { margin: 0; font-weight: 700; font-size: var(--t-lg); letter-spacing: -0.01em; color: var(--fg); }
 .mac-dl__meta { margin: 0.2rem 0 0; font-size: var(--t-sm); color: var(--fg-dim); }
@@ -1441,3 +1446,97 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
   .mac-dl { flex-direction: column; gap: 0.9rem; }
   .beta-signup__row .btn { width: 100%; }
 }
+
+/* Footer social links: Font Awesome glyphs inlined (no CDN), handle beside icon.
+   Colour + hover inherit from .site-footer__col a; icon follows via currentColor. */
+.social-links a { display: inline-flex; align-items: center; gap: 0.5rem; }
+.social-links__icon { height: 1.05em; width: auto; fill: currentColor; flex: none; }
+
+/* ============================================================================
+   Feature-card visuals: SF Symbol glyphs (unmodified, recolored via
+   currentColor) + type-based fragments of the app UI. Tokens keep both
+   light and dark correct. The menu-bar timer is intentionally fixed-dark
+   because it depicts the macOS menu bar, which is dark in both modes.
+   ============================================================================ */
+.band__inner--wide { max-width: 72rem; }
+
+.fcard__viz { min-height: 30px; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.fcard__viz--col { flex-direction: column; align-items: stretch; gap: 7px; }
+.fcard__glyph { height: 23px; width: auto; fill: currentColor; color: var(--fg); display: block; }
+
+.frag-gap { display: flex; align-items: center; width: 100%; border-bottom: 1.5px solid var(--hairline); padding-bottom: 6px; }
+.frag-gap__time { font-size: 0.9rem; font-weight: 700; color: var(--fg); letter-spacing: -0.01em; }
+.frag-gap__sep { color: var(--fg); margin: 0 7px; font-weight: 700; }
+.frag-gap__name { font-size: 0.82rem; font-weight: 700; color: var(--fg); text-transform: uppercase; letter-spacing: 0.03em; }
+.frag-gap__dur { font-size: 0.85rem; font-weight: 700; color: var(--coral); margin-left: auto; }
+.frag-gap__cal { height: 14px; width: auto; color: var(--fg-dim); fill: currentColor; margin-left: auto; display: block; }
+
+.frag-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 11px; border-radius: 999px; }
+.frag-chip svg { height: 12px; width: auto; fill: currentColor; }
+.frag-chip--due { border: 1.5px solid var(--urgency-red); color: var(--urgency-red); }
+.frag-chip--area { border: 1.5px solid var(--carried-over); color: var(--carried-over); }
+.frag-tag { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; color: #fff; background: var(--coral); padding: 4px 15px 4px 10px; clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%); }
+
+.frag-task { display: flex; align-items: center; gap: 9px; }
+.frag-task__box { width: 13px; height: 13px; border-radius: 2px; border: 1.5px solid color-mix(in oklab, var(--fg) 42%, transparent); background: transparent; flex: none; }
+.frag-task__title { font-size: 0.8rem; color: var(--fg); }
+
+.frag-mb { display: flex; width: 100%; align-items: center; justify-content: flex-end; gap: 11px; white-space: nowrap; background: #1b1f22; color: #fff; font-size: 0.72rem; padding: 6px 12px; border-radius: 6px; }
+.frag-mb__mono { font-family: var(--font-mono); }
+.frag-mb__batt { height: 13px; width: auto; fill: #fff; display: block; }
+
+/* ============================================================================
+   iPhone Today replica (partials/iphone-today.html). Token-based so it flips
+   light/dark; the phone bezel stays dark (physical device). SF Symbols recolored
+   via currentColor. Square task boxes, two-row chips, floating bottom bar.
+   ============================================================================ */
+.ipt { width: 100%; max-width: 320px; margin: 0 auto; background: #0c0d0f; border-radius: 44px; padding: 9px; }
+.ipt__scr { background: var(--bg); border-radius: 36px; overflow: hidden; color: var(--fg); aspect-ratio: 1320 / 2868; display: flex; flex-direction: column; }
+.ipt__stat { display: flex; justify-content: space-between; align-items: center; padding: 9px 22px 2px; font-size: 12px; font-weight: 600; }
+.ipt__batt { height: 11px; width: auto; fill: var(--fg); display: block; opacity: .9; }
+.ipt__body { padding: 6px 17px 0; flex: 1; }
+.ipt__back { width: 30px; height: 30px; border-radius: 50%; background: var(--ink-selection); color: var(--fg); display: flex; align-items: center; justify-content: center; margin: 4px 0 8px; }
+.ipt__head { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; }
+.ipt__today { font-family: var(--font-sans); font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.ipt__chips { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; margin-top: 6px; }
+.ipt__chiprow { display: flex; gap: 6px; }
+.ipt-chip { display: inline-flex; align-items: center; gap: 4px; font-size: .62rem; font-weight: 700; letter-spacing: .05em; padding: 3px 9px; border-radius: 999px; }
+.ipt-chip svg { height: 10px; width: auto; fill: currentColor; }
+.ipt-chip--due { border: 1.4px solid var(--urgency-red); color: var(--urgency-red); }
+.ipt-chip--area { border: 1.4px solid var(--carried-over); color: var(--carried-over); }
+.ipt-tag { display: inline-flex; align-items: center; font-size: .62rem; font-weight: 700; letter-spacing: .03em; color: var(--fg-dim); background: color-mix(in oklab, var(--fg) 15%, transparent); padding: 3px 12px 3px 8px; clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 50%, calc(100% - 6px) 100%, 0 100%); }
+.ipt-sec { margin-top: 15px; }
+.ipt-sh { font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg-dim); padding-bottom: 6px; border-bottom: 1px solid var(--hairline); }
+.ipt-sh--car { color: var(--carried-over); }
+.ipt-gh { display: flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700; padding-bottom: 6px; border-bottom: 1px solid var(--hairline); color: var(--fg); }
+.ipt-sep { font-weight: 400; }
+.ipt-gname { text-transform: uppercase; letter-spacing: .04em; }
+.ipt-gicons { margin-left: auto; display: flex; gap: 9px; color: var(--fg-dim); }
+.ipt-gicons svg { height: 15px; width: auto; fill: currentColor; display: block; }
+.ipt-row { display: grid; grid-template-columns: 15px 1fr auto; gap: 9px; align-items: start; padding: 9px 0 8px; }
+.ipt-box { width: 15px; height: 15px; border: 1.5px solid var(--fg-dim); border-radius: 2px; margin-top: 2px; }
+.ipt-box--due { background: var(--urgency-red); border-color: var(--urgency-red); }
+.ipt-main { display: flex; flex-direction: column; min-width: 0; }
+.ipt-t { font-size: .85rem; line-height: 1.25; color: var(--fg); }
+.ipt-t--car { color: var(--carried-over); }
+.ipt-tagh { background: var(--accent-soft); color: var(--accent); border-radius: 3px; padding: 0 2px; }
+.ipt-p { font-size: .72rem; color: var(--fg-dim); margin-top: 2px; }
+.ipt-flag { color: var(--urgency-red); font-size: .75rem; font-weight: 600; white-space: nowrap; display: inline-flex; align-items: center; gap: 3px; }
+.ipt-flag svg { height: 10px; width: auto; fill: currentColor; }
+.ipt__bar { margin: 14px 10px 12px; background: var(--gap-surface); border: 1px solid var(--hairline); border-radius: 22px; box-shadow: 0 6px 22px var(--ink-selection); display: flex; justify-content: space-around; padding: 9px 6px 8px; }
+.ipt__bi { display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--fg); }
+.ipt__bi svg { height: 20px; width: auto; display: block; }
+.ipt__bi span { font-size: .58rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.ipt__grip { width: 110px; height: 5px; border-radius: 3px; background: var(--hairline); margin: 0 auto 10px; }
+
+/* Clickable feature cards: whole card is a link (stretched via the heading
+   anchor), with a gentle hover lift to signal interactivity. */
+.fcard { position: relative; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.fcard:hover { transform: translateY(-4px); box-shadow: 0 12px 28px var(--ink-selection); border-color: color-mix(in oklab, var(--hairline) 55%, var(--fg) 45%); }
+.fcard__link { color: inherit; text-decoration: none; }
+.fcard__link::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+.fcard:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.fcard__link:focus-visible { outline: none; }
+
+/* App icon above the closing call to action (will wrap in an App Store link at launch). */
+.cta-icon { display: block; margin: 0 auto 1.25rem; width: 88px; height: 88px; }

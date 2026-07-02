@@ -48,65 +48,7 @@
 
 {{- partial "feature-cards.html" . -}}
 
-{{/* ---------- CALENDAR BAND: alongside, never inside ---------------------- */}}
-{{/* The calendar-task relationship, stated entirely as what we do: read    */}}
-{{/* the calendars you choose, write nothing, derive the true gaps live,    */}}
-{{/* click one to claim it. Carries the derive-don't-store thesis: the      */}}
-{{/* room in a gap is computed, so a moved day has nothing to repair.       */}}
-<section class="band band--scene band--scene--center">
-  <div class="band__inner">
-    <p class="band__kicker">Alongside your calendar</p>
-    <h2 class="band__heading">The calendar keeps the events. You get the gaps.</h2>
-    <div class="band__body band__body--narrow">
-      <p>
-        Your calendar is already the system of record for the committed parts of your day, and it stays that way. {{ partial "brand-inline.html" . }} reads the calendars you choose to share and writes nothing back, ever. The events appear alongside your gaps as the fixed posts of the day: a map of where the open time actually is.
-      </p>
-      <p>
-        Between those posts, the app derives the true gaps and keeps them current. Click one in the calendar pane and it becomes a named gap, starting right where the open time starts. Schedule a task somewhere that turns out to sit inside an event, a meeting or an hour you blocked for something else, and a quiet tint says so.
-      </p>
-      <p>
-        And because the room in every gap is derived rather than stored, a meeting that runs long leaves nothing to repair. The day moves; the math moves with it.
-      </p>
-    </div>
-  </div>
-</section>
-
-{{/* ---------- BELIEF II: the judgment stays human -------------------------- */}}
-{{/* Second one-liner, bookending the opening belief. The app computes      */}}
-{{/* geometry; energy, mood, and the weight of tasks stay with the person.  */}}
-<section class="band band--short">
-  <div class="band__inner">
-    <p class="band__one-liner">
-      {{ partial "brand-inline.html" . }} computes the shape of your time. What fills it, and what it costs you, <em>stays yours to judge.</em>
-    </p>
-  </div>
-</section>
-
-{{/* ---------- SCENE 4: quiet by design ----------------------------------- */}}
-<section class="band band--scene band--scene--center">
-  <div class="band__inner">
-    <p class="band__kicker">Quiet by design</p>
-    <h2 class="band__heading">Every pixel earns its place.</h2>
-    <div class="band__body band__body--narrow">
-      <p>
-        The palette is muted, warm, and calm, and it stays that way so that when color does speak, it means something. Red is a deadline arriving. Coral is the gap you're working in right now. Everything else keeps its voice down.
-      </p>
-      <p>
-        That restraint extends to how the app treats your plans. Tasks you didn't get to ride forward to the top of Today as <em>Carried over</em>, in the same calm voice as everything else: they're yesterday's plan meeting today's, never a verdict. Real deadlines live in a separate register, and when one needs you, it is allowed to interrupt. The difference between "didn't get to it" and "must be done" is built into the pixels.
-      </p>
-      <p>
-        Completed work fades to muted strikethrough instead of disappearing. When you focus a gap, the rest of the day eases back. The header is a small pill mark that asks nothing of you.
-      </p>
-      <p>
-        These are not absences. They are decisions. Every choice the app makes is pointed at the same thing: keeping you in the work and out of the app. {{ partial "brand-inline.html" . }} gets quieter the more you use it.
-      </p>
-    </div>
-  </div>
-</section>
-
-{{/* ---------- iOS TEASER ------------------------------------------------- */}}
-{{/* The phone scene. Position: after the four Mac scenes and before plain  */}}
-{{/* files. Reads as "and the same gaps follow you off the desk."          */}}
+{{/* ---------- iOS TEASER: the phone, right after the cards ---------------- */}}
 <section class="band band--scene band--scene--reverse">
   <div class="band__inner band__inner--scene">
     <div class="scene__text">
@@ -120,27 +62,19 @@
       </p>
     </div>
     <div class="scene__figure">
-      <div class="appview appview--iphone appview--all">{{ partial "app-view.html" (dict "mode" "all" "device" "iphone") }}</div>
+      {{ partial "iphone-today.html" . }}
     </div>
   </div>
 </section>
 
-{{/* ---------- SHARING ----------------------------------------------------- */}}
-{{/* Shared projects: the plan is common ground, the schedule is personal.  */}}
-{{/* Self-contained band; if sharing slips out of the v1.0 build, this      */}}
-{{/* section and the matching /concepts/ section lift out cleanly.          */}}
-<section class="band band--scene band--scene--center">
+{{/* ---------- BELIEF II: the judgment stays human -------------------------- */}}
+{{/* Second one-liner, bookending the opening belief. The app computes      */}}
+{{/* geometry; energy, mood, and the weight of tasks stay with the person.  */}}
+<section class="band band--short">
   <div class="band__inner">
-    <p class="band__kicker">Shared plans, personal days</p>
-    <h2 class="band__heading">Share the project. Keep your schedule.</h2>
-    <div class="band__body band__body--narrow">
-      <p>
-        A project can be shared with other people through iCloud. Everyone you invite sees the same plan: the sections, the tasks and their order, what's done, the deadlines. When each task happens stays personal. You schedule your part into your own gaps, they schedule theirs into theirs, and the plan agrees while the days differ.
-      </p>
-      <p>
-        One thing this unlocks: put a gap inside the weekly meeting itself and schedule the points you want to raise. Your agenda assembles itself from the shared plan, on your phone, in the room. <a href="{{ "/concepts/" | relURL }}">More in Concepts</a>.
-      </p>
-    </div>
+    <p class="band__one-liner">
+      {{ partial "brand-inline.html" . }} computes the shape of your time. What fills it, and what it costs you, <em>stays yours to judge.</em>
+    </p>
   </div>
 </section>
 
@@ -181,6 +115,7 @@ gaps:
 {{/* ---------- FINAL CTA ------------------------------------------------- */}}
 <section class="band band--cta">
   <div class="band__inner">
+    <img class="cta-icon" src="{{ "/icons/app-icon-512.png" | relURL }}" alt="{{ $brand.name }} app icon" width="88" height="88">
     <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager for Mac and iPhone, in {{ site.Params.releaseStage }}.</h2>
     <p class="band__body band__body--center">Native apps. Universal binary on the Mac (macOS 14+). iPhone via TestFlight (iOS 17+).</p>
     <p class="band__body band__body--center">One-time purchase when v1.0 ships. All 1.x updates included, and there is no subscription to manage.</p>

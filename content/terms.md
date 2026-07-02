@@ -40,4 +40,4 @@ If these terms change, the new version will be posted here with a new effective 
 
 ## Contact
 
-Questions about these terms: [daygaps@gmail.com](mailto:daygaps@gmail.com).
+Questions about these terms: [support@daygaps.com](mailto:support@daygaps.com).

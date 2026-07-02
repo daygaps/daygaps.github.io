@@ -7,7 +7,7 @@ date: 2026-06-10
 Support for {{< brand >}} is an email address with a person behind it. Every question gets an answer, whether it is a bug, a confusion, a feature idea, or a disagreement with a design choice.
 
 <p class="cta-row cta-row--inline">
-  <a class="btn btn--primary" href="mailto:daygaps@gmail.com?subject=DayGaps%20support">Email support</a>
+  <a class="btn btn--primary" href="mailto:support@daygaps.com?subject=DayGaps%20support">Email support</a>
 </p>
 
 ## Before you write, or instead

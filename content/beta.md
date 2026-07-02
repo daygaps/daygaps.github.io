@@ -20,7 +20,7 @@ Once you are invited, install the **TestFlight** app from the App Store, sign in
 
 ## What's in this build
 
-Version **1.0.1**. The headline of this build is a hardened sync layer you can actually see: a status row on both platforms, a safe Refresh from iCloud, and a clear warning when two devices disagree about the same task. Universal Mac plus iPhone and iPad, syncing through your private iCloud zone. The full surface is on the [changelog](/changelog/); the short version:
+Version **1.0.2**. A polish pass on the 1.0 release: dark and tinted app icons, one-tap subtask collapsing, and an AI bridge that now has its own Settings tab and points at your local protocol file. Universal Mac plus iPhone and iPad, syncing through your private iCloud zone. The full surface is on the [changelog](/changelog/); the short version:
 
 - Today, This Week, Deadlines, Anyday, Inbox, Areas, Projects, Settings, all native on iPhone.
 - One gesture vocabulary across every list: tap for done, leading swipe for deadline, trailing swipe for reschedule, long-press for move.
@@ -54,4 +54,4 @@ The roadmap is on the [changelog page](/changelog/). Items still in flight:
 - Sync timing across devices: does an edit on the Mac surface fast enough on the iPhone, and vice versa?
 - Anywhere a Mac idiom leaked into the iPhone, or the iPhone idiom leaked back to the Mac?
 
-Send notes, bug reports, or rants to <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a>.
+Send notes, bug reports, or rants to <a href="mailto:support@daygaps.com">support@daygaps.com</a>.

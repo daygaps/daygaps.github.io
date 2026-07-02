@@ -6,6 +6,10 @@ date: 2026-06-10
 
 {{< brand >}} is built to be operated *with* an AI, and the way it does that says a lot about how the whole app thinks. Your assistant gets your real data, in plain text, on your desk. You pick the assistant, you phrase the asks, you approve the result. {{< brand >}} provides the doorway and has no idea what walks through it.
 
+<p class="cta-row--inline"><a class="btn btn--ghost" href="/ai-bridge-protocol/">Read the protocol</a><a class="btn btn--primary" href="/ai-bridge-protocol.md" download>Download it (.md)</a></p>
+
+The bridge protocol is the one document your assistant follows. It is served as plain Markdown at [daygaps.com/ai-bridge-protocol.md](/ai-bridge-protocol.md), the same copy the app keeps locally, so you can hand it to an assistant that cannot open a link.
+
 ## The bridge
 
 On the Mac, open the **bridge** and choose a scope: one or more of your areas. {{< brand >}} writes a snapshot of those areas to a folder on disk as plain YAML, one file per project plus your inbox, and locks itself for the duration. While the bridge is open, the app is read-only and the folder is the workbench.
@@ -35,8 +39,6 @@ The snapshot draws its own boundaries, and they mirror the app's:
 ## The protocol
 
 Everything an assistant needs to do this cleanly lives in one document: the AI bridge protocol. It is written to be pasted into a chat, and it covers the file formats, the editing rules, id minting, the scheduling rule that keeps tasks from silently vanishing off Today, and the handshake your assistant should perform before touching anything.
-
-{{< button href="/ai-bridge-protocol/" >}}Read the protocol{{< /button >}}
 
 A typical first session:
 

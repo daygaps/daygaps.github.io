@@ -68,11 +68,11 @@ enableGitInfo    = false
   # `mac-download` shortcode, so version, size, OS floor, and filename live in
   # ONE place. Update on every Mac build you post to static/downloads/.
   [params.macApp]
-    version = "1.0.1"               # CFBundleShortVersionString of the posted build
-    build   = "2"                   # CFBundleVersion
+    version = "1.0.2"               # CFBundleShortVersionString of the posted build
+    build   = "3"                   # CFBundleVersion
     minOS   = "26.4"                # LSMinimumSystemVersion of the build you post. Set to the LOWEST macOS your code actually builds against, not the Xcode/SDK default. See the note in content/beta.md.
-    size    = ""                    # human size of the .zip once made, e.g. "8 MB". Empty hides it.
-    file    = "DayGaps-1.0.1.zip"   # filename in static/downloads/. ditto-zip the signed .app to exactly this name.
+    size    = "9.5 MB"              # human size of the .zip once made, e.g. "8 MB". Empty hides it.
+    file    = "DayGaps-1.0.2.zip"   # filename in static/downloads/. ditto-zip the signed .app to exactly this name.
 
   # Email capture shown at the Mac download. Doubles as the launch waitlist and
   # the iOS TestFlight invite list. Paste a form/newsletter POST endpoint to go
@@ -80,7 +80,15 @@ enableGitInfo    = false
   # Recommended: Buttondown (privacy-first, free tier, also your announce list).
   [params.betaSignup]
     action = ""                     # e.g. https://buttondown.com/api/emails/embed-subscribe/USERNAME  or  https://formspree.io/f/XXXXXXXX
-    email  = "daygaps@gmail.com"    # mailto fallback target used when action is empty
+    email  = "support@daygaps.com"  # mailto fallback target used when action is empty
+
+  # Public contact + social handles. The footer renders these; a handle left
+  # empty is simply omitted (no broken link). Fill `bluesky` once the
+  # daygaps.com domain handle is verified in the Bluesky app.
+  [params.social]
+    email     = "support@daygaps.com"   # public support address (footer "Email support")
+    instagram = "daygaps"               # instagram.com/<handle>
+    bluesky   = "daygaps.com"            # bsky.app/profile/daygaps.com
 
 # Top-of-page navigation. Order matters; templates iterate in declared order.
 # Reading order mirrors a visitor's deepening interest: get started, learn
@@ -92,44 +100,19 @@ enableGitInfo    = false
   weight = 5
 
 [[menu.main]]
-  name   = "Concepts"
-  url    = "/concepts/"
-  weight = 8
-
-[[menu.main]]
-  name   = "Patterns"
-  url    = "/patterns/"
-  weight = 10
-
-[[menu.main]]
-  name   = "Philosophy"
-  url    = "/philosophy/"
-  weight = 20
-
-[[menu.main]]
-  name   = "iPhone"
-  url    = "/ios/"
-  weight = 25
-
-[[menu.main]]
-  name   = "AI"
-  url    = "/ai/"
-  weight = 28
-
-[[menu.main]]
   name   = "Get the app"
   url    = "/beta/"
-  weight = 30
+  weight = 10
 
 [[menu.main]]
   name   = "Pricing"
   url    = "/pricing/"
-  weight = 31
+  weight = 15
 
 [[menu.main]]
-  name   = "FAQ"
-  url    = "/faq/"
-  weight = 35
+  name   = "Documentation"
+  url    = "/docs/"
+  weight = 20
 
 # Footer-only navigation: reference pages a visitor seeks out rather than
 # browses to. Rendered by layouts/partials/footer.html after the main menu.

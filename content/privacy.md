@@ -38,8 +38,8 @@ Purchases are processed by Apple through the App Store. We receive no payment de
 
 ## Email
 
-If you write to [daygaps@gmail.com](mailto:daygaps@gmail.com), we see your email address and whatever you include, and we use it to reply. It is never shared or added to any list.
+If you write to [support@daygaps.com](mailto:support@daygaps.com), we see your email address and whatever you include, and we use it to reply. It is never shared or added to any list.
 
 ## Questions
 
-Anything unclear or unconvincing in this policy is worth an email: [daygaps@gmail.com](mailto:daygaps@gmail.com). We answer every question.
+Anything unclear or unconvincing in this policy is worth an email: [support@daygaps.com](mailto:support@daygaps.com). We answer every question.

@@ -4,6 +4,30 @@ description: "What's shipped, and what's next."
 date: 2026-05-30
 ---
 
+## v1.0.2 · July 1, 2026
+
+A polish release on top of the 1.0 sync work: the app icon gains proper dark and tinted variants, subtask collapsing gets a real button, and the AI bridge gets a settings home and a cleaner handoff.
+
+### App icon
+
+- **Dark and tinted variants.** The icon now renders correctly in macOS dark appearance, on the tinted iOS Home Screen, and in Launchpad, instead of falling back to one flat version.
+
+### Mac
+
+- **Click a section header to collapse it.** A single click on a section or sub-area title collapses it; a double-click still renames. The chevron on the left toggles directly, as before.
+- **One Subtasks button.** Today, Project, and Area each carry the same Subtasks button in the bottom bar: tap to collapse every task's subtasks on the page, tap again to expand them all. The old top-corner collapse icon is gone.
+
+### AI bridge
+
+- **Its own Settings tab.** The bridge moves out of General into a dedicated tab, with step-by-step setup: read the guide, download the protocol, and point the app at your local copy of it.
+- **The guide travels with the handoff.** The "paste this to your assistant" block now carries the path to your saved protocol file, so the assistant knows exactly which document to follow. If you haven't saved one, it says so and includes the download link instead.
+- **Cleaner scope.** Archived projects are left out of a bridge session, and each area's folder is named after its current display name, so a renamed area reads naturally on disk.
+
+### iPhone
+
+- **Calendar settings breathe.** Toggle rows in the per-calendar list get proper spacing.
+- **The bottom bar steps aside** on the sidebar and in Settings, so it never covers a control.
+
 ## v1.0.1 · June 30, 2026
 
 The 1.0 release candidate. The headline is sync: DayGaps now shows you exactly what iCloud is doing and protects your edits when two devices disagree. Around that, a long polish pass tightens planning on the phone and the small visual details on both platforms.
@@ -82,7 +106,7 @@ The first release that ships on two platforms. Mac picks up everything from the 
 
 ### iPhone preview (new)
 
-- **iPhone app on TestFlight.** Email <a href="mailto:daygaps@gmail.com">daygaps@gmail.com</a> with the Apple ID you want to test under. Built for iOS 17 and later. Reads and writes the same folder as the Mac, via the Files-app folder picker; Dropbox, iCloud Drive, and anything else that exposes a folder works.
+- **iPhone app on TestFlight.** Email <a href="mailto:support@daygaps.com">support@daygaps.com</a> with the Apple ID you want to test under. Built for iOS 17 and later. Reads and writes the same folder as the Mac, via the Files-app folder picker; Dropbox, iCloud Drive, and anything else that exposes a folder works.
 - **Hamburger sidebar.** Inbox (with a count badge), Today, This Week, then each Area with its projects nested underneath, then Settings anchored at the bottom.
 - **Three gestures, one vocabulary.** Tap a task to mark it done. Swipe right to move it to a different gap on the same day. Swipe left to reschedule. The same gestures work in Today, in This Week, and inside a project view.
 - **Gap CRUD on iPhone.** Tap a gap header to edit time / label / delete. Swipe left on a header to delete with confirmation. The bottom bar's "+ Add gap" pre-fills the next half-hour after the latest existing gap.
