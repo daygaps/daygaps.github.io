@@ -1,1 +1,31 @@
-<article class="sc-card">{{ with .Get "title" }}<h3 class="sc-card__h">{{ . }}</h3>{{ end }}{{ .Inner | markdownify }}</article>
+{{- /*
+  Card shortcode for docs and start pages. Renders as an .sc-card whose
+  visual language matches the landing-page .fcard (panel-cream fill,
+  hairline border, 8px radius, tight padding, magazine-tight typography).
+
+  Params:
+    title (required)     card heading, rendered inside .sc-card__h
+    href  (optional)     link URL. When present, the shortcode adds a
+                         .sc-card__link block on its own line beneath the
+                         body copy. `link` param supplies the label
+                         (defaults to "Read →" if omitted).
+    link  (optional)     link label. Ignored when href is absent.
+
+  Body:
+    Everything between the tags becomes the description. Markdown inside
+    is rendered. Do NOT include the trailing call-to-action link in the
+    body; pass it via href/link so it renders as its own block.
+
+  Usage:
+    {{ "{{< card title=\"Concepts\" href=\"/concepts/\" link=\"Read Concepts →\" >}}" }}
+    The whole model in one read: areas, projects, sections...
+    {{ "{{< /card >}}" }}
+*/ -}}
+{{- $title := .Get "title" -}}
+{{- $href  := .Get "href" -}}
+{{- $link  := .Get "link" | default "Read →" -}}
+<article class="sc-card">
+  {{- with $title }}<h3 class="sc-card__h">{{ . }}</h3>{{ end }}
+  <div class="sc-card__body">{{ .Inner | markdownify }}</div>
+  {{- with $href }}<a class="sc-card__link" href="{{ . | relURL }}">{{ $link | safeHTML }}</a>{{ end }}
+</article>

@@ -16,37 +16,68 @@
 /* ---------- Tokens ------------------------------------------------------- */
 :root {
   /* ------------------------------------------------------------------------
-     Palette adopted from the app (Palette.swift + DesignTokens.swift). The
-     ink shades are one family: change --ink and every density tone follows.
-     Legacy names (--bg / --fg / --fg-dim / --accent / --hairline) are kept as
-     aliases onto the named tokens so the rest of the stylesheet follows. The
-     calendar-event swatch colours are intentionally fixed, not part of this
-     family (see .event--blue / .event--green).
+     Palette + type ported from the app's v1.0.5 muted visual language.
+     Source of truth: daygaps-core/docs/design/right-panel-gap-cutout-mockup.html
+     and daygaps-site/docs/design/landing-feature-cards-mockup.html.
+
+     Approach:
+       Solid, print-quality values for the ink ladder. Warm cream stack for
+       body / band / card. Coral scarce and deeper. Hairline halved from what
+       the site ran before (0.18 -> 0.09) so it reads as fold, not fence.
+
+     Naming:
+       The new mockup-native names (--medium-ink / --light-ink / --panel-cream
+       etc.) are the source of truth. The site's older names (--ink-medium /
+       --ink-light / --gap-surface etc.) alias onto them so existing rules keep
+       working without a rewrite. New rules should reach for the mockup names.
      ------------------------------------------------------------------------ */
-  --ink:           #1F2D34;   /* brand ink. Body text, "Gaps" half. */
-  --ink-gap:       #5F6F77;   /* gap header text */
+
+  /* Ink ladder. Solid values so mixing on cream is predictable. */
+  --ink:           #1F2D34;   /* headings, body text, "Gaps" half */
+  --medium-ink:    #4A5560;   /* body copy, quiet fragments */
+  --light-ink:     #8A939C;   /* kickers, separators, chevrons */
+  --whisper-ink:   #C5CCD2;   /* barely-there marks */
+
+  /* Wordmark + gap-header specific inks (kept unchanged; they belong to
+     the app's typography and predate the port). */
+  --ink-gap:       #5F6F77;   /* gap header text in-app */
   --ink-day:       #728186;   /* "Day" wordmark half */
   --ink-tagline:   #ACB3B5;   /* subtitles, taglines */
-  --ink-medium:    rgba(31, 45, 52, 0.65);
-  --ink-light:     rgba(31, 45, 52, 0.40);
-  --ink-whisper:   rgba(31, 45, 52, 0.20);
-  --ink-hairline:  rgba(31, 45, 52, 0.18);
-  --ink-selection: rgba(31, 45, 52, 0.06);
 
-  --cream:         #F7F6F2;   /* page background */
-  --gap-surface:   #FFFBF6;   /* a gap card, lighter than cream */
+  /* Warm cream stack. Three neutrals close enough in value that the eye
+     reads them as folds in the same sheet. */
+  --body:          #E7E1D5;   /* the page ground (oatmeal) */
+  --cream:         #F3EFE7;   /* band / page-level surface */
+  --panel-cream:   #F1ECE2;   /* card fill, one step up from cream */
 
-  --coral:         #DE7D60;   /* completion, attention not alarm */
-  --urgency-red:   #C73E3D;   /* past-due, DUE chip, urgent signal */
+  /* Coral, scarce on purpose. One saturated + one deep + a muted alpha +
+     a wash. Every part of the site should reach for exactly one of these
+     at a time; if two want it, one of them is wrong. */
+  --coral:         #DA6444;   /* the one loud accent */
+  --coral-deep:    #B8482B;   /* pressed / hover state */
+  --coral-muted:   rgba(218, 100, 68, 0.35);   /* latent hairline */
+  --coral-wash:    rgba(218, 100, 68, 0.06);   /* callout background */
+
+  --cool:          #3E4B5C;   /* slate for area chips / off-hours */
+  --urgency-red:   #C73E3D;   /* DUE chip / past-due (separate loud signal) */
   --carried-over:  #709EAC;   /* mist teal, carried-over band */
 
-  /* Legacy aliases onto the named tokens. */
+  /* Hairline: halved from the old 0.18 alpha. Reads as separator, not border. */
+  --hairline:      rgba(31, 45, 52, 0.09);
+  --ink-selection: rgba(31, 45, 52, 0.06);
+
+  /* Legacy aliases. Keep the old names resolving so unmodified rules follow
+     the new palette by inheritance. New rules should prefer the mockup names. */
+  --ink-medium:    var(--medium-ink);
+  --ink-light:     var(--light-ink);
+  --ink-whisper:   var(--whisper-ink);
+  --ink-hairline:  var(--hairline);
+  --gap-surface:   var(--panel-cream);
   --bg:            var(--cream);
   --fg:            var(--ink);
-  --fg-dim:        var(--ink-gap);
-  --hairline:      var(--ink-hairline);
+  --fg-dim:        var(--medium-ink);
   --accent:        var(--coral);
-  --accent-soft:   rgba(222, 125, 96, 0.14);
+  --accent-soft:   var(--coral-wash);
   --code-bg:       var(--ink-selection);
 
   /* Decorative pill colours (logo / illustration only). */
@@ -65,17 +96,19 @@
   --on-accent:        #FFF;   /* text on a filled accent surface */
 
   /* Type ------------------------------------------------------------------
-     Body uses the system humanist sans (SF on Mac, Segoe on Windows, etc).
-     Wordmark uses Futura . that's the brand font the user picked for the
-     logo. Futura ships on macOS / iOS by default, so the vast majority
-     of visitors (Mac users; that's the product's audience) will see the
-     real thing. The fallback stack reaches for other geometric sans-
-     serifs before degrading to system-ui . non-Mac visitors still get
-     something Futura-adjacent rather than a humanist substitute.
+     Body: SF Pro via the -apple-system stack. Ports directly from the
+     mockup so the type feels native on Mac and iPhone (the audience).
+     On Windows/Linux the stack degrades to system-ui (Segoe UI /
+     Cantarell / etc.) which is close enough that the hierarchy holds.
+     No web fonts: no download, no FOUT, no fight with the OS renderer.
+
+     Display: Futura, unchanged. The wordmark is the brand identity and
+     stays Futura. Everything else on the site uses --font-sans.
      ----------------------------------------------------------------------- */
   --font-sans:
-    ui-sans-serif, -apple-system, BlinkMacSystemFont,
-    "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -apple-system, BlinkMacSystemFont,
+    "SF Pro Text", "SF Pro Display",
+    system-ui, sans-serif;
   --font-display:
     Futura, "Futura PT", "ITC Avenir", "Avenir Next", Avenir,
     Jost, "Trebuchet MS", ui-sans-serif, system-ui, sans-serif;
@@ -113,22 +146,42 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* App dark-mode pairs. The legacy aliases follow these automatically. */
+    /* Dark pairs. The mockup is a print-magazine light-mode language; dark
+       mode here is a near-inverse so nothing looks broken in dark, with the
+       same aliasing discipline. A dedicated dark-mode design pass is a
+       separate exercise. */
     --ink:           #E8EDEF;
+    --medium-ink:    #A3ABB2;
+    --light-ink:     #6E7784;
+    --whisper-ink:   #3E4750;
+
     --ink-gap:       #A0ADB3;
     --ink-day:       #8E9A9F;
     --ink-tagline:   #6E7577;
-    --ink-medium:    rgba(232, 237, 239, 0.65);
-    --ink-light:     rgba(232, 237, 239, 0.40);
-    --ink-whisper:   rgba(232, 237, 239, 0.20);
-    --ink-hairline:  rgba(232, 237, 239, 0.18);
-    --ink-selection: rgba(232, 237, 239, 0.06);
+
+    --body:          #14181B;
     --cream:         #1B1F22;
-    --gap-surface:   #2A2D2F;
+    --panel-cream:   #23272B;
+
     --coral:         #E89682;
+    --coral-deep:    #CE7359;
+    --coral-muted:   rgba(232, 150, 130, 0.35);
+    --coral-wash:    rgba(232, 150, 130, 0.08);
+
+    --cool:          #7A8698;
     --urgency-red:   #E55A4E;
     --carried-over:  #88B4C0;
-    --accent-soft:   rgba(232, 150, 130, 0.18);
+
+    --hairline:      rgba(232, 237, 239, 0.09);
+    --ink-selection: rgba(232, 237, 239, 0.06);
+
+    /* Legacy aliases follow. */
+    --ink-medium:    var(--medium-ink);
+    --ink-light:     var(--light-ink);
+    --ink-whisper:   var(--whisper-ink);
+    --ink-hairline:  var(--hairline);
+    --gap-surface:   var(--panel-cream);
+    --accent-soft:   var(--coral-wash);
     --c-mint:        #A4D9CB;
     --c-gold:        #F6C778;
     /* Calendar-event swatches, dark pairs. Edge and ink share one colour. */
@@ -647,21 +700,40 @@ html:not(.js) .hero__scroll-hint { display: none; }
   .band__inner--split { grid-template-columns: 1fr; }
 }
 
+/* Band opener: kicker + heading. Universalized to the print-magazine
+   ramp so every band's opener shares one voice. Kicker is coral,
+   11px, tracked and uppercase (the magazine "department" label).
+   Heading is semibold, tighter tracking, more air below than before.
+   Same source of truth as the mockup at
+   daygaps-site/docs/design/landing-feature-cards-mockup.html. */
 .band__kicker {
-  margin: 0 0 0.875rem;
-  font-size: var(--t-xs);
-  letter-spacing: 0.12em;
+  margin: 0 0 1.1rem;
+  font-size: 11px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--coral);
+  font-weight: 700;
 }
 .band__heading {
-  margin: 0 0 1.5rem;
-  font-size: var(--t-4xl);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  font-weight: 700;
+  margin: 0 0 1.4rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   max-width: 22ch;
+  color: var(--ink);
+}
+
+/* Centered variant. Apply on any .band whose opener (kicker + heading,
+   plus lede if present) should render as a magazine cover-style stack.
+   Body/lede content below the opener is unaffected. */
+.band--centered .band__kicker,
+.band--centered .band__heading,
+.band--centered .band__body,
+.band--centered .fcards__lede {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .band__heading--cta { max-width: none; }
 .band__body {
@@ -783,11 +855,11 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .band__one-liner {
   margin: 0 auto;
   max-width: 42ch;
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--fg);
   opacity: 0.9;
 }
@@ -799,7 +871,9 @@ html:not(.js) .hero__scroll-hint { display: none; }
   color: var(--fg);
   opacity: 1;
 }
-.band__one-liner .band__act { color: var(--accent); font-weight: 700; }
+/* The action phrase gets a coral tint but inherits the parent's weight
+   so it reads as accented, not shouted. */
+.band__one-liner .band__act { color: var(--coral); }
 
 /* ---------------------------------------------------------------------------
    About band . the long-form pitch. Single narrow text column; paragraphs
@@ -1273,16 +1347,58 @@ html:not(.js) .hero__scroll-hint { display: none; }
 .fflag{color:var(--urgency-red);font-size:.8em;font-weight:600;white-space:nowrap}
 .fdemo__note{text-align:center;color:var(--fg-dim);font-size:.85rem;margin:1rem 0 0}
 
-.fcards__lede{max-width:52rem;margin-bottom:2rem}
-.fcards__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;grid-auto-flow:dense}
-.fcard{background:var(--gap-surface);border:1px solid var(--hairline);border-radius:16px;padding:1.15rem 1.25rem 1.25rem}
-.fcard h3{font-size:1.08rem;font-weight:700;letter-spacing:-.01em;margin:0 0 .45rem;line-height:1.25;color:var(--fg)}
-.fcard p{margin:0;color:var(--fg-dim);font-size:.93rem;line-height:1.5}
-.fcard p b{color:var(--fg);font-weight:600}
-.fcard p b.due{color:var(--urgency-red)}
-.fcard--wide{grid-column:span 2}
-@media(max-width:860px){.fcards__grid{grid-template-columns:repeat(2,1fr)}.fcard--wide{grid-column:span 2}}
-@media(max-width:560px){.fcards__grid{grid-template-columns:1fr}.fcard--wide{grid-column:span 1}.fdemo__today{font-size:1.3rem}}
+/* Lede for the feature-cards band. Kicker + heading are the site-wide
+   .band__kicker + .band__heading (see the Bands section above).
+   The lede is scoped here because its typographic role (short deck
+   under a big magazine feature-headline) differs from body copy on
+   other bands; unifying that is a separate pass. */
+.fcards__lede {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--medium-ink);
+  max-width: 54ch;
+  margin: 0 0 40px;
+}
+.fcards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  grid-auto-flow: dense;
+}
+/* Card: panel-cream + hairline + 8px radius + tight padding, matching the
+   .decision box in the app mockup. Tighter than the site's prior 16px/1.15rem. */
+.fcard {
+  background: var(--panel-cream);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.fcard h3 {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.05px;
+  line-height: 1.3;
+  margin: 0 0 5px;
+  color: var(--ink);
+}
+.fcard p {
+  margin: 0;
+  color: var(--medium-ink);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+.fcard p b { color: var(--ink); font-weight: 600; }
+.fcard p b.due { color: var(--urgency-red); }
+.fcard--wide { grid-column: span 2; }
+@media (max-width: 860px) {
+  .fcards__grid { grid-template-columns: repeat(2, 1fr); }
+  .fcard--wide { grid-column: span 2; }
+}
+@media (max-width: 560px) {
+  .fcards__grid { grid-template-columns: 1fr; }
+  .fcard--wide { grid-column: span 1; }
+  .fdemo__today { font-size: 1.3rem; }
+}
 
 
 /* Focus-demo: header chips, status bar, click-to-filter (data-filter set by JS). */
@@ -1337,24 +1453,31 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
    Shortcode components (rich blocks inside prose pages)
    ============================================================================ */
 .sc-price { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin: 0 0 1.6rem; }
-.sc-price__amount { font-family: var(--font-display); font-weight: 500; font-size: clamp(2.6rem, 7vw, 4rem); letter-spacing: -0.02em; line-height: 1; color: var(--fg); }
+.sc-price__amount { font-family: var(--font-sans); font-weight: 600; font-size: clamp(2.6rem, 7vw, 4rem); letter-spacing: -0.03em; line-height: 1; color: var(--fg); }
 .sc-price__unit { font-size: var(--t-lg); color: var(--fg-dim); }
 .sc-callout { margin: 1.9em 0; padding: 1.1rem 1.3rem; background: var(--gap-surface); border: 1px solid var(--hairline); border-left: 3px solid var(--accent); border-radius: var(--r-md); }
 .sc-callout > :first-child { margin-top: 0; } .sc-callout > :last-child { margin-bottom: 0; }
 .sc-callout--urgent { border-left-color: var(--urgency-red); }
 .sc-callout--carried { border-left-color: var(--carried-over); }
 .sc-bigquote { margin: 2.2em 0; }
-.sc-bigquote blockquote { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(1.45rem, 3.2vw, 2rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; }
+.sc-bigquote blockquote { margin: 0; font-family: var(--font-sans); font-weight: 500; font-size: clamp(1.45rem, 3.2vw, 2rem); line-height: 1.3; letter-spacing: -0.015em; color: var(--fg); text-wrap: balance; }
 .sc-bigquote figcaption { margin-top: 0.75rem; font-size: var(--t-sm); color: var(--fg-dim); }
 .sc-steps { list-style: none; counter-reset: scstep; margin: 1.7em 0; padding: 0; }
 .sc-step { counter-increment: scstep; position: relative; padding-left: 2.7rem; margin: 0 0 1.4em; }
 .sc-step::before { content: counter(scstep); position: absolute; left: 0; top: -0.1em; width: 1.85rem; height: 1.85rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 0.9rem; }
 .sc-step__h { font-weight: 600; color: var(--fg); margin: 0 0 0.25rem; }
 .sc-step > :last-child { margin-bottom: 0; }
-.sc-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 14px; margin: 1.9em 0; }
-.sc-card { background: var(--gap-surface); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: 1.1rem 1.25rem; }
-.sc-card > :last-child { margin-bottom: 0; }
-.sc-card__h { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.4rem; color: var(--fg); letter-spacing: -0.01em; }
+/* Doc-page cards (shortcode). Match the landing .fcard treatment:
+   panel-cream fill, hairline border, 8px radius, tight padding, 14/12.5
+   type scale, coral call-to-action link on its own line at the bottom. */
+.sc-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 14px; margin: 1.9em 0; }
+.sc-card { background: var(--panel-cream); border: 1px solid var(--hairline); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 5px; }
+.sc-card__h { font-size: 14px; font-weight: 600; letter-spacing: -0.05px; line-height: 1.3; margin: 0; color: var(--ink); }
+.sc-card__body { font-size: 12.5px; line-height: 1.55; color: var(--medium-ink); margin: 0; }
+.sc-card__body > :first-child { margin-top: 0; }
+.sc-card__body > :last-child { margin-bottom: 0; }
+.sc-card__link { display: block; margin-top: 8px; font-size: 12.5px; font-weight: 600; color: var(--coral); text-decoration: none; letter-spacing: -0.05px; }
+.sc-card__link:hover { color: var(--coral-deep); }
 .sc-cta { margin: 1.8em 0 0; }
 .prose__body .sc-cta .btn { text-decoration: none; }
 
@@ -1472,30 +1595,72 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
    ============================================================================ */
 .band__inner--wide { max-width: 72rem; }
 
-.fcard__viz { min-height: 30px; margin: 0 0 0.85rem; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.fcard__viz--col { flex-direction: column; align-items: stretch; gap: 7px; }
-.fcard__glyph { height: 23px; width: auto; fill: currentColor; color: var(--fg); display: block; }
+/* Viz slot: edge-to-edge card-header strip. Same horizontal padding as
+   the card body so the fragment inside aligns with the h3 and p below.
+   Faint cream fill against the panel-cream card body, hairline underline,
+   top corners follow the card's 8px radius. Bootstrap .card-header idiom.
+   min-height 32px accommodates the tallest 1-item viz (frag-mb) so every
+   row-2/3/4 strip lands at the same height. */
+.fcard__viz {
+  background: var(--cream);
+  border-bottom: 1px solid var(--hairline);
+  border-radius: 8px 8px 0 0;
+  margin: -14px -16px 12px;
+  padding: 12px 16px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+/* Column variant: stacks a 2-item viz vertically. align-items: flex-start
+   keeps chip stacks (inline-flex intrinsic width) from being pulled
+   edge-to-edge. justify-content: center vertically centers the pair so
+   slight content-height differences (task-row combos vs chip stacks)
+   don't visually push the strip around. min-height 52px accommodates
+   the tallest 2-item combo (chip stack) so every row-1 strip is uniform. */
+.fcard__viz--col {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+  min-height: 52px;
+}
+.fcard__glyph { height: 22px; width: auto; fill: currentColor; color: var(--medium-ink); display: block; }
 
-.frag-gap { display: flex; align-items: center; width: 100%; border-bottom: 1.5px solid var(--hairline); padding-bottom: 6px; }
-.frag-gap__time { font-size: 0.9rem; font-weight: 700; color: var(--fg); letter-spacing: -0.01em; }
-.frag-gap__sep { color: var(--fg); margin: 0 7px; font-weight: 700; }
-.frag-gap__name { font-size: 0.82rem; font-weight: 700; color: var(--fg); text-transform: uppercase; letter-spacing: 0.03em; }
-.frag-gap__dur { font-size: 0.85rem; font-weight: 700; color: var(--coral); margin-left: auto; }
-.frag-gap__cal { height: 14px; width: auto; color: var(--fg-dim); fill: currentColor; margin-left: auto; display: block; }
+/* Gap header fragment. The card-header strip already carries the section
+   separator, so the fragment's own bottom hairline was doubling up and
+   is dropped. Time in ink, name in medium-ink uppercase, dur in coral. */
+.frag-gap {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  gap: 6px;
+}
+.frag-gap__time { font-size: 13px; font-weight: 600; color: var(--ink); letter-spacing: -0.1px; }
+.frag-gap__sep  { color: var(--light-ink); }
+.frag-gap__name { font-size: 10.5px; font-weight: 700; color: var(--medium-ink); text-transform: uppercase; letter-spacing: 0.4px; }
+.frag-gap__dur  { font-size: 13px; font-weight: 600; color: var(--coral); margin-left: auto; letter-spacing: -0.1px; }
+.frag-gap__cal  { height: 14px; width: 16px; color: var(--light-ink); fill: currentColor; margin-left: auto; display: block; flex: none; }
 
-.frag-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 11px; border-radius: 999px; }
-.frag-chip svg { height: 12px; width: auto; fill: currentColor; }
-.frag-chip--due { border: 1.5px solid var(--urgency-red); color: var(--urgency-red); }
-.frag-chip--area { border: 1.5px solid var(--carried-over); color: var(--carried-over); }
-.frag-tag { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; color: #fff; background: var(--coral); padding: 4px 15px 4px 10px; clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%); }
+/* Chips: hairline pills. DUE stays urgency-red (separate loud signal).
+   Area chip moves to the cool slate from the mockup. */
+.frag-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+.frag-chip svg { height: 11px; width: 10px; fill: currentColor; flex: none; }
+.frag-chip--due   { border: 1.5px solid var(--urgency-red); color: var(--urgency-red); }
+.frag-chip--area  { border: 1.5px solid var(--cool);         color: var(--cool); }
+.frag-chip--price { border: 1.5px solid var(--ink);          color: var(--ink); }
+
+/* Hashtag: coral-filled polygon. Uses the deeper coral for punch on cream. */
+.frag-tag { display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; color: #FFF7EE; background: var(--coral-deep); padding: 4px 15px 4px 10px; clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%); }
 
 .frag-task { display: flex; align-items: center; gap: 9px; }
-.frag-task__box { width: 13px; height: 13px; border-radius: 2px; border: 1.5px solid color-mix(in oklab, var(--fg) 42%, transparent); background: transparent; flex: none; }
-.frag-task__title { font-size: 0.8rem; color: var(--fg); }
+.frag-task__box { width: 13px; height: 13px; border-radius: 2px; border: 1.5px solid var(--medium-ink); background: transparent; flex: none; }
+.frag-task__title { font-size: 13px; color: var(--ink); }
 
-.frag-mb { display: flex; width: 100%; align-items: center; justify-content: flex-end; gap: 11px; white-space: nowrap; background: #1b1f22; color: #fff; font-size: 0.72rem; padding: 6px 12px; border-radius: 6px; }
+.frag-mb { display: flex; width: 100%; align-items: center; justify-content: flex-end; gap: 11px; white-space: nowrap; background: #1B1F22; color: #FFF; font-size: 11px; padding: 6px 12px; border-radius: 6px; }
 .frag-mb__mono { font-family: var(--font-mono); }
-.frag-mb__batt { height: 13px; width: auto; fill: #fff; display: block; }
+.frag-mb__batt { height: 13px; width: auto; fill: #FFF; display: block; }
 
 /* ============================================================================
    iPhone Today replica (partials/iphone-today.html). Token-based so it flips
@@ -1544,9 +1709,9 @@ a, .btn, .chip, .fgap__head, .nav-burger { -webkit-tap-highlight-color: transpar
 /* Clickable feature cards: whole card is a link (stretched via the heading
    anchor), with a gentle hover lift to signal interactivity. */
 .fcard { position: relative; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-.fcard:hover { transform: translateY(-4px); box-shadow: 0 12px 28px var(--ink-selection); border-color: color-mix(in oklab, var(--hairline) 55%, var(--fg) 45%); }
+.fcard:hover { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(31, 45, 52, 0.05); border-color: rgba(31, 45, 52, 0.14); }
 .fcard__link { color: inherit; text-decoration: none; }
-.fcard__link::after { content: ""; position: absolute; inset: 0; border-radius: 16px; }
+.fcard__link::after { content: ""; position: absolute; inset: 0; border-radius: 8px; }
 .fcard:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
 .fcard__link:focus-visible { outline: none; }
 

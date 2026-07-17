@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DayGaps landing feature cards, print-magazine port (mockup)</title>
+<style>
+  /* ================================================================
+     Palette + type ported from
+     daygaps-core/docs/design/right-panel-gap-cutout-mockup.html
+     Values match the app mockup exactly so the site and the app
+     share one visual language rather than two.
+     ================================================================ */
+  :root {
+    --ink:           #1F2D34;
+    --medium-ink:    #4A5560;
+    --light-ink:     #8A939C;
+    --whisper-ink:   #C5CCD2;
+
+    --body:          #E7E1D5;   /* the page ground (warm oatmeal) */
+    --cream:         #F3EFE7;   /* page-level surface, one step up */
+    --panel-cream:   #F1ECE2;   /* card fill, adjacent to cream */
+
+    --coral:         #DA6444;   /* one loud accent, used sparingly */
+    --coral-deep:    #B8482B;
+    --coral-muted:   rgba(218, 100, 68, 0.35);
+    --coral-wash:    rgba(218, 100, 68, 0.06);
+
+    --cool:          #3E4B5C;   /* slate for area chips, off-hours */
+    --hairline:      rgba(31, 45, 52, 0.09);
+
+    --urgency-red:   #C73E3D;   /* DUE chip only. Deliberately loud. */
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--body);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* ---- mockup meta header (not part of the port) ------------------ */
+  .meta {
+    max-width: 720px;
+    margin: 0 0 56px;
+  }
+  .meta h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    margin: 0 0 8px;
+  }
+  .meta p {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--medium-ink);
+    margin: 0 0 8px;
+  }
+  .meta code {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--ink);
+    background: var(--cream);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* =================================================================
+     THE BAND (proposed language)
+     ================================================================= */
+  .band {
+    background: var(--cream);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 72px 48px 80px;
+    margin: 0 -48px;
+  }
+  .band__inner {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  /* Kicker: the magazine department label. 11px, 700, uppercase,
+     1.4px letter-spacing, light ink. This one line sets the tone. */
+  .band__kicker {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--light-ink);
+    margin: 0 0 18px;
+  }
+
+  /* Headline: semibold at 34px with tight tracking. Quiet on
+     purpose. The kicker + headline together sit like a magazine
+     department opener. */
+  .band__heading {
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.6px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 22px;
+    max-width: 22ch;
+  }
+
+  /* Lede: 15px / 1.55 with the medium-ink for that magazine-deck feel.
+     Kept to ~54ch so it reads at one glance. */
+  .band__lede {
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--medium-ink);
+    margin: 0 0 40px;
+    max-width: 54ch;
+  }
+
+  /* =================================================================
+     FEATURE CARD GRID
+     Grid: 3 cols above 900px, 2 below, 1 below 560.
+     Cards ported from the app mockup's .decision treatment: 8px
+     radius, tight padding, 12.5/1.55 body copy, 11-14px heads.
+     That density is what makes the row read as magazine-editorial
+     rather than product-web.
+     ================================================================= */
+  .fcards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 900px) { .fcards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .fcards { grid-template-columns: 1fr; } }
+
+  .fcard {
+    background: var(--panel-cream);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 14px 16px 14px;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+  .fcard:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(31, 45, 52, 0.05);
+    border-color: rgba(31, 45, 52, 0.14);
+  }
+
+  /* Visualization slot: an edge-to-edge strip across the top of the card,
+     Bootstrap .card-header idiom. Same horizontal padding as the card
+     body so the fragment inside aligns with the h3 and p below. Faint
+     cream fill against the panel-cream card body, hairline underline,
+     top corners follow the card's 8px radius. */
+  .fcard__viz {
+    background: var(--cream);
+    border-bottom: 1px solid var(--hairline);
+    border-radius: 8px 8px 0 0;
+    margin: -14px -16px 12px;
+    padding: 12px 16px;
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .fcard__viz--col { flex-direction: column; align-items: stretch; gap: 7px; }
+  .fcard__glyph { height: 22px; width: auto; color: var(--medium-ink); fill: currentColor; display: block; }
+
+  /* Card headline: 14px semibold ink, one tick down from the
+     .notes h2 to match the .decision head/body proportion.
+     Card body: 12.5/1.55 medium-ink, exactly the mockup value. */
+  .fcard h3 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.05px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 5px;
+  }
+  .fcard h3 a { color: inherit; text-decoration: none; }
+  .fcard p {
+    margin: 0;
+    color: var(--medium-ink);
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+
+  /* =================================================================
+     FRAGMENTS
+     Miniature elements from the app UI, re-drawn on the new palette.
+     Each fragment has to keep its identity ("this is the gap header",
+     "this is a DUE chip") while sitting quiet on cream.
+     ================================================================= */
+
+  /* Gap header fragment: time + separator + name + duration.
+     Time and name in ink, dur in coral. The fragment used to carry
+     its own hairline underline to match the app; on the site the
+     card-header strip is already doing that job, so we drop the
+     fragment's line and let it breathe. */
+  .frag-gap {
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    gap: 6px;
+  }
+  .frag-gap__time {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.1px;
+  }
+  .frag-gap__sep { color: var(--light-ink); }
+  .frag-gap__name {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--medium-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .frag-gap__dur {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--coral);
+    margin-left: auto;
+    letter-spacing: -0.1px;
+  }
+  .frag-gap__cal {
+    height: 14px;
+    width: auto;
+    color: var(--light-ink);
+    fill: currentColor;
+    margin-left: auto;
+    display: block;
+  }
+
+  /* Task row: checkbox + title. The checkbox is a hairline square
+     to match the app's flat-paper task rows. */
+  .frag-task { display: flex; align-items: center; gap: 9px; }
+  .frag-task__box {
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    border: 1.5px solid var(--medium-ink);
+    background: transparent;
+    flex: none;
+  }
+  .frag-task__title {
+    font-size: 13px;
+    color: var(--ink);
+  }
+
+  /* Chips: uppercase pills with a hairline border and matching text.
+     DUE stays in urgency-red (deliberately loud). Area chip uses the
+     slate cool tone. */
+  .frag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .frag-chip svg { height: 11px; width: auto; fill: currentColor; }
+  .frag-chip--due  { border: 1.5px solid var(--urgency-red); color: var(--urgency-red); }
+  .frag-chip--area { border: 1.5px solid var(--cool);         color: var(--cool); }
+
+  /* Hashtag: coral-filled polygon. This one is on purpose the
+     other loud element in the grid (paired with DUE), consistent
+     with the "one item lit" language.  */
+  .frag-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    color: #FFF7EE;
+    background: var(--coral-deep);
+    padding: 4px 15px 4px 10px;
+    clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%);
+  }
+
+  /* Menu-bar strip: dark near-black with white text, the way a
+     Mac menu bar reads. Kept literal. */
+  .frag-mb {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 11px;
+    white-space: nowrap;
+    background: #1B1F22;
+    color: #FFF;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+  .frag-mb__mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .frag-mb__batt { height: 13px; width: auto; fill: #FFF; display: block; }
+
+  /* =================================================================
+     NOTES (design decisions), placed BELOW the band so nothing
+     distracts from seeing the band at full width.
+     ================================================================= */
+  .notes {
+    margin: 72px auto 0;
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .notes h2 {
+    grid-column: 1 / -1;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    letter-spacing: -0.1px;
+    color: var(--ink);
+  }
+  .decision {
+    background: var(--panel-cream);
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .decision .head {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--medium-ink);
+    margin-bottom: 6px;
+  }
+  .decision .body {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .callout {
+    grid-column: 1 / -1;
+    background: var(--coral-wash);
+    border-left: 3px solid var(--coral);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ===================================================
+         Meta: this is the mockup wrapper, not part of the
+         port. Kept small so the eye lands on the band.
+         =================================================== -->
+    <div class="meta">
+      <h1>Landing feature cards, print-magazine port</h1>
+      <p>
+        A first look at porting the app's v1.0.5 muted visual language
+        (see <code>daygaps-core/docs/design/right-panel-gap-cutout-mockup.html</code>)
+        to the landing page's <em>However you work</em> band. Palette,
+        type ramp, hairline discipline, and card treatment lifted
+        directly from the app mockup. Copy is unchanged from the
+        current <code>layouts/partials/feature-cards.html</code>.
+        Notes on decisions are below.
+      </p>
+    </div>
+
+    <!-- ===================================================
+         THE BAND
+         =================================================== -->
+    <section class="band" aria-labelledby="fc-h">
+      <div class="band__inner">
+
+        <p class="band__kicker">However you work</p>
+        <h2 class="band__heading" id="fc-h">It bends to your process, not the other way around.</h2>
+        <p class="band__lede">
+          Time-block, Pomodoro, GTD, or pure improvisation. DayGaps
+          holds whichever you bring, and lets it change from one
+          project or one day to the next. It stays out of the way,
+          so the only thing in front of you is the stuff that needs
+          doing.
+        </p>
+
+        <div class="fcards">
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <div class="frag-gap">
+                <span class="frag-gap__time">9:00 &ndash; 11:00 AM</span>
+                <span class="frag-gap__dur">2h</span>
+              </div>
+            </div>
+            <h3><a href="#">It knows how long.</a></h3>
+            <p>Each gap reaches to your next fixed thing, and recomputes when the day moves.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 25.0504 22.2332" aria-hidden="true">
+                <path fill="currentColor" d="M3.32072 22.2332L21.3656 22.2332C23.5434 22.2332 24.6891 21.0621 24.6891 18.9164L24.6891 3.3672C24.6891 1.22149 23.5434 0.0503898 21.3656 0.0503898L3.32072 0.0503898C1.14571 0.0503898 0 1.19063 0 3.3672L0 18.9164C0 21.086 1.14571 22.2332 3.32072 22.2332ZM3.33165 21.4469C1.6598 21.4469 0.786366 20.5719 0.786366 18.8961L0.786366 7.94882C0.786366 6.27032 1.6598 5.40509 3.33165 5.40509L21.359 5.40509C22.9719 5.40509 23.9 6.27032 23.9 7.94882L23.9 18.8961C23.9 20.5719 22.9719 21.4469 21.359 21.4469Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">Reads your calendar. Writes nothing.</a></h3>
+            <p>It reads the calendars you choose, and never writes a thing back to them.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 23.2129 24.9614" aria-hidden="true">
+                <path fill="currentColor" d="M0.756285 21.0227L22.0926 21.0227C22.5457 21.0227 22.8516 20.7316 22.8516 20.2894C22.8516 19.0058 21.7071 17.9488 20.7129 16.8426C19.3762 15.3391 19.4688 12.293 19.0707 9.4372C18.6657 6.20746 17.4075 3.66056 14.4578 2.90156C14.2039 1.14024 13.002 0 11.4258 0C9.84962 0 8.64766 1.14024 8.39375 2.90156C5.43709 3.66056 4.17889 6.20746 3.78085 9.4372C3.38281 12.293 3.47538 15.3391 2.13165 16.8426C1.1418 17.9488 0 19.0058 0 20.2894C0 20.7316 0.305872 21.0227 0.756285 21.0227ZM11.4258 24.9473C13.302 24.9473 14.5895 23.6473 14.893 22.0692L7.95156 22.0692C8.25937 23.6473 9.54258 24.9473 11.4258 24.9473Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">A nudge when a gap opens.</a></h3>
+            <p>An optional, quiet reminder at the start. Only if you ask for one.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz fcard__viz--col">
+              <div class="frag-gap">
+                <span class="frag-gap__time">9:00 &ndash; 10:30 AM</span>
+                <span class="frag-gap__sep">&middot;</span>
+                <span class="frag-gap__name">Morning writing</span>
+              </div>
+              <div class="frag-task">
+                <span class="frag-task__box"></span>
+                <span class="frag-task__title">Draft section 3</span>
+              </div>
+            </div>
+            <h3><a href="#">When you'll do it.</a></h3>
+            <p>Drop a task into a day and a gap; it lands in Today, right where you meant to do it.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <span class="frag-chip frag-chip--due">
+                <svg viewBox="0 0 21.8454 23.052" aria-hidden="true">
+                  <path fill="currentColor" d="M1.76133 23.052C1.97423 23.052 2.14572 22.8778 2.14572 22.6508L2.14572 14.7618C2.62658 14.7458 3.79142 14.1661 5.94024 14.1661C10.3766 14.1661 13.0172 16.3895 17.4102 16.3895C19.0965 16.3895 19.9664 16.1676 20.7578 15.8067C21.4067 15.5059 21.8454 15.1071 21.8454 14.4965L21.8454 2.38283C21.8454 1.90977 21.5696 1.69883 21.1614 1.69883C20.6051 1.69883 19.45 2.28789 17.261 2.28789C12.8512 2.28789 10.2176 0.0574207 5.79805 0.0574207C4.10469 0.0574207 3.2375 0.286326 2.44609 0.647266C1.79452 0.94805 1.36288 1.34689 1.36288 1.95745L1.36288 22.6508C1.36288 22.861 1.5539 23.052 1.76133 23.052Z"/>
+                </svg>
+                DUE 1
+              </span>
+            </div>
+            <h3><a href="#">A deadline, when it has one.</a></h3>
+            <p>The one date the app presses you on, and it reddens as the day arrives.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <span class="frag-chip frag-chip--area">Research</span>
+              <span class="frag-tag">#stats</span>
+            </div>
+            <h3><a href="#">Filter by area, or by tag.</a></h3>
+            <p>Narrow Today to an area, or a hashtag pulled straight from your text.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 29.5363 29.3051" aria-hidden="true">
+                <path fill="currentColor" d="M23.4036 8.99182L28.7387 15.8801C29.0707 16.3109 29.175 16.6121 29.175 17.2957L29.175 24.1223C29.175 26.268 28.0293 27.4418 25.8516 27.4418L3.32072 27.4418C1.14571 27.4418 0 26.2989 0 24.1223L0 17.2957C0 16.6121 0.104299 16.3109 0.433602 15.8801L5.77146 8.99182C6.76327 7.72696 7.39374 7.38789 9.0504 7.38789L12.5117 7.38789L12.5117 8.12386L8.90392 8.12386C7.82736 8.12386 7.18322 8.44339 6.56798 9.21761L1.02153 16.3609C0.91332 16.5039 0.963321 16.6688 1.15591 16.6688L10.5527 16.6688C10.9039 16.6688 11.0817 16.8945 11.0817 17.2324L11.0817 17.3262C11.0817 19.3566 12.6004 20.8996 14.591 20.8996C16.5719 20.8996 18.0933 19.3566 18.0933 17.3262L18.0933 17.2324C18.0933 16.8945 18.2684 16.6688 18.6223 16.6688L28.0332 16.6688C28.2258 16.6688 28.2758 16.5039 28.1676 16.3609L22.607 9.21761C21.9918 8.44339 21.3477 8.12386 20.2711 8.12386L16.6633 8.12386L16.6633 7.38789L20.1246 7.38789C21.7813 7.38789 22.4117 7.72696 23.4036 8.99182Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">Capture now, sort later.</a></h3>
+            <p>One Add to Inbox button in the same spot on every screen. File it into a project later, and your note travels with the task.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <span class="frag-mb">
+                <span><span class="frag-mb__mono">31:52</span>&nbsp;&nbsp;Coding</span>
+                <svg class="frag-mb__batt" viewBox="0 0 34.7173 19.729" aria-hidden="true">
+                  <path fill="#FFF" d="M15.2324 3.07214L5.90939 3.07214C4.0016 3.07214 2.66253 3.37292 1.87972 4.17526C1.10394 4.95807 0.786366 6.27057 0.786366 8.19517L0.786366 11.7245C0.786366 13.5272 1.10394 14.792 1.88675 15.5819C2.67933 16.3674 3.97074 16.7018 5.76643 16.7018L12.2747 16.7018L11.9835 17.4882L6.08713 17.4882C3.59066 17.4882 2.27384 17.1483 1.29219 16.1765C0.320308 15.2284 0 13.9143 0 11.3968L0 8.2272C0 5.88346 0.337105 4.57641 1.30899 3.60453C2.27384 2.63968 3.61448 2.28304 5.94143 2.28304L15.8594 2.28304ZM30.0524 3.58773C31.0145 4.54556 31.3446 5.85963 31.3446 8.37017L31.3446 11.3968C31.3446 13.9143 31.0145 15.2143 30.0524 16.1765C29.0805 17.1483 27.7539 17.4882 25.2504 17.4882L15.7279 17.4882L16.3524 16.7018L25.5782 16.7018C27.3668 16.7018 28.6653 16.3842 29.4508 15.5819C30.2196 14.792 30.5582 13.5272 30.5582 11.7245L30.5582 8.04947C30.5582 6.23972 30.2336 4.97487 29.4508 4.18932C28.6653 3.40651 27.3668 3.07214 25.5782 3.07214L19.3171 3.07214L19.61 2.28304L25.2504 2.28304C27.7539 2.28304 29.0637 2.62561 30.0524 3.58773Z"/>
+                </svg>
+                <span>Fri Jul 24, 2026</span>
+              </span>
+            </div>
+            <h3><a href="#">A timer, if you want it.</a></h3>
+            <p>Time a gap, or let it count down the minutes left in it, from the menu bar.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz fcard__viz--col">
+              <div class="frag-gap">
+                <span class="frag-gap__time">2:00 &ndash; 3:00 PM</span>
+                <span class="frag-gap__sep">&middot;</span>
+                <span class="frag-gap__name">Weekly sync</span>
+                <svg class="frag-gap__cal" viewBox="0 0 25.0504 22.2332" aria-hidden="true">
+                  <path fill="currentColor" d="M3.32072 22.2332L21.3656 22.2332C23.5434 22.2332 24.6891 21.0621 24.6891 18.9164L24.6891 3.3672C24.6891 1.22149 23.5434 0.0503898 21.3656 0.0503898L3.32072 0.0503898C1.14571 0.0503898 0 1.19063 0 3.3672L0 18.9164C0 21.086 1.14571 22.2332 3.32072 22.2332Z"/>
+                </svg>
+              </div>
+              <div class="frag-task">
+                <span class="frag-task__box"></span>
+                <span class="frag-task__title">Raise the timeline slip</span>
+              </div>
+            </div>
+            <h3><a href="#">A gap inside a meeting.</a></h3>
+            <p>Fill it with the points you want to raise. On a shared project, that gap becomes everyone's agenda.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 30.0508 21.4091" aria-hidden="true">
+                <path fill="currentColor" d="M23.5536 20.1036C27.0211 20.1036 29.6895 17.7485 29.6895 14.6649C29.6895 12.2317 28.4004 10.0504 25.8637 9.26368C26.0657 3.96289 22.3469 0 17.5766 0C14.1207 0 11.8547 1.93281 10.6133 4.28163C7.75626 3.03516 4.43907 5.36485 4.48438 8.73438C1.8293 8.89299 0 11.1051 0 14.0016C0 17.4473 2.90392 20.0727 6.79651 20.0727Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">Your iCloud, and nothing else.</a></h3>
+            <p>Everything syncs through your private iCloud. No account, no servers, no third-party SDKs.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 22.5469 22.1996" aria-hidden="true">
+                <path fill="currentColor" d="M3.32072 22.1856L18.8621 22.1856C21.0399 22.1856 22.1856 21.0117 22.1856 18.8688L22.1856 3.31955C22.1856 1.17383 21.0399 0 18.8621 0L3.32072 0C1.14571 0 0 1.14297 0 3.31955L0 18.8688C0 21.0453 1.14571 22.1856 3.32072 22.1856ZM3.35275 21.3992C1.66214 21.3992 0.786366 20.5219 0.786366 18.8274L0.786366 3.35822C0.786366 1.66644 1.66214 0.786366 3.35275 0.786366L18.8328 0.786366C20.459 0.786366 21.3992 1.66644 21.3992 3.35822L21.3992 18.8274C21.3992 20.5219 20.459 21.3992 18.8328 21.3992ZM11.0977 12.8828C13.441 12.8883 15.2906 10.9133 15.2906 8.3008C15.2906 5.83049 13.441 3.79963 11.0977 3.79963C8.76134 3.79963 6.90197 5.83049 6.9047 8.3008C6.90743 10.9133 8.76134 12.8844 11.0977 12.8828Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">Share a project.</a></h3>
+            <p>Hand a project to a collaborator over iCloud. The plan is shared; each person's schedule stays their own.</p>
+          </article>
+
+          <article class="fcard">
+            <div class="fcard__viz">
+              <svg class="fcard__glyph" viewBox="0 0 47.4633 36.1536" aria-hidden="true">
+                <path fill="currentColor" d="M38.1371 21.4415L38.1371 25.8766C38.1371 28.0223 36.9942 29.1934 34.8234 29.1934L12.2856 29.1934C10.1106 29.1934 8.96486 28.0461 8.96486 25.8766L8.96486 21.4415C8.96486 21.2082 9.13947 21.0407 9.36019 21.0407C9.58364 21.0407 9.75122 21.2082 9.75122 21.4415L9.75122 25.8379C9.75122 27.5297 10.634 28.407 12.3219 28.407L34.7844 28.407C36.4176 28.407 37.3578 27.5297 37.3578 25.8379L37.3578 21.4415C37.3578 21.2082 37.5227 21.0407 37.7488 21.0407C37.9864 21.0407 38.1371 21.2082 38.1371 21.4415Z"/>
+              </svg>
+            </div>
+            <h3><a href="#">Run it with your AI.</a></h3>
+            <p>Open the bridge and hand your plans to the assistant of your choice, as plain text you fully control.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         Notes on the decisions in the port above.
+         Written as decision-boxes matching the app mockup.
+         =================================================== -->
+    <section class="notes" aria-label="Design decisions">
+      <h2>What changed, and why</h2>
+
+      <div class="decision">
+        <div class="head">Palette</div>
+        <div class="body">
+          Page ground moved from the current cool cream (<code>#F7F6F2</code>) to the mockup's warm oatmeal (<code>#E7E1D5</code>). Band sits on <code>--cream #F3EFE7</code>; cards sit on <code>--panel-cream #F1ECE2</code>. Three warm neutrals close enough in value that the eye reads folds in one sheet.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Ink ladder</div>
+        <div class="body">
+          Four weights instead of black plus one gray: <code>--ink</code> for headings and hard signals, <code>--medium-ink</code> for body copy and quiet fragments, <code>--light-ink</code> for kickers and separators, <code>--whisper-ink</code> for barely-there marks. Every text choice picks the rank it deserves.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Coral discipline</div>
+        <div class="body">
+          Coral appears in exactly two places on the band: the <em>2h</em> duration on the "It knows how long" card, and the <em>#stats</em> tag. Everything else is ink, cream, and hairline. The DUE chip stays urgency-red on purpose; that is a separate loud signal for deadlines and lives outside the coral budget.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Type ramp</div>
+        <div class="body">
+          Kicker: 11 / 700 / uppercase / 1.4px tracked / light-ink. Headline: 34 / 600 / -0.6px / 1.15. Lede: 15 / 1.55 / medium-ink / 54ch. Card head: 15 / 600 / -0.1px. Card body: 13 / 1.5 / medium-ink. Same ramp the app mockup uses.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Card treatment</div>
+        <div class="body">
+          Panel-cream fill plus hairline border at 9% ink, 8px radius, 14 / 16 padding. No resting shadow. Hover adds a 1px lift and a short 4-10px shadow. That is the whole motion budget for the grid. Matches the decision-box density in the app mockup.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Card-header strip</div>
+        <div class="body">
+          Each card's viz slot is an edge-to-edge strip on <code>--cream</code>, one shade lighter than the card body, with a hairline underline and the top two corners rounded to match the card. Bootstrap <code>.card-header</code> idiom: same horizontal padding as the body so the fragment inside aligns with the h3 and p below. No inset, no extra depth.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Fragment underline removed</div>
+        <div class="body">
+          The <code>.frag-gap</code> fragment in the app carries its own bottom hairline for the section break. On the site the card-header strip already provides that separator, so the fragment's line was doubling up. Dropped it. Marketing renderings don't need pixel-for-pixel parity with the app; they need to read well.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Hairlines</div>
+        <div class="body">
+          One hairline value across the whole system: <code>rgba(31,45,52,0.09)</code>. Band top and bottom, card borders, the underline under the gap header, decision-box borders. Half the weight the site uses today (currently 0.18), which was reading as fences instead of folds.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">Fragments</div>
+        <div class="body">
+          Gap header time in ink, name in medium-ink uppercase with 0.4px tracking, hairline underline. Task checkbox is a hairline square in medium-ink. DUE chip stays urgency-red. Area chip moves to cool slate (was mist teal). Tag stays coral-filled and gets the deeper coral for punch on cream.
+        </div>
+      </div>
+
+      <div class="decision">
+        <div class="head">What isn't ported yet</div>
+        <div class="body">
+          The other bands on the landing (hero, WHY, four scenes, plain files, CTA, iOS teaser) still run on the current palette. This mockup is the vocabulary; the site-wide port comes next once you approve the vocabulary here.
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>One thing to look at on the Apple Display.</strong> The band's warm-oatmeal ground under the cream cards is where the print-magazine feeling comes from. If it reads instead as "beige and washed out" on your screen, the page-ground value is the first knob to turn (<code>#E7E1D5</code> in the mockup; darker toward <code>#DBD3C3</code> gives more contrast against the cards, lighter toward <code>#EEE8DC</code> gives a lighter overall feel).
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

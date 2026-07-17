@@ -74,7 +74,7 @@ A task can have both, either, or neither. The [Concepts](/concepts/) page explai
 ## Where to go next
 
 {{< cards >}}
-{{< card title="Concepts" >}}The whole structure in one read: areas, projects, sections, subtasks, gaps, tags, and sharing. [Read it →](/concepts/){{< /card >}}
-{{< card title="Patterns" >}}Full days lived with DayGaps, from meeting-fractured to wide open. [See the days →](/patterns/){{< /card >}}
-{{< card title="FAQ" >}}The details, including every keyboard shortcut on the Mac. [Browse the FAQ →](/faq/){{< /card >}}
+{{< card title="Concepts" href="/concepts/" link="Read it →" >}}The whole structure in one read: areas, projects, sections, subtasks, gaps, tags, and sharing.{{< /card >}}
+{{< card title="Patterns" href="/patterns/" link="See the days →" >}}Full days lived with DayGaps, from meeting-fractured to wide open.{{< /card >}}
+{{< card title="FAQ" href="/faq/" link="Browse the FAQ →" >}}The details, including every keyboard shortcut on the Mac.{{< /card >}}
 {{< /cards >}}

@@ -61,6 +61,14 @@ Everything you put into {{< brand >}} has exactly one home. The hierarchy is sha
 
 Sub-areas, sections, and subtasks all collapse, so a big structure can read as a small one until you need the detail.
 
+## The inbox
+
+The inbox is where thoughts land before they have a home. Type into it from any screen (the capture button lives in the same spot everywhere: the bottom-bar button on iPhone, a keyboard shortcut on the Mac). The item is one line of text with a timestamp, and that is all it is. There are no dates, no gaps, no projects yet.
+
+You triage later: drag an inbox item into a project (or an area's general-task list, or a specific day) and it becomes a task. The one-line thought carries forward as the title; you fill in whatever else it needs from there.
+
+The inbox is deliberately calm and mostly-empty. It is the parking lot between "I thought of this" and "I know where this goes." When it grows past a page, that is the signal to sit down and triage.
+
 ## When things happen
 
 Every task has room for two dates, and they answer different questions.
@@ -93,6 +101,12 @@ Write `#manuscript` or `#TG` anywhere in a task's title and it becomes a tag. Wh
 
 Tags are read from the tasks in front of you, every time, and stored nowhere. There is no tag registry, no rename ceremony, no cleanup debt. Delete the text from the last task that carries it and the tag has never existed. Tags cost exactly what they say on the screen, which makes them safe to invent freely: tag this week's grading `#g1`, filter by it for a few days, and let it evaporate.
 
+## Filtering by area or tag
+
+Every list view (Today, This Week, a project page) can be narrowed by an area or by a tag. Area chips appear at the top of any list that spans areas; tap one and only that area's tasks remain. Tag chips sit beside the area chips, derived from the tasks actually present in the view; tap one and the list filters to it. Combine an area with a tag and the list filters to the intersection.
+
+Filters are always view-scoped and reset when you leave the view. There is no saved-filter state to manage and no smart-list to keep tidy. The chips are up-to-the-minute: they show only what the current view actually contains, so the same button never lies.
+
 ## Sharing a project
 
 A project can be shared with other people through iCloud. Invite someone and the project's *plan* becomes common ground: its name, its purpose, its sections, the order of its tasks, which tasks are done, the project deadline, and every task's due date. Everyone sees the same plan and the same progress.
@@ -104,8 +118,8 @@ One pattern this enables: a project shared with your weekly meeting, and a gap y
 ## Where to go from here
 
 {{< cards >}}
-{{< card title="Start" >}}From install to a planned day, in one sitting. [Walk through it &rarr;](/start/){{< /card >}}
-{{< card title="Patterns" >}}Whole days lived with DayGaps, meeting-fractured to wide open. [See the days &rarr;](/patterns/){{< /card >}}
-{{< card title="FAQ" >}}The operational details, every shortcut, every edge. [Open the FAQ &rarr;](/faq/){{< /card >}}
-{{< card title="Your AI" >}}Hand your data to an assistant on your own terms. [How it works &rarr;](/ai/){{< /card >}}
+{{< card title="Start" href="/start/" link="Walk through it →" >}}From install to a planned day, in one sitting.{{< /card >}}
+{{< card title="Patterns" href="/patterns/" link="See the days →" >}}Whole days lived with DayGaps, meeting-fractured to wide open.{{< /card >}}
+{{< card title="FAQ" href="/faq/" link="Open the FAQ →" >}}The operational details, every shortcut, every edge.{{< /card >}}
+{{< card title="Your AI" href="/ai/" link="How it works →" >}}Hand your data to an assistant on your own terms.{{< /card >}}
 {{< /cards >}}
