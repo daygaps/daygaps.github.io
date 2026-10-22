@@ -1,0 +1,48 @@
+{{- /* The Mac Today page as 1.1 draws it: the large title with the area and
+       tag chips, Carried over, each gap under a header of time, name and (for
+       a gap inside an event) the event, then Anytime. Content is invented.
+       Context: dict with live: true for tickable checkboxes. */ -}}
+{{- $l := .live | default false -}}
+<div class="tp">
+  <div class="tp__titlebar">
+    <h4 class="tp__title">Today</h4>
+    <div class="tp__chips">
+      <div class="chiprow">
+        <span class="chip chip--due">{{ partial "ui/icon.html" "flag-fill" }} Due 1</span>
+        <span class="chip chip--area" style="--a:var(--area-pink);--at:var(--area-pink-text)">Research</span>
+        <span class="chip chip--area" style="--a:var(--area-teal);--at:var(--area-teal-text)">Teaching</span>
+      </div>
+      <div class="chiprow"><span class="chip chip--tag">#methods</span></div>
+    </div>
+  </div>
+
+  <section class="tsec">
+    <header class="tsec__head tsec__head--carried">Carried over <span class="tsec__count">· 1 item</span></header>
+    <div class="row" data-task="t1">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t1" "")) }}<div class="row__main"><span class="row__t">Outline the methods section <span class="tag">#methods</span></span><span class="row__p">Soil carbon paper · 1d ago</span></div></div>
+  </section>
+
+  <section class="tsec">
+    <header class="gh"><span class="gh__time">10:30 AM – 12:00 PM</span><span class="gh__sep">·</span><span class="gh__name">Before seminar</span></header>
+    <div class="row is-done" data-task="t2">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t2" "") "state" "done") }}<div class="row__main"><span class="row__t">Skim the shared draft</span><span class="row__p">Lab</span></div></div>
+  </section>
+
+  <section class="tsec">
+    <header class="gh"><span class="gh__time">1:00 – 3:30 PM</span><span class="gh__sep">·</span><span class="gh__name">Writing</span><span class="gh__bell">{{ partial "ui/icon.html" "bell" }}</span></header>
+    <div class="row row--parent" data-task="t3"><span class="row__chev">{{ partial "ui/icon.html" "chevron-down" }}</span>{{ partial "ui/checkbox.html" (dict "id" (cond $l "t3" "")) }}<div class="row__main"><span class="row__t">Draft results, section 3</span><span class="row__p">Soil carbon paper</span></div></div>
+    <div class="row row--sub is-done" data-task="t3a">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t3a" "") "state" "done" "sub" true) }}<div class="row__main"><span class="row__t">Soil moisture paragraph</span></div></div>
+    <div class="row row--sub" data-task="t3b">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t3b" "") "sub" true) }}<div class="row__main"><span class="row__t">Carbon flux paragraph</span></div></div>
+    <div class="row is-done" data-task="t4">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t4" "") "state" "done") }}<div class="row__main"><span class="row__t">Re-run figure 2</span><span class="row__p">Soil carbon paper</span></div></div>
+    <div class="row" data-task="t5">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t5" "")) }}<div class="row__main"><span class="row__t">Update the methods table <span class="tag">#methods</span></span><span class="row__p">Soil carbon paper</span></div></div>
+  </section>
+
+  <section class="tsec">
+    <header class="gh"><span class="gh__time">3:30 PM</span><span class="gh__sep">·</span><span class="gh__name">Points for Mary</span><span class="gh__during"><span class="dot" style="--c:var(--cal-purple)"></span>during Weekly 1:1</span></header>
+    <div class="row" data-task="t6">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t6" "")) }}<div class="row__main"><span class="row__t">Ask about the field budget</span><span class="row__p">Lab</span></div></div>
+  </section>
+
+  <section class="tsec">
+    <header class="tsec__head">Anytime</header>
+    <div class="row" data-task="t7">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t7" "") "state" "due") }}<div class="row__main"><span class="row__t">Send the reviewer reply</span><span class="row__p">Resubmission</span></div><span class="flag flag--due">{{ partial "ui/icon.html" "flag-fill" }} Today</span></div>
+    <div class="row" data-task="t8">{{ partial "ui/checkbox.html" (dict "id" (cond $l "t8" "") "state" "soon") }}<div class="row__main"><span class="row__t">Post the problem set</span><span class="row__p">Soil physics</span></div><span class="flag flag--soon">{{ partial "ui/icon.html" "flag-fill" }} Fri</span></div>
+  </section>
+</div>

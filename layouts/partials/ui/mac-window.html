@@ -1,0 +1,47 @@
+{{- /* A Mac window of DayGaps 1.1 on Today: sidebar, the Today page, the
+       inspector with the calendar panel, and the now island floating at the
+       bottom of the page. Context: dict with
+         live:  true for the interactive demo (ticking, opening and closing
+                focus; assets/js/demo.js),
+         focus: true to draw the focus card open over the faded window. */ -}}
+{{- $live := .live | default false -}}
+{{- $focus := .focus | default false -}}
+<div class="mw{{ if $focus }} is-focused{{ end }}"{{ if $live }} data-demo{{ end }}>
+  <div class="mw__side">
+    <div class="mw__chrome"><span class="lights"><i></i><i></i><i></i></span><span class="mw__btn">{{ partial "ui/icon.html" "sidebar" }}</span></div>
+    <nav class="sb" aria-hidden="true">
+      <span class="sb__row is-sel">{{ partial "ui/icon.html" "today" }}<span>Today</span><b class="badge badge--red">1</b></span>
+      <span class="sb__row">{{ partial "ui/icon.html" "flag" }}<span>Deadlines</span><b class="badge badge--red">1</b></span>
+      <span class="sb__row">{{ partial "ui/icon.html" "anyday" }}<span>Anyday</span><b class="badge">14</b></span>
+      <span class="sb__row">{{ partial "ui/icon.html" "inbox" }}<span>Inbox</span></span>
+      <span class="sb__row">{{ partial "ui/icon.html" "plan" }}<span>Plan</span></span>
+      <span class="sb__h">Pinned</span>
+      <span class="sb__row"><span class="proj" style="--a:var(--area-pink);--f:0.4"></span><span>Soil carbon paper</span></span>
+      <span class="sb__row"><span class="proj" style="--a:var(--area-teal);--f:0.15"></span><span>Soil physics</span></span>
+      <span class="sb__h">Areas</span>
+      <span class="sb__row sb__row--area" style="--a:var(--area-pink)">{{ partial "ui/icon.html" "area" }}<span>Research</span></span>
+      <span class="sb__row sb__row--area" style="--a:var(--area-teal)">{{ partial "ui/icon.html" "area" }}<span>Teaching</span></span>
+      <span class="sb__row sb__row--area" style="--a:var(--area-yellow)">{{ partial "ui/icon.html" "area" }}<span>Service</span></span>
+      <span class="sb__row sb__row--area" style="--a:var(--area-green)">{{ partial "ui/icon.html" "area" }}<span>Personal</span></span>
+      <span class="sb__row sb__row--gap">{{ partial "ui/icon.html" "archive" }}<span>Archives</span></span>
+    </nav>
+    <div class="sb__foot"><span class="wordmark wordmark--app" aria-hidden="true"><span class="wordmark__left">Day</span><span class="wordmark__right">Gaps</span></span></div>
+  </div>
+
+  <div class="mw__main">
+    <div class="mw__bar"><span class="mw__btn">{{ partial "ui/icon.html" "plus" }}</span><span class="mw__btn">{{ partial "ui/icon.html" "capture" }}</span></div>
+    <div class="mw__page">{{ partial "ui/today-mac.html" (dict "live" $live) }}</div>
+    <div class="mw__island">{{ partial "ui/island.html" (dict "button" $live) }}</div>
+  </div>
+
+  <aside class="mw__insp" aria-hidden="true">
+    <div class="mw__bar mw__bar--insp"><span class="mw__btn">{{ partial "ui/icon.html" "doc" }}</span><span class="mw__btn">{{ partial "ui/icon.html" "inspector" }}</span></div>
+    <div class="seg"><span class="is-on">Calendar</span><span>Overview</span></div>
+    {{ partial "ui/calendar-panel.html" . }}
+  </aside>
+
+  <div class="mw__focus"{{ if $live }} data-close-focus{{ end }}>
+    <div class="veil"></div>
+    {{ partial "ui/focus-card.html" (dict "live" $live) }}
+  </div>
+</div>

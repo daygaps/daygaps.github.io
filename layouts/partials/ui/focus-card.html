@@ -1,0 +1,24 @@
+{{- /* The focus card for the running gap, as the app draws it: the times in
+       the time column, the gap's name, the pie of tasks done with the time
+       left under it, the rule (in the accent while the gap runs), and the
+       gap's tasks. Ticking is the only action. Context: dict with
+       live: true makes the checkboxes tick (assets/js/demo.js). */ -}}
+{{- $live := .live | default false -}}
+<div class="fc" data-card>
+  <div class="fc__head">
+    <div class="tcol"><span class="tcol__start">1:00</span><span class="tcol__end">3:30 PM</span></div>
+    <div class="fc__title">Writing</div>
+    <div class="fc__meta">
+      <span class="pie" data-pie style="--f:0.3333" role="img" aria-label="1 of 3 tasks done"></span>
+      <span class="fc__left" aria-label="1 hour 12 minutes left">1h 12m</span>
+    </div>
+  </div>
+  <div class="fc__rule fc__rule--running"></div>
+  <ul class="fc__list">
+    <li class="fl" data-task="t3">{{ partial "ui/checkbox.html" (dict "id" (cond $live "t3" "")) }}<span class="fl__t">Draft results, section 3</span></li>
+    <li class="fl fl--sub is-done" data-task="t3a" data-parent="t3">{{ partial "ui/checkbox.html" (dict "id" (cond $live "t3a" "") "state" "done" "sub" true) }}<span class="fl__t">Soil moisture paragraph</span></li>
+    <li class="fl fl--sub" data-task="t3b" data-parent="t3">{{ partial "ui/checkbox.html" (dict "id" (cond $live "t3b" "") "sub" true) }}<span class="fl__t">Carbon flux paragraph</span></li>
+    <li class="fl is-done" data-task="t4">{{ partial "ui/checkbox.html" (dict "id" (cond $live "t4" "") "state" "done") }}<span class="fl__t">Re-run figure 2</span></li>
+    <li class="fl" data-task="t5">{{ partial "ui/checkbox.html" (dict "id" (cond $live "t5" "")) }}<span class="fl__t">Update the methods table <span class="tag">#methods</span></span></li>
+  </ul>
+</div>

@@ -1,75 +1,56 @@
 ---
-title: "DayGaps on iPhone"
+title: "DayGaps on iPhone and iPad"
 description: "The same gaps, the same data, on the device that's actually with you between meetings."
-date: 2026-06-10
+date: 2026-10-21
 ---
 
-The iPhone app reads from your iCloud zone. Open it on the bus, between meetings, in line for coffee. The Today view shows the gaps you planned this morning. A few gestures let you bend the day when it bends on you.
+The iPhone and iPad apps read from your iCloud zone, the same one the Mac uses. Open the phone on the bus, between meetings, in line for coffee. Today shows the gaps you planned this morning, and a few gestures let you bend the day when it bends on you.
 
 ## What's on the phone
 
-A hamburger sidebar opens to the same destinations the Mac has. **Today**, **This Week**, **Deadlines**, **Anyday**, **Inbox**. A **Pinned** section for projects you've chosen to keep at the top. Each of your **Areas**, with their projects nested underneath. **Archives** and **Settings** anchored at the bottom. The brand wordmark sits at the very top.
+Since 1.1 the iPhone and iPad are full peers of the Mac. The sidebar has the same destinations: **Today**, **Deadlines**, **Anyday**, **Inbox** and **Plan**, a **Pinned** section for the projects you keep at the top, and each of your **Areas** with its projects beneath it. Project pages, area pages, Deadlines and Plan are the same pages as on the Mac, with the same actions: rename a project, set its deadline, edit its notes, add sections, filter by tag.
 
-Today is the default view. Same gaps the Mac is reading, in a single vertical column: a section per gap, tasks under each gap. Your calendar events appear alongside the gaps, a gap that overlaps an event is tinted to show it, and when the tasks on screen carry `#tags`, filter chips surface at the top, same as the Mac.
+Today is where the phone opens. The same gaps the Mac shows, in one column: Carried over at the top, a section for each gap with its tasks, then Anytime. A gap that falls inside a calendar event names the event. When the tasks on screen carry `#tags` or belong to more than one area, chips at the top filter the page, as on the Mac.
 
-{{< appview device="iphone" mode="all" caption="The Today view on iPhone. Same data the Mac is reading, sized for your thumb." >}}
+{{< appview device="iphone" mode="all" caption="Today on iPhone, with the one row of glass at the bottom: the calendar, the now island and Capture to Inbox." >}}
 
-## Four gestures, same vocabulary everywhere
+## One row at the bottom
 
-{{< brand >}} on iPhone uses the same gesture vocabulary on every list of tasks, so the gesture you learn in Today still works in This Week, in Deadlines, in Anyday, in an Area, in a project.
+Every page ends in the same row. **Calendar** on the left opens the calendar panel: your events and the open windows between them, the panel the Mac shows beside the page. **Capture** on the right sends a thought to the Inbox from anywhere. Between them sits the **now island**: the gap that matters now, its ring counting down, and the time left.
 
-**Tap a task** to mark it done. The checkmark flips immediately and the strikethrough lands; the change syncs to iCloud in the background.
+## Focus on the gap you are in
 
-**Leading swipe** (drag right) sets the deadline. A calendar slides up; pick a day, save.
+Tap the now island and the focus card opens: the gap's times, the calendar event it falls inside, a pie of tasks done, the time left, and the gap's tasks. Ticking them off is the only thing to do there. A light tap of the phone tells you the card has settled, and a fainter one answers each task you check off.
 
-**Trailing swipe** (drag left) opens Reschedule. The same sheet lets you change the day AND pick which gap on that new day in one motion. (On the Mac these are two clicks; on the phone they collapse into one swipe + one tap.)
+The headers of **Anytime** and **Carried over** open the same card, so a task waiting there can be done where it is, without scheduling it first.
 
-**Long-press** opens "Move to project." An area-grouped picker comes up; pick a destination project (or an area's General bucket), the task moves.
+## Gestures
 
-## Focus on one gap
+Tap a task's checkbox to mark it done. The row itself has no tap, so a stray touch never completes anything.
 
-Plans crowd up. The morning you'd named *deep work* now looks like a stack of mid-morning interruptions and your eye keeps drifting to them.
+**Swipe from the left** to schedule a task: one sheet sets its day and its gap.
 
-**Tap a gap's header** to focus that gap. The other gaps hide. Carried Over and Anytime hide. The screen narrows to the block of time you're actually trying to live inside. Tap the focused header again to come back to the full day.
+**Swipe from the right** to select a task. Selected rows gather, and a bar in the accent glass offers **Schedule**, **Deadline**, **Move**, **Subtask** and **Delete** for all of them at once. Deleting several tasks is undone in one step: shake to undo.
 
-(On the Mac, focus is a Pomodoro timer in the menu bar. Phones don't have menu bars, so iPhone focus does what a phone is good at instead: filtering the screen.)
+The gestures are the same on every list of tasks, so what you learn in Today works in Deadlines, Anyday, an area or a project.
 
-## Bottom bar, contextual
+## iPad
 
-The floating bottom bar carries the right buttons for the screen you're on. On Today, that's a quick-jump to today, a coral capture (+) for inbox, and a tray to open the inbox itself. The bar floats above the safe area in a glass material so the content behind stays visible.
+On the iPad the sidebar is one long list, as on the Mac, with the wordmark at its foot. It can be hidden and widened. The overview's boxes fold two by two when the inspector is narrow.
 
-## This Week, vertical
+## What stays on the Mac
 
-Tap **This Week** in the sidebar to see the next seven days as scrollable sections. *Today · Sat, May 30*, *Tomorrow · Sun, May 31*, *Mon, Jun 1*, and so on. Each section lists what's scheduled for that day. Today's section title reads in coral so your eye lands there first.
+- **The menu-bar timer.** Command-click a gap's header on the Mac to time it. On the phone, the now island and the focus card carry the countdown.
+- **The bridge.** The plain-text copy of your data for an editor, git or an AI assistant is a Mac feature. The phone reads iCloud directly.
 
-A work-week toggle in the trailing menu hides Sat / Sun if Mon-Fri is the week you actually want to see. Setting persists.
+## Widgets
 
-(Mac's This Week is horizontal columns side-by-side. iPhone's is a vertical list. Same data, different shape per platform.)
-
-## Inbox is a pile, not a queue
-
-Inbox items carry no date, no gap, no project. Just a title and a capture timestamp. Triage is the verb that moves an item into the right place.
-
-Tap an inbox row, or swipe right, and an area-grouped picker appears: General buckets per area on top, projects under each. Pick a destination, the item becomes a task in that place and disappears from the inbox.
-
-Swipe left on a row to delete the item outright. Long-press for the same actions in a menu.
-
-## What the phone doesn't do (on purpose)
-
-- **The Pomodoro timer.** Mac feature. Focus on iPhone is the visual filter described above.
-- **Renaming and archiving projects.** Structural surgery on a project happens at a desk; the phone reads the results.
-- **YAML bridge.** Mac-only. If you want a plaintext copy of your data on disk, open the bridge on the Mac; the phone reads CloudKit directly.
-
-The line between the two devices is: planning and structural work on the Mac, last-minute replanning and capture on the phone. Both apps read and write the same iCloud zone, so the two views agree.
-
-## On the bench
-
-A Home Screen widget is in the works: your nearest gap and its tasks at a glance, with the count of anything due. It will arrive when it earns its place.
+The Home Screen widget is built from the focus card's pieces: the gap and its pie, the time left while it runs, its first tasks, and the day's other gaps when there is room.
 
 ## Getting it
 
-{{< brand >}} for iPhone is on internal TestFlight alongside the Mac beta. Both ship together.
+{{< brand >}} for iPhone and iPad is in TestFlight, by invitation, alongside the Mac beta.
 
 [Request beta access →](/beta/)
 
-When you accept the TestFlight invitation, the app installs like any other TestFlight build. On first launch it signs into your iCloud account automatically: there is nothing to configure and no permission to grant beyond iCloud itself. If you've also installed the Mac app on the same iCloud account, your data is already there.
+When you accept the TestFlight invitation, the app installs like any other TestFlight build. On first launch it signs into your iCloud account automatically: there is nothing to configure and no permission to grant beyond iCloud itself. If you also use the Mac app on the same iCloud account, your data is already there.

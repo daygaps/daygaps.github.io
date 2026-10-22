@@ -4,10 +4,10 @@
 {{- $m := site.Params.macApp -}}
 {{- $href := printf "/downloads/%s" $m.file | relURL -}}
 <div class="mac-dl">
-  <img class="mac-dl__icon" src="{{ "/icons/favicon-192.png" | relURL }}" alt="" width="96" height="96">
+  <picture><source srcset="{{ "/icons/app-icon-512-dark.png" | relURL }}" media="(prefers-color-scheme: dark)"><img class="mac-dl__icon" src="{{ "/icons/app-icon-512.png" | relURL }}" alt="" width="96" height="96"></picture>
   <div class="mac-dl__body">
     <p class="mac-dl__title">DayGaps for Mac</p>
-    <p class="mac-dl__meta">Version {{ $m.version }}{{ with $m.size }} &middot; {{ . }}{{ end }} &middot; macOS {{ $m.minOS }} or later</p>
+    <p class="mac-dl__meta">Version {{ $m.version }}{{ with $m.size }} &middot; {{ . }}{{ end }}{{ with $m.minOS }} &middot; macOS {{ . }} or later{{ end }}</p>
     <p class="cta-row cta-row--inline mac-dl__cta">
       <a class="btn btn--primary" href="{{ $href }}" download>Download for Mac</a>
     </p>

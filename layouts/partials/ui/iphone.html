@@ -1,0 +1,42 @@
+{{- /* iPhone Today in 1.1: the large title, area and tag chips, the same
+       sections as the Mac, and the one bottom row of glass: calendar, the now
+       island widened, and Capture to Inbox. Content is invented. */ -}}
+<div class="phone" role="img" aria-label="DayGaps on iPhone, showing Today with the now island at the bottom">
+  <div class="phone__screen">
+    <div class="phone__island"></div>
+    <div class="phone__status"><span>2:18</span><span class="phone__batt"></span></div>
+    <div class="phone__body" aria-hidden="true">
+      <h4 class="phone__title">Today</h4>
+      <div class="chiprow">
+        <span class="chip chip--due">{{ partial "ui/icon.html" "flag-fill" }} Due 1</span>
+        <span class="chip chip--area" style="--a:var(--area-pink);--at:var(--area-pink-text)">Research</span>
+        <span class="chip chip--area" style="--a:var(--area-teal);--at:var(--area-teal-text)">Teaching</span>
+      </div>
+      <section class="tsec">
+        <header class="tsec__head tsec__head--carried">Carried over</header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Outline the methods section</span><span class="row__p">Soil carbon paper</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="gh"><span class="gh__time">1:00 PM</span><span class="gh__sep">·</span><span class="gh__name">Writing</span><span class="gh__bell">{{ partial "ui/icon.html" "bell" }}</span></header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Draft results, section 3</span><span class="row__p">Soil carbon paper</span></div></div>
+        <div class="row is-done">{{ partial "ui/checkbox.html" (dict "state" "done") }}<div class="row__main"><span class="row__t">Re-run figure 2</span><span class="row__p">Soil carbon paper</span></div></div>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Update the methods table</span><span class="row__p">Soil carbon paper</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="gh"><span class="gh__time">3:30 PM</span><span class="gh__sep">·</span><span class="gh__name">Points for Mary</span></header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Ask about the field budget</span><span class="row__p">Lab</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="tsec__head">Anytime</header>
+        <div class="row">{{ partial "ui/checkbox.html" (dict "state" "due") }}<div class="row__main"><span class="row__t">Send the reviewer reply</span><span class="row__p">Resubmission</span></div><span class="flag flag--due">{{ partial "ui/icon.html" "flag-fill" }} Today</span></div>
+      </section>
+    </div>
+    <div class="phone__fade"></div>
+    <div class="phone__bottom" aria-hidden="true">
+      <span class="phone__round">{{ partial "ui/icon.html" "calendar" }}</span>
+      {{ partial "ui/island.html" dict }}
+      <span class="phone__round">{{ partial "ui/icon.html" "capture" }}</span>
+    </div>
+    <div class="phone__home"></div>
+  </div>
+</div>

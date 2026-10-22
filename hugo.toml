@@ -43,7 +43,7 @@ enableGitInfo    = false
   # strike-shit-write-stuff joke for the logo art only. On the website
   # this reads straight. Don't reintroduce the <s> here.
   tagline     = "when real stuff gets done"
-  description = "A task app for Mac and iPhone, built around the gap. The precious window of time between meetings where real work actually happens."
+  description = "A task manager for Mac, iPhone and iPad, built around the gap: the open time between your meetings, where real work gets done."
 
 # Site-wide knobs the templates read.
 [params]
@@ -68,11 +68,11 @@ enableGitInfo    = false
   # `mac-download` shortcode, so version, size, OS floor, and filename live in
   # ONE place. Update on every Mac build you post to static/downloads/.
   [params.macApp]
-    version = "1.0.2"               # CFBundleShortVersionString of the posted build
-    build   = "3"                   # CFBundleVersion
-    minOS   = "26.4"                # LSMinimumSystemVersion of the build you post. Set to the LOWEST macOS your code actually builds against, not the Xcode/SDK default. See the note in content/beta.md.
-    size    = "9.5 MB"              # human size of the .zip once made, e.g. "8 MB". Empty hides it.
-    file    = "DayGaps-1.0.2.zip"   # filename in static/downloads/. ditto-zip the signed .app to exactly this name.
+    version = "1.1"                 # CFBundleShortVersionString of the posted build
+    build   = "8"                   # CFBundleVersion
+    minOS   = ""                    # LSMinimumSystemVersion of the build you post; empty hides it. Set to the LOWEST macOS your code actually builds against, not the Xcode/SDK default. See the note in content/beta.md.
+    size    = "11.2 MB"             # human size of the .dmg once made, e.g. "12 MB". Empty hides it. Fill in after building.
+    file    = "DayGaps-1.1.dmg"     # filename in static/downloads/. Build the dmg from the signed .app and drop it at this exact name.
 
   # Email capture shown at the Mac download. Doubles as the launch waitlist and
   # the iOS TestFlight invite list. Paste a form/newsletter POST endpoint to go

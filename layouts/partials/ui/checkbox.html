@@ -1,0 +1,11 @@
+{{- /* A task's checkbox. Context: dict with
+       state: "" | "done" | "due" (deadline today or past) | "soon" (within the lead window)
+       id:    task id; when set, the box is a button the demo script ticks.
+       sub:   true for a subtask (drawn a little smaller). */ -}}
+{{- $s := .state | default "" -}}
+{{- $cls := printf "cb%s%s" (cond (ne $s "") (printf " cb--%s" $s) "") (cond (.sub | default false) " cb--sub" "") -}}
+{{- if .id -}}
+<button type="button" class="{{ $cls }}" data-tick="{{ .id }}" aria-pressed="{{ cond (eq $s "done") "true" "false" }}" aria-label="Done"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.6 6.3l2.2 2.2 4.6-4.9"/></svg></button>
+{{- else -}}
+<span class="{{ $cls }}" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.6 6.3l2.2 2.2 4.6-4.9"/></svg></span>
+{{- end -}}

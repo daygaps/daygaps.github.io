@@ -1,0 +1,19 @@
+{{- /* The medium widget, built from the focus card's pieces: time, the gap's
+       name and pie, the time left, its first tasks, and the day's next gaps. */ -}}
+<div class="widget" role="img" aria-label="The DayGaps widget: Writing, 1 hour 12 minutes left, and the next gaps of the day">
+  <div class="widget__now" aria-hidden="true">
+    <div class="widget__head">
+      <div class="tcol"><span class="tcol__start">1:00</span><span class="tcol__end">3:30 PM</span></div>
+      <span class="pie" style="--f:0.3333"></span>
+    </div>
+    <span class="widget__name">Writing <span class="widget__left">· 1h 12m</span></span>
+    <div class="widget__rule"></div>
+    <span class="widget__task">{{ partial "ui/checkbox.html" dict }}<span>Draft results, section 3</span></span>
+    <span class="widget__task is-done">{{ partial "ui/checkbox.html" (dict "state" "done") }}<span>Re-run figure 2</span></span>
+    <span class="widget__task">{{ partial "ui/checkbox.html" dict }}<span>Update the methods table</span></span>
+  </div>
+  <div class="widget__later" aria-hidden="true">
+    <div><span>3:30 PM</span><b>Points for Mary</b></div>
+    <div><span>4:00 PM</span><b>Late afternoon</b></div>
+  </div>
+</div>

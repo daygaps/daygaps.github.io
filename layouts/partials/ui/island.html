@@ -1,0 +1,12 @@
+{{- /* The now island: the gap that matters now, its ring at the leading
+       edge and the time left at the trailing edge. Context: dict with
+       button: true to make it the demo's "open focus" control. */ -}}
+{{- if .button -}}
+<button type="button" class="island" data-open-focus aria-label="Open the focus card for Writing, 1 hour 12 minutes left">
+{{- else -}}
+<div class="island" aria-hidden="true">
+{{- end -}}
+  {{ partial "ui/ring.html" 0.48 }}
+  <span class="island__name">Writing</span>
+  <span class="island__time">1h 12m</span>
+{{- if .button }}</button>{{ else }}</div>{{ end -}}

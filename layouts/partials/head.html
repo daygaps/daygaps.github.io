@@ -6,29 +6,17 @@
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#F7F6F2" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1B1F22" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
 
-{{- /* Home has a tall pinned hero; stop the browser restoring a mid-page
-       scroll position on load (and correct any web-font layout shift). */ -}}
-{{- if .IsHome }}
-<script>
-  if ("scrollRestoration" in history) { history.scrollRestoration = "manual"; }
-  function _dgTop(){ window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
-  window.addEventListener("load", _dgTop);
-  window.addEventListener("pageshow", _dgTop);
-</script>
-{{- end }}
-
-{{- /* OG / social preview. Image is the real macOS app icon flattened onto
-       the brand-slate background for a square 1200x1200 social card. */ -}}
+{{- /* OG / social preview: the app icon on a light gray card, 1200x630. */ -}}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:image" content="{{ "/icons/og-image.jpg" | absURL }}">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{{ "/icons/og-image.jpg" | absURL }}">
 {{- with site.Params.twitter }}
@@ -37,9 +25,8 @@
 
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{- /* Favicons + iOS bookmark icon, all generated from the app icon
-       (static/icons/web-icon.png). apple-touch-icon at 180x180 covers iOS /
-       Android home screens. */ -}}
+{{- /* Favicons and the iOS bookmark icon, made from the official Icon
+       Composer exports (icons/V9/AppIcons/AppIcon Exports). */ -}}
 <link rel="icon" type="image/png" sizes="32x32"   href="{{ "/icons/favicon-32.png"  | relURL }}">
 <link rel="icon" type="image/png" sizes="64x64"   href="{{ "/icons/favicon-64.png"  | relURL }}">
 <link rel="icon" type="image/png" sizes="192x192" href="{{ "/icons/favicon-192.png" | relURL }}">
@@ -53,8 +40,8 @@
 {{- $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
-{{- /* Hero JS only on the home page; loaded as a deferred module. */ -}}
+{{- /* The focus demo's script, on the home page only. */ -}}
 {{- if .IsHome }}
-  {{- $js := resources.Get "js/hero.js" | resources.Minify | resources.Fingerprint }}
-  <script type="module" src="{{ $js.RelPermalink }}" defer></script>
+  {{- $js := resources.Get "js/demo.js" | resources.Minify | resources.Fingerprint }}
+  <script type="module" src="{{ $js.RelPermalink }}"></script>
 {{- end }}

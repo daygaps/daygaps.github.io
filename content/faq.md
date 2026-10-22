@@ -14,7 +14,7 @@ To add a gap, click the inline *+ Add gap* button just above the day's footer, o
 
 A gap has a start time and no end time. The app derives the most a gap can hold from where the next fixed thing begins, the next gap or the next calendar event, and shows it with the gap's header. Change the plan and the math follows.
 
-A gap whose start time falls inside a calendar event renders with a background tint. The tint states the overlap and nothing more; whether that means work-during-the-seminar, an agenda for the meeting, or last-minute prep is your call. See [Concepts](/concepts/) for the full gap model.
+A gap whose start time falls inside a calendar event names the event beside its own name: *during Weekly 1:1*. That states the overlap and nothing more; whether that means work-during-the-seminar, an agenda for the meeting, or last-minute prep is your call. See [Concepts](/concepts/) for the full gap model.
 
 On iPhone, tap the gap's header to open the same editor. Swipe left on a gap header to delete it.
 
@@ -24,7 +24,7 @@ The relationship is read-only, in one direction, by your choice. You pick which 
 
 The per-calendar choice earns its keep quickly. Many people keep a calendar of events they only need to know about, kept visible to a workplace scheduler so the time reads as blocked. Leave that one out and let the calendars you act on come through: the events that shape your gaps are the ones that actually claim you.
 
-What the events buy you inside {{< brand >}}: a map of the day's fixed posts drawn alongside your gaps, a live list of the true open stretches between events (click one to claim it as a named gap starting at that time), the derived maximum each gap can hold, and the tint on any gap that sits inside an event. All of it is recomputed as the day changes, so nothing goes stale when a meeting moves.
+What the events buy you inside {{< brand >}}: a map of the day's fixed posts drawn alongside your gaps, a live list of the true open stretches between events (click one to claim it as a named gap starting at that time), the derived maximum each gap can hold, and the name of the event any gap sits inside. All of it is recomputed as the day changes, so nothing goes stale when a meeting moves.
 
 ## Scheduling tasks
 
@@ -32,7 +32,7 @@ Every task can be **dated**, **gap-assigned**, **both**, or **neither**. Dating 
 
 To reschedule on the Mac, click the calendar glyph on any task row. The popover offers a calendar and, for today, a row of "Today @ HH:mm" gap pills so you can pick the date and the gap in one click.
 
-On iPhone, the trailing swipe (drag left) opens Reschedule, one sheet for picking the new day and the gap on that day. The leading swipe (drag right) sets a due date instead; the two swipes cover the two dates a task can carry.
+On iPhone, swipe from the left to schedule a task: one sheet for picking the new day and the gap on that day. Swipe from the right to select it; the bar that appears offers Schedule, Deadline, Move, Subtask and Delete for every selected task.
 
 Drag-and-drop also works on the Mac:
 
@@ -89,16 +89,13 @@ What this means in practice:
 
 Sync timing is determined by Apple's silent-push pipeline. Most of the time it's effectively realtime. Occasionally a Mac that's been asleep takes a few seconds to catch up; the apps fall back to a periodic poll so even a missed push gets reconciled within a minute.
 
-## Mac and iPhone together
+## Mac, iPhone and iPad together
 
-Both apps read and write the same iCloud zone. The CloudKit records are the shared state.
+All three read and write the same iCloud zone. The CloudKit records are the shared state.
 
-What lives where:
+Since 1.1 the iPhone and iPad are full peers of the Mac: project pages, area pages, Deadlines and Plan are the same pages with the same actions on every device. Two things stay on the Mac: the menu-bar timer and the plain-text bridge.
 
-- **Planning and structural work on the Mac.** Creating projects, archiving, renaming areas, scheduling reminders, the menu-bar timer, drag-reorder of sections, the calendar inspector. Things you do at a desk with a keyboard.
-- **Last-minute replanning and capture on the iPhone.** Marking done, setting deadlines, rescheduling, focusing one gap, adding to the inbox between meetings. Things you do walking around.
-
-The iPhone is read-mostly for project structure. Renaming or deleting a project, and other structural surgery, happens on the Mac.
+When the same task is changed on two devices before they sync, the edits merge field by field. Only the same field changed differently on both devices loses one of the two changes, and the app names that field when it happens.
 
 ## Sharing a project
 
@@ -110,9 +107,9 @@ Scheduling stays personal. Which day and which gap you put a task into, what you
 
 On the Mac, **CMD-click** a gap header to arm the menu-bar timer for that gap. Pick a duration (25 / 45 / 90 minutes or custom). The menu bar shows the countdown. A gentle ping plays at zero. CMD-click the same gap header again (or use the menu-bar *End* item) to stop early. The timer has no pause: wall-clock time keeps moving whether you're paying attention or not.
 
-On iPhone, **tap a gap's header** to enter focus mode for that gap. The other gaps hide, plus Carried Over and Anytime. The screen narrows to the block of time you're trying to live inside. Tap the focused header again to come back to the full day. There's no timer on the phone: the focus is the filter.
+The gap that matters now sits in the **now island** at the bottom of every page, on the Mac and on the phone, with a ring counting down and the time left. Click or tap it, or press **⌘F** on the Mac, and the **focus card** opens: that gap's tasks, a pie of what is done, and the time remaining. On the Mac the window fades behind it. Ticking tasks off is the only thing to do on the card; close it to rename, reschedule or sort.
 
-Two interpretations of "focus" for two different surfaces.
+The headers of **Anytime** and **Carried over** open the same card, so those tasks can be done without scheduling them first.
 
 ## Undo
 
@@ -120,13 +117,15 @@ Every destructive operation on the Mac (delete task, delete subtask, delete head
 
 Only the most recent destructive operation is undoable. Once the toast disappears, the change is permanent.
 
-iPhone undo is via the same swipe in reverse: re-tap a completed task to un-check it; if you rescheduled by accident, swipe again and pick the original date.
+On iPhone, re-tap a completed task's checkbox to un-check it. Deleting several selected tasks undoes as one step: shake to undo.
 
 ## Keyboard (Mac)
 
 | Shortcut    | Action                                                              |
 | ----------- | ------------------------------------------------------------------- |
 | ⌘T          | Go to Today                                                         |
+| ⌘F          | Open the focus card for the current gap                             |
+| ⌥⇧⌘← / ⌥⇧⌘→ | Collapse or expand all subtasks                                     |
 | ⌘\[          | Toggle the right pane                                               |
 | ⌘⌃I         | Toggle the right pane (Apple's binding, also wired)                 |
 | ⌘⇧N         | Open the current view in a new focused window                       |
@@ -136,7 +135,7 @@ iPhone undo is via the same swipe in reverse: re-tap a completed task to un-chec
 | ⌘Z          | Undo the last destructive operation (while the toast is showing)    |
 | ⌘?          | Open DayGaps Help                                                   |
 
-The iPhone app has no keyboard shortcut layer; gestures cover the same territory.
+On iPhone, gestures cover the same territory.
 
 ## What's intentionally missing
 

@@ -11,7 +11,7 @@ Everything about {{< brand >}}, gathered in one place. Start with **Concepts** f
 {{< card title="Patterns" href="/patterns/" link="See the days →" >}}Full days lived with {{< brand >}}, from meeting-fractured to wide open.{{< /card >}}
 {{< card title="Philosophy" href="/philosophy/" link="Read the thinking →" >}}Why the app reports and renders but never concludes, and what that restraint buys you.{{< /card >}}
 {{< card title="AI bridge" href="/ai/" link="How it works →" >}}Hand your plans to the assistant of your choice as plain text, and take the result back. The doorway is yours.{{< /card >}}
-{{< card title="iPhone" href="/ios/" link="See the phone →" >}}The same gaps in your pocket, built in the phone's own idiom.{{< /card >}}
+{{< card title="iPhone and iPad" href="/ios/" link="See the phone →" >}}The same gaps and the same pages in your pocket, with gestures made for the phone.{{< /card >}}
 {{< card title="FAQ" href="/faq/" link="Browse the FAQ →" >}}The operational details, and every keyboard shortcut on the Mac. Mirrors the in-app Help.{{< /card >}}
 {{< card title="Changelog" href="/changelog/" link="See the changelog →" >}}What has shipped, release by release.{{< /card >}}
 {{< card title="Privacy" href="/privacy/" link="Read it →" >}}Short, because there is nothing to disclose. No servers, no account, no analytics.{{< /card >}}

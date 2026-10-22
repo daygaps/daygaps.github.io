@@ -1,18 +1,18 @@
 ---
 title: "Get the app"
-description: "DayGaps for Mac is a direct download. The iPhone app is in private TestFlight. Here is how to get both."
-date: 2026-06-10
+description: "DayGaps for Mac is a direct download. The iPhone and iPad app is in private TestFlight. Here is how to get both."
+date: 2026-10-21
 ---
 
-{{< brand >}} runs on Mac and iPhone. The Mac app is a direct download you can run today. The iPhone app is in private TestFlight, by invitation. Leave your iCloud email at the download and we will bring you into the phone beta too.
+{{< brand >}} runs on Mac, iPhone and iPad. The Mac app is a direct download you can run today. The iPhone and iPad app is in private TestFlight, by invitation. Leave your iCloud email at the download and we will bring you into that beta too.
 
 ## Download for Mac
 
 {{< mac-download >}}
 
-This is a release-candidate build of v1.0: the format is stable and {{< brand >}} now runs the author's actual daily plans. It syncs through your private iCloud zone, so signing into the same iCloud account on your other devices is the whole setup.
+This is a test build of version 1.1: the format is stable and {{< brand >}} runs the author's actual daily plans. It syncs through your private iCloud zone, so signing into the same iCloud account on your other devices is the whole setup.
 
-## The iPhone beta
+## The iPhone and iPad beta
 
 {{< beta-signup >}}
 
@@ -20,17 +20,17 @@ Once you are invited, install the **TestFlight** app from the App Store, sign in
 
 ## What's in this build
 
-Version **1.0.2**. A polish pass on the 1.0 release: dark and tinted app icons, one-tap subtask collapsing, and an AI bridge that now has its own Settings tab and points at your local protocol file. Universal Mac plus iPhone and iPad, syncing through your private iCloud zone. The full surface is on the [changelog](/changelog/); the short version:
+Version **1.1**. A visual refresh and a parity release. The Mac moves to a light look with Liquid Glass and page actions in the title bar. The iPhone and iPad become full peers of the Mac. A new Plan page lays out the week, and the focus card holds the gap you are in. The full list is on the [changelog](/changelog/); the short version:
 
-- Today, This Week, Deadlines, Anyday, Inbox, Areas, Projects, Settings, all native on iPhone.
-- One gesture vocabulary across every list: tap for done, leading swipe for deadline, trailing swipe for reschedule, long-press for move.
-- iCloud sync end to end, with a local cache for offline writes.
-- Mac focus mode is a Pomodoro timer in the menu bar. iPhone focus mode is a visual filter on Today. (Different shapes for different surfaces.)
-- An optional YAML bridge on Mac for a plaintext mirror of your data.
+- **Focus.** The now island at the bottom of every page shows the current gap and the time left. Tap it, or press ⌘F on the Mac, for the focus card: the gap's tasks, a pie of what is done, and the time remaining.
+- **Plan** (formerly This Week). The days of the week side by side with their gaps. Drag tasks onto a day or into a gap; drag them back to the To plan column to unplan them. An overview counts deadlines, waiting tasks and open time.
+- **iPhone and iPad as peers.** Project, area, Deadlines and Plan pages are shared with the Mac. Swipe from the left to schedule, from the right to select.
+- **Safer sync.** Edits made on two devices before they sync merge field by field.
+- **A new app icon.**
 
-This is beta software. The format is stable, but TestFlight and a direct release candidate are the right venues for it until external review is done.
+This is beta software. The format is stable, but TestFlight and a direct download are the right venues for it until external review is done.
 
-## When v1.0 ships
+## At launch
 
 {{< brand >}} will be a **one-time purchase** on the App Store. All updates through the 1.x series are included, and there is no subscription. The launch opens at a reduced introductory price.
 
@@ -38,17 +38,18 @@ This is beta software. The format is stable, but TestFlight and a direct release
 
 Beta testers will be the first to know; everyone else can watch this page or the [changelog](/changelog/).
 
-## Known gaps
+## Known issues
 
-The roadmap is on the [changelog page](/changelog/). Items still in flight:
+Known in the 1.1 test builds and being worked on:
 
-- Some keyboard shortcuts are not yet wired into menu commands on Mac.
-- Area deletion is intentionally restricted while the empty-only path is designed.
-- iPhone drag-reorder on Today is parked while the swipe vocabulary settles.
+- A shared project can lose its shared mark after the app restarts, and Stop Sharing on iPhone has no effect yet.
+- Refresh from iCloud in Settings has sometimes needed more than one attempt.
+- On the iPad, areas in the sidebar do not yet expand to show their projects.
 
 ## What we'd love feedback on
 
-- Does the two-mode framing (overview vs. focus) match the way you actually work?
+- Does the focus card hold what you need while you work through a gap, and nothing more?
+- Does Plan make the week easier to lay out than scheduling task by task?
 - Anywhere the chrome feels too loud at rest?
 - Anywhere a feature feels like more work than it saves?
 - Sync timing across devices: does an edit on the Mac surface fast enough on the iPhone, and vice versa?

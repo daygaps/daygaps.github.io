@@ -1,10 +1,11 @@
 # daygaps-site
 
-Marketing site for **DayGaps**: a task app for Mac and iPhone built around the gap.
+Marketing site for **DayGaps**: a task manager for Mac, iPhone and iPad built around the gap.
 
 Hand-rolled Hugo site, no external theme. Custom layouts under `layouts/`,
-single stylesheet under `assets/css/main.css`, single hero script under
-`assets/js/hero.js`. GitHub Pages deploy is wired up in
+single stylesheet under `assets/css/main.css`, and one small script,
+`assets/js/demo.js`, for the focus demo on the home page. GitHub Pages
+deploy is wired up in
 `.github/workflows/hugo.yml`.
 
 ## Local development
@@ -21,9 +22,7 @@ Then from this directory:
 hugo server -D
 ```
 
-The dev server runs at http://localhost:1313 with live reload. The hero
-scroll animation only works in a real browser; Hugo's reloader doesn't
-interfere with it.
+The dev server runs at http://localhost:1313 with live reload.
 
 To preview the production build (minified, fingerprinted CSS, etc.):
 
@@ -44,14 +43,31 @@ daygaps-site/
 │   └── changelog.md
 ├── layouts/
 │   ├── _default/                   # baseof, single, list
-│   ├── index.html                  # home page (split-logo hero)
-│   └── partials/                   # head, header, footer, hero-checklist
+│   ├── index.html                  # home page
+│   └── partials/                   # head, header, footer, brand-inline, app-view
+│       └── ui/                     # the app drawn in HTML: Mac window, Today,
+│                                   # focus card, now island, calendar panel,
+│                                   # iPhone, widget, Plan, overview
 ├── assets/
 │   ├── css/main.css                # single stylesheet
-│   └── js/hero.js                  # scroll-progress driver for the hero
+│   └── js/demo.js                  # ticking and opening/closing the focus card
 ├── static/                         # served at /
 └── .github/workflows/hugo.yml      # GitHub Pages deploy
 ```
+
+## Colors and the app renderings
+
+The site uses the app's own palette (see the design guide, level 2): one ink
+at several strengths, Apple's system surfaces, the system blue as the one
+accent, the system red for urgency, and Apple's area colors. The accent keeps
+its meanings from the app: time still ahead, now, and the one primary action.
+All colors are tokens at the top of `main.css`, with dark-mode values beside
+them.
+
+The app pictures on the home page and in the `appview` shortcode are drawn in
+HTML from the partials under `layouts/partials/ui/`, so they follow light and
+dark mode and stay sharp. When the app's look changes, change those partials
+to match the app; do not invent a look for the site.
 
 ## Renaming the product
 
@@ -61,7 +77,7 @@ rename:
 ```toml
 [params.brand]
 name      = "Some Other Name"
-nameLeft  = "Some"          # left half of the hero wordmark
+nameLeft  = "Some"          # left half of the wordmark
 nameRight = "OtherName"     # right half
 ```
 

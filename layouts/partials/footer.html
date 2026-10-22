@@ -3,11 +3,11 @@
   <div class="site-footer__inner">
     <div class="site-footer__brand">
       <a class="site-footer__mark" href="{{ "/" | relURL }}" aria-label="{{ $brand.name }}, home">
-        <img class="site-footer__icon" src="{{ "/icons/favicon-128.png" | relURL }}" alt="" width="26" height="26">
+        <picture><source srcset="{{ "/icons/favicon-128-dark.png" | relURL }}" media="(prefers-color-scheme: dark)"><img class="site-footer__icon" src="{{ "/icons/favicon-128.png" | relURL }}" alt="" width="26" height="26"></picture>
         <span class="wordmark wordmark--small" aria-hidden="true"><span class="wordmark__left">{{ $brand.nameLeft }}</span><span class="wordmark__right">{{ $brand.nameRight }}</span></span>
       </a>
       <p class="site-footer__tag">{{ $brand.tagline | safeHTML }}</p>
-      <p class="site-footer__pitch">A calm task manager for the open time in your day, on Mac and iPhone.</p>
+      <p class="site-footer__pitch">A calm task manager for the open time in your day, on Mac, iPhone and iPad.</p>
     </div>
 
     <nav class="site-footer__col site-footer__col--wide" aria-label="Explore">
@@ -41,7 +41,7 @@
   </div>
 
   <div class="site-footer__base">
-    <p class="site-footer__meta">&copy; {{ now.Year }} {{ partial "brand-inline.html" . }}. Built with <a href="https://gohugo.io" rel="external nofollow">Hugo</a>.</p>
+    <p class="site-footer__meta">&copy; {{ now.Year }} {{ partial "brand-inline.html" . -}}. Built with <a href="https://gohugo.io" rel="external nofollow">Hugo</a>.</p>
     <p class="site-footer__note">No account, no tracking. Your data stays in your iCloud.</p>
   </div>
 </footer>

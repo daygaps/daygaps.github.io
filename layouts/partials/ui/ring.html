@@ -1,0 +1,13 @@
+{{- /* The now island's ring: one gap counting down. A full accent arc for
+       the time still ahead, from twelve o'clock clockwise, over a faint
+       track, with a dot at the arc's end marking now. Context: fraction of
+       the gap still ahead (0..1). */ -}}
+{{- $f := . | default 0.48 -}}
+{{- $r := 7.25 -}}
+{{- $c := mul 2 (mul 3.14159265 $r) -}}
+{{- $a := mul $f 360.0 -}}
+<svg class="ring" viewBox="0 0 20 20" aria-hidden="true">
+  <circle class="ring__track" cx="10" cy="10" r="{{ $r }}"/>
+  <circle class="ring__arc" cx="10" cy="10" r="{{ $r }}" transform="rotate(-90 10 10)" stroke-dasharray="{{ mul $c $f }} {{ $c }}"/>
+  <g transform="rotate({{ $a }} 10 10)"><circle class="ring__dot" cx="10" cy="5.1" r="1.25"/></g>
+</svg>

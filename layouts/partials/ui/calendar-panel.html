@@ -1,0 +1,20 @@
+{{- /* The calendar panel (the inspector's Calendar tab) for the same day:
+       the calendar's events, and the open windows the app finds between
+       them. A window shows a thin gray line; the window holding now has the
+       accent line with a tick at the current time, and the part already
+       past turns gray. Length pills: accent while ahead, quiet once past. */ -}}
+<div class="cal">
+  <div class="cal__top">
+    <span class="cal__day">Today</span>
+    <span class="cal__switch"><span>Show my gaps</span><span class="switch" aria-hidden="true"></span></span>
+  </div>
+  <ol class="tl">
+    <li class="tl__row tl__row--event"><span class="tcol"><span class="tcol__start">9:00</span><span class="tcol__end">10:30 AM</span></span><span class="tl__ev"><span class="dot" style="--c:var(--cal-purple)"></span>Lab meeting</span></li>
+    <li class="tl__row tl__row--win is-past"><span class="tcol"><span class="tcol__start">10:30 AM</span><span class="tcol__end">12:00 PM</span></span><span class="tl__line"></span><span class="lpill">1h 30m</span></li>
+    <li class="tl__row tl__row--event"><span class="tcol"><span class="tcol__start">12:00</span><span class="tcol__end">1:00 PM</span></span><span class="tl__ev"><span class="dot" style="--c:var(--cal-green)"></span>Brownbag seminar</span></li>
+    <li class="tl__row tl__row--win is-now" style="--now:0.52"><span class="tcol"><span class="tcol__start">1:00</span><span class="tcol__end">3:30 PM</span></span><span class="tl__line"><span class="tl__tick"></span></span><span class="lpill">2h 30m</span></li>
+    <li class="tl__row tl__row--event"><span class="tcol"><span class="tcol__start">3:30</span><span class="tcol__end">4:00 PM</span></span><span class="tl__ev"><span class="dot" style="--c:var(--cal-purple)"></span>Weekly 1:1</span></li>
+    <li class="tl__row tl__row--win is-ahead"><span class="tcol"><span class="tcol__start">4:00</span><span class="tcol__end">6:00 PM</span></span><span class="tl__line"></span><span class="lpill">2h</span></li>
+    <li class="tl__row tl__row--event"><span class="tcol"><span class="tcol__start">6:00</span><span class="tcol__end">7:00 PM</span></span><span class="tl__ev"><span class="dot" style="--c:var(--cal-green)"></span>Piano lesson</span></li>
+  </ol>
+</div>

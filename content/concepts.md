@@ -91,9 +91,9 @@ A gap has no end time to maintain. {{< brand >}} looks at where the next fixed t
 
 The calendar side of this is read-only by design. {{< brand >}} reads the calendars you choose to share and writes nothing back; your events show up as the fixed posts of the day, and your calendar remains the system of record for them. The calendar pane also lists the true open stretches it derives between events, kept current as the day changes. Click one and it becomes a named gap, starting right where the open time starts.
 
-Tasks scheduled into a gap appear under its header in Today. They arrive in a consistent order on their own, and when the gap's time comes, the only verb left is checking things off. Focus a gap and the rest of the day steps back.
+Tasks scheduled into a gap appear under its header in Today. They arrive in a consistent order on their own, and when the gap's time comes, the only verb left is checking things off. Open the gap from the now island, or with ⌘F on the Mac, and it becomes the focus card: its tasks, a pie of what is done, and the time left, with the rest of the app faded behind it.
 
-**A gap can also live inside a calendar event.** Set a gap's start time inside a meeting and {{< brand >}} tints it to show the overlap. The app states the geometric fact and stops there; what the overlap *means* is yours. Work you intend to do during a seminar. Notes to raise in the meeting. The two minutes of prep right before you speak. The same mechanism carries all of them.
+**A gap can also live inside a calendar event.** Set a gap's start time inside a meeting and {{< brand >}} names the meeting beside the gap: *during Weekly 1:1*. The app states the geometric fact and stops there; what the overlap *means* is yours. Work you intend to do during a seminar. Notes to raise in the meeting. The two minutes of prep right before you speak. The same mechanism carries all of them.
 
 ## Tags that come and go
 
@@ -103,7 +103,7 @@ Tags are read from the tasks in front of you, every time, and stored nowhere. Th
 
 ## Filtering by area or tag
 
-Every list view (Today, This Week, a project page) can be narrowed by an area or by a tag. Area chips appear at the top of any list that spans areas; tap one and only that area's tasks remain. Tag chips sit beside the area chips, derived from the tasks actually present in the view; tap one and the list filters to it. Combine an area with a tag and the list filters to the intersection.
+Every list view (Today, Plan, a project page) can be narrowed by an area or by a tag. Area chips appear at the top of any list that spans areas; tap one and only that area's tasks remain. Tag chips sit beside the area chips, derived from the tasks actually present in the view; tap one and the list filters to it. Combine an area with a tag and the list filters to the intersection.
 
 Filters are always view-scoped and reset when you leave the view. There is no saved-filter state to manage and no smart-list to keep tidy. The chips are up-to-the-minute: they show only what the current view actually contains, so the same button never lies.
 

@@ -22,7 +22,7 @@ You open the app and the only thing in front of you is *Before 11am call*. Two t
 
 You do them. You close the app. The meeting starts.
 
-{{< appview mode="focus" caption="The ten minutes before a meeting, in focus." >}}
+{{< appview mode="focus" caption="A gap in focus: the card holds its tasks and the time left; the day waits behind it." >}}
 
 ## Capturing mid-day without breaking flow
 
@@ -52,9 +52,9 @@ So you name the gaps yourself. *Morning deep work. After lunch. Evening reading.
 
 You schedule the same tasks under those gaps that you'd schedule under any others. The app doesn't care that no meeting brackets your morning. It cares that you named the gap.
 
-By 9 AM you're in *Morning deep work*. The rest of the day is faded. You start.
+By 9 AM you're in *Morning deep work*. You tap the now island, the card opens, and the rest of the day fades behind it. You start.
 
-{{< appview mode="solo" caption="No meetings on the calendar. The gaps are yours to draw." >}}
+{{< appview mode="solo" caption="Inside the gap: one card, its tasks, and the time left." >}}
 
 ## A Pomodoro afternoon
 
@@ -68,9 +68,9 @@ The gap holds the *what*. The timer holds the *pace*. Each is welcome without th
 
 Monday, 14:00, lab meeting. The lab shares a project, so everyone sees the same sections, the same tasks, the same deadlines, each person scheduling their own part into their own days.
 
-Your move happened during the week, in ten-second increments: every time something came up that should be raised on Monday, you scheduled it into a gap you'd placed at 14:00, inside the meeting itself. The app tints that gap to show it overlaps a calendar event, and draws no conclusions about why.
+Your move happened during the week, in ten-second increments: every time something came up that should be raised on Monday, you scheduled it into a gap you'd placed at 14:00, inside the meeting itself. The app notes that the gap sits *during* the meeting, and draws no conclusions about why.
 
-The meeting starts. Your phone shows the tinted gap and the items under it, assembled into an agenda by nothing more than where you chose to put them. You raise each one, check it off, and the shared project's progress updates for everyone in the room.
+The meeting starts. Your phone shows the gap and the items under it, assembled into an agenda by nothing more than where you chose to put them. You raise each one, check it off, and the shared project's progress updates for everyone in the room.
 
 ---
 

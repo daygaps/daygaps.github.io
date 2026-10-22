@@ -2,127 +2,143 @@
 {{ define "main" }}
 {{- $brand := site.Params.brand -}}
 {{- $cta := site.Params.cta -}}
+{{- $mac := site.Params.macApp -}}
 
-{{/* ---------- HERO: the day fills as you scroll ------------------------- */}}
-{{/* Logo and the day's gap headers are static and fill the viewport. The   */}}
-{{/* sticky stage pins while scroll fills each gap with its tasks (hero.js   */}}
-{{/* drives one --p value); when the gaps are full the pin releases into     */}}
-{{/* plain scroll. The panel mirrors the app's Today view.                   */}}
-<section class="hero" aria-labelledby="hero-heading">
-  <div class="hero__stage">
-    <div class="hero__grid">
-      <div class="hero__copy">
-        <div class="hero__lockup">
-          <h1 id="hero-heading" class="wordmark wordmark--hero" aria-label="{{ $brand.name }}"><span class="wordmark__left" aria-hidden="true">{{ $brand.nameLeft }}</span><span class="wordmark__right" aria-hidden="true">{{ $brand.nameRight }}</span></h1>
-          <p class="hero__tagline">{{ replace $brand.tagline "done" "<em class=\"t-done\">done</em>" | safeHTML }}</p>
-        </div>
-      </div>
-      <div class="hero__panel">
-        {{- partial "hero-today.html" . -}}
-      </div>
-    </div>
-    <p class="hero__scroll-hint" aria-hidden="true">
-      <span>Scroll to fill</span>
-      <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <rect x="1" y="1" width="12" height="20" rx="6" />
-        <line x1="7" y1="6" x2="7" y2="10" />
-      </svg>
-    </p>
-  </div>
-</section>
-
-{{/* ---------- WHY: belief statement -------------------------------------- */}}
-{{/* Opens the Sinek arc. Belief first, before any features or scenes. The */}}
-{{/* visitor decides whether they nod here. If they do, the scenes below   */}}
-{{/* are HOW that belief manifests; plain files + CTA are the WHAT.        */}}
-<section class="band band--short">
-  <div class="band__inner">
-    <p class="band__one-liner">
-      Around everything you've already committed to on your calendar, there's open time that's still yours.<br>
-      {{ partial "brand-inline.html" . }} <span class="band__act">helps you name, plan, and use the gaps effectively.</span>
-    </p>
-  </div>
-</section>
-{{/* ---------- LIVE DEMO + FEATURE CARDS ---------------------------------- */}}
-{{- partial "focus-demo.html" . -}}
-
-{{- partial "feature-cards.html" . -}}
-
-{{/* ---------- iOS TEASER: the phone, right after the cards ---------------- */}}
-<section class="band band--scene band--scene--reverse">
-  <div class="band__inner band__inner--scene">
-    <div class="scene__text">
-      <p class="band__kicker">And on your phone</p>
-      <h2 class="band__heading">The same gaps follow you off the desk.</h2>
-      <p>
-        The iPhone app reads the same iCloud zone as the Mac, so the day in your pocket is the day on your desk. Open it between meetings or on the walk to lunch. The Today view is right there, the inbox is one tap away, and the gestures match the way the day actually changes.
-      </p>
-      <p>
-        <strong>Tap</strong> to mark a task done. <strong>One swipe</strong> sets a due date. <strong>The other</strong> opens reschedule, where a new day and a new gap are one motion. The vocabulary is the same in Today, in This Week, and inside a project. <a href="{{ "/ios/" | relURL }}">See the phone in more detail</a>.
-      </p>
-    </div>
-    <div class="scene__figure">
-      {{ partial "iphone-today.html" . }}
-    </div>
-  </div>
-</section>
-
-{{/* ---------- BELIEF II: the judgment stays human -------------------------- */}}
-{{/* Second one-liner, bookending the opening belief. The app computes      */}}
-{{/* geometry; energy, mood, and the weight of tasks stay with the person.  */}}
-<section class="band band--short">
-  <div class="band__inner">
-    <p class="band__one-liner">
-      {{ partial "brand-inline.html" . }} computes the shape of your time. What fills it, and what it costs you, <em>stays yours to judge.</em>
-    </p>
-  </div>
-</section>
-
-{{/* ---------- DATA: private by architecture ------------------------------- */}}
-{{/* Two promises in one band: the sync story (private iCloud zone, no      */}}
-{{/* servers of ours) and the ownership story (bridge YAML for editors,     */}}
-{{/* git, and AI). The day-file sample shows bridge output.                 */}}
-<section class="band band--files">
-  <div class="band__inner band__inner--split">
-    <div>
-      <p class="band__kicker">Private by architecture</p>
-      <h2 class="band__heading">Your data lives in your iCloud. Nowhere else.</h2>
-      <p class="band__body band__body--narrow">
-        Your areas, projects, and days sync between your devices through your own private iCloud zone. There are no {{ partial "brand-inline.html" . }} servers, no account to create, and no analytics watching you work. <a href="{{ "/privacy/" | relURL }}">The privacy page</a> is short because there is nothing to disclose.
-      </p>
-      <p class="band__body band__body--narrow">
-        And when you want your plans as text, the bridge writes them to a folder as plain YAML: readable in any editor, diffable in git, and ready to <a href="{{ "/ai/" | relURL }}">hand to the AI assistant of your choice</a>. The app is meant to be operated <em>with</em> an AI, on your terms.
-      </p>
-    </div>
-    <pre class="band__file" aria-label="Example day file">date: 2026-05-15
-
-gaps:
-  - time: <span class="hl">"07:30"</span>
-    label: <span class="hl">Morning focus</span>
-
-  - time: <span class="hl">"10:00"</span>
-    label: <span class="hl">Before lab meeting</span>
-
-  - time: <span class="hl">"15:00"</span>
-    label: <span class="hl">Afternoon writing</span>
-
-  - time: <span class="hl">"21:00"</span>
-    label: <span class="hl">Evening proposal</span>
-</pre>
-  </div>
-</section>
-
-{{/* ---------- FINAL CTA ------------------------------------------------- */}}
-<section class="band band--cta">
-  <div class="band__inner">
-    <img class="cta-icon" src="{{ "/icons/app-icon-512.png" | relURL }}" alt="{{ $brand.name }} app icon" width="88" height="88">
-    <h2 class="band__heading band__heading--cta">{{ partial "brand-inline.html" . }} is a task manager for Mac and iPhone, in {{ site.Params.releaseStage }}.</h2>
-    <p class="band__body band__body--center">Native apps. Universal binary on the Mac (macOS 14+). iPhone via TestFlight (iOS 17+).</p>
-    <p class="band__body band__body--center">One-time purchase when v1.0 ships. All 1.x updates included, and there is no subscription to manage.</p>
+{{/* ---------- Hero: the focus card, open over the faded Today window ------ */}}
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <p class="hero__eyebrow"><picture><source srcset="{{ "/icons/favicon-128-dark.png" | relURL }}" media="(prefers-color-scheme: dark)"><img class="hero__eyebrow-icon" src="{{ "/icons/favicon-128.png" | relURL }}" alt="" width="34" height="34"></picture>{{ $brand.name }} {{ $mac.version }} for Mac, iPhone and iPad</p>
+    <h1 class="hero__title" id="hero-h">A task manager for the time between your meetings.</h1>
+    <p class="lede">Your calendar holds the fixed parts of the day. {{ partial "brand-inline.html" . }} finds the open time between them, lets you name it and give it work, and when that time comes, shows you that work and nothing else.</p>
     <p class="cta-row">
       <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
-      <a class="btn btn--ghost"   href="{{ "/start/" | relURL }}">Start in one sitting</a>
-      <a class="btn btn--ghost"   href="{{ "/patterns/" | relURL }}">See how it fits a day</a>
+      <a class="btn btn--ghost" href="{{ "/start/" | relURL }}">Start in one sitting</a>
+    </p>
+    <div class="hero__stage">
+      {{ partial "ui/mac-window.html" (dict "live" true "focus" true) }}
+      <p class="hero__note">This is the focus card for the gap you are in. Tick a task, or click outside the card to see the day behind it.</p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Focus: how you reach the card ------------------------------- */}}
+<section class="band band--alt" aria-labelledby="focus-h">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">Focus</p>
+      <h2 class="h2" id="focus-h">When a gap begins, one card holds its work.</h2>
+      <p class="lede">The card shows the gap you are in: its times, the calendar event it falls inside, a pie of what is done, and the time left. The only thing to do on it is tick tasks off. Renaming, rescheduling and sorting wait until you step back out.</p>
+    </div>
+
+    <div class="ways">
+      <article class="way">
+        <div class="way__viz">{{ partial "ui/island.html" dict }}</div>
+        <h3>The now island</h3>
+        <p>The gap that matters now sits at the bottom of every page, its ring counting down the time left. One click or tap opens its card.</p>
+      </article>
+      <article class="way">
+        <div class="way__viz"><span class="keys" aria-label="Command F"><span class="key">⌘</span><span class="key">F</span></span></div>
+        <h3>Command-F from any page</h3>
+        <p>On the Mac, focus on the current gap from wherever you are. Command-click a gap's header to time it from the menu bar as well.</p>
+      </article>
+      <article class="way">
+        <div class="way__viz">{{ partial "ui/widget.html" . }}</div>
+        <h3>On the Home Screen and desktop</h3>
+        <p>The widget is the same card seen from outside the app: the gap, its pie, the time left, and the gaps still to come today.</p>
+      </article>
+    </div>
+
+    <div class="after-ways">
+      <p><strong>Anytime and Carried over focus too.</strong> Their headers open the same card, so a task can be ticked off where it is, without scheduling it first.</p>
+      <p><strong>Gaps before or after the work day</strong> have no end to count down to. They stay current until their stretch of the day is over, so the evening's gap is there all evening.</p>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- The shape of the day ----------------------------------------- */}}
+<section class="band" aria-labelledby="shape-h">
+  <div class="wrap split">
+    <div class="copy">
+      <p class="kicker">The shape of the day</p>
+      <h2 class="h2" id="shape-h">Your calendar sets the fixed posts. The time between them is yours.</h2>
+      <p class="lede">{{ partial "brand-inline.html" . }} reads the calendars you choose and writes nothing back. Between their events it finds the open windows and keeps them current as the day moves.</p>
+      <p>The window you are in carries a blue line with a tick at the present moment, and the time already past turns gray. A blue length means time still ahead.</p>
+      <p>A gap is a name and a start time: <em>Writing, 1:00 PM</em>. Its end comes from the next fixed thing, a calendar event or your next gap, so there is no end time to keep up to date. Put a gap inside a meeting and it says so, <em>during Weekly 1:1</em>, which is how the points you want to raise find their way into the room.</p>
+      <p>The app computes the shape of your time. What fills it, and what it costs you, stays yours to judge.</p>
+    </div>
+    <div class="tile tile--cal">{{ partial "ui/calendar-panel.html" . }}</div>
+  </div>
+</section>
+
+{{/* ---------- Plan -------------------------------------------------------- */}}
+<section class="band band--alt" aria-labelledby="plan-h">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">Plan</p>
+      <h2 class="h2" id="plan-h">Lay out the week by dragging.</h2>
+      <p class="lede">Plan shows the days of the week side by side, each with the gaps you have named. Drag a task from the To plan column onto a day or into a gap; drag it back and it is unplanned again.</p>
+    </div>
+    <div class="stack-lg">{{ partial "ui/plan.html" . }}</div>
+    <div class="split stack-lg">
+      <div>{{ partial "ui/overview.html" . }}</div>
+      <div class="copy">
+        <p><strong>The overview counts; it does not list.</strong> Deadlines by how near they are, what waits in Anyday, Carried over and the Inbox, and the open time still ahead on the days shown. Each count opens what it counts.</p>
+        <p><strong>One row of area chips</strong> filters the To plan column, every day and the overview together, so a week of work can be planned without a week of everything else in view.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- iPhone and iPad ---------------------------------------------- */}}
+<section class="band" aria-labelledby="ios-h">
+  <div class="wrap split split--flip">
+    <div class="copy">
+      <p class="kicker">iPhone and iPad</p>
+      <h2 class="h2" id="ios-h">The same app in your pocket.</h2>
+      <p class="lede">The iPhone and iPad are full peers of the Mac. Projects, areas, Deadlines and Plan are the same pages with the same actions, reading the same private iCloud data.</p>
+      <ul class="points">
+        <li><strong>One row at the bottom</strong>: the calendar, the now island, and Capture to Inbox.</li>
+        <li><strong>Swipe from the left</strong> to schedule a task. <strong>Swipe from the right</strong> to select it; a bar then offers Schedule, Deadline, Move, Subtask and Delete for everything selected.</li>
+        <li><strong>A light tap</strong> when the focus card settles, and a fainter one when a task is checked off.</li>
+        <li><strong>On iPad</strong>, the sidebar is one long list, as on the Mac, and can be hidden or widened.</li>
+      </ul>
+      <p class="more-link"><a href="{{ "/ios/" | relURL }}">More about the iPhone app</a></p>
+    </div>
+    <div>{{ partial "ui/iphone.html" . }}</div>
+  </div>
+</section>
+
+{{/* ---------- Principles ---------------------------------------------------- */}}
+<section class="band band--alt" aria-labelledby="ways-h">
+  <div class="wrap">
+    <div class="center">
+      <p class="kicker">However you work</p>
+      <h2 class="h2" id="ways-h">It bends to your process, not the other way around.</h2>
+      <p class="lede">Time-block, Pomodoro, GTD, or pure improvisation. {{ partial "brand-inline.html" . }} holds whichever you bring, and lets it change from one project or one day to the next. It stays out of the way, so the only thing in front of you is the stuff that needs doing.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">{{ partial "ui/icon.html" "cloud" }}<h3>Your iCloud, and nothing else.</h3><p>Everything syncs through your private iCloud. No account, no servers of ours, no third-party SDKs. <a href="{{ "/privacy/" | relURL }}">The privacy page</a> is short.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "calendar" }}<h3>Reads your calendar. Writes nothing.</h3><p>It reads the calendars you choose, and never writes a thing back to them.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "flag" }}<h3>A deadline, when it has one.</h3><p>The one date the app presses you on. It turns orange as it nears and red on the day.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "tag" }}<h3>Tags that come and go.</h3><p>Write <em>#anything</em> in a task's title and it becomes a filter. Nothing is registered, so nothing needs cleaning up.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "inbox" }}<h3>Capture now, sort later.</h3><p>Capture to Inbox sits in the same place on every page. File the item into a project later, and your note travels with it.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "bell-line" }}<h3>A nudge when a gap opens.</h3><p>An optional, quiet reminder at the start of a gap. Only if you ask for one.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "person" }}<h3>Share a project.</h3><p>Hand a project to a collaborator over iCloud. The plan is shared; each person's schedule stays their own.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "doc" }}<h3>Plain text when you want it.</h3><p>On the Mac, the bridge writes your plans to a folder as YAML, for your editor, for git, or for <a href="{{ "/ai/" | relURL }}">the AI assistant of your choice</a>.</p></div>
+      <div class="principle">{{ partial "ui/icon.html" "check" }}<h3>One price, paid once.</h3><p>No subscription. Every 1.x update is included. <a href="{{ "/pricing/" | relURL }}">Pricing</a></p></div>
+    </div>
+  </div>
+</section>
+
+{{/* ---------- Closing ------------------------------------------------------- */}}
+<section class="band closing" aria-labelledby="close-h">
+  <div class="wrap center">
+    <picture><source srcset="{{ "/icons/app-icon-512-dark.png" | relURL }}" media="(prefers-color-scheme: dark)"><img class="closing__icon" src="{{ "/icons/app-icon-512.png" | relURL }}" alt="{{ $brand.name }} app icon" width="96" height="96"></picture>
+    <h2 class="h2" id="close-h">{{ partial "brand-inline.html" . }} {{ $mac.version }} is in {{ site.Params.releaseStage }}.</h2>
+    <p class="lede">The Mac app is a signed, notarized download. The iPhone and iPad apps come through TestFlight, by invitation.</p>
+    <p class="cta-row">
+      <a class="btn btn--primary" href="{{ $cta.primaryHref | relURL }}">{{ $cta.primaryLabel }}</a>
+      <a class="btn btn--ghost" href="{{ "/concepts/" | relURL }}">Read the concepts</a>
     </p>
   </div>
 </section>

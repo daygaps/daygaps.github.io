@@ -1,8 +1,125 @@
 ---
 title: "Changelog"
 description: "What's shipped, and what's next."
-date: 2026-05-30
+date: 2026-10-21
 ---
+
+## v1.1 · October 21, 2026
+
+A visual refresh and a parity release. The Mac moves to a light look with Liquid Glass and page actions in the title bar. The iPhone and iPad become full peers of the Mac: the project, area, Deadlines and Plan pages are now the same pages on every device. A new Plan page and an overview of counts help with planning the week, focus becomes one card for the gap you are in, sync gets safer when two devices edit the same thing, and the app has a new icon. No schema change.
+
+### Focus
+
+- **Now island.** A small floating island shows the current gap's name, its time left and a ring counting down. Same look on Mac and iPhone.
+- **Focus card.** Tapping the island opens one card of the current gap's tasks, with a pie of tasks done and the time left beneath it. On the Mac the window fades behind the card. The card names the calendar event a gap falls inside.
+- **Anytime and Carried over** open the focus card from their headers, so their tasks can be ticked off without rescheduling.
+- **Open-ended gaps** stay current until their stretch of the day ends (island, ⌘F, widget).
+- **Widget** built from the focus card's pieces: time and gap heading with the pie, time left for the running gap, the day's other gaps when there is room.
+
+### Planning
+
+- **Plan page (formerly This Week).** Day columns follow your locale's week and page by week. Tasks drag onto a day or a gap; dragging back to the To plan column unplans them. The sidebar now reads Today, Deadlines, Anyday, Inbox, Plan.
+- **To plan column.** The left column of Plan, with Anyday and Carried over views. A DUE chip and one row of area chips filter the column, every day, and the overview.
+- **Overview.** An inspector beside Calendar on Plan and Today. It gives counts and names no task: four deadline boxes; Anyday, Carried over and Inbox; open time; areas and projects. Each box opens what it counts.
+- **Open time.** Every open window in the calendar panel shows a thin gray line; the window holding now has the accent line, with a tick at the current time.
+- **Calendar panel.** Events and gaps first, the month below. A *Show my gaps* switch replaces the old expand glyph.
+- **Dragging on Today.** A task in a gap, Carried over or Anytime can be dropped on any gap of the day or on Anytime, on Mac and iPhone.
+
+### Mac
+
+- **Light visual refresh** with Liquid Glass gap cards, area chips and tag chips.
+- **Page actions in the title bar.** The bottom bar is gone. The inspector has its own toolbar with detach and the calendar toggle.
+- **Drag from anywhere on a row.** The grips are gone from tasks, sections and an area's projects. A hairline shows where a drop will land.
+- **Right-click menus** on tasks, section headers, subtasks and an area's projects.
+- **Subtasks.** Collapse All and Expand All Subtasks in the View menu (⌥⇧⌘← and ⌥⇧⌘→). Option-click folds a section with its subtasks.
+
+### iPhone and iPad
+
+- **One bottom row**: calendar, now island and Capture to Inbox.
+- **Project page** shared with the Mac: rename, deadline, editable notes, sections, tag filter, and a ⋯ menu. Section folds are remembered per device.
+- **Area page** shared with the Mac: completed groups, dates, sub-area folding, reorder, move to sub-area, Edit, Hide and Delete Area.
+- **Selecting tasks.** Swipe from the right to select, swipe from the left to schedule. While tasks are selected, a bar offers Schedule, Deadline, Move, Subtask and Delete. Deleting several tasks undoes as one step (shake to undo).
+- **Today.** Even rows with clearer space between gaps, and one button to fold or unfold all subtasks.
+- **Haptics.** A light tap when the focus card settles, a faint one when a task is checked off, and the error pattern for a sync error.
+- **iPad.** The sidebar is one long list, as on the Mac, with the wordmark at its foot; it can be hidden and widened.
+
+### Glyphs and icon
+
+- **Projects are circles** with a pie of tasks done; a finished project shows a check, a project held by the bridge a lock. **Areas** are a grid of four circles. All stock SF Symbols.
+- **New app icon.** An ink D and G with a gold wedge in the gap, on white. In dark mode, a white letter on deep teal ink.
+
+### Sync and data
+
+- **Edits from two devices merge field by field.** When the same record changes on two devices before they sync, each field is merged against the last version each device saw. Only the same field changed differently on both loses anything, and the banner names the field.
+- **Quick check and uncheck** no longer shows "overwritten by another device" or loses the last tap.
+- **The bridge closes without touching files it did not write.**
+
+## v1.0.5 · July 26, 2026
+
+A visual and structural pass. The right inspector gets a calmer gap treatment (only the gap containing "now" stays fully coral; the rest recess into cream), the marketing site ports the same visual language, and a batch of iPhone Today polish tightens the day the phone shows you.
+
+### The right inspector: muted cutouts (redesign)
+
+- **Only "now" is loud.** Non-present gaps drop to cream and rely on an inset shadow to read as recessed. The present gap keeps the full coral fill it earned in 1.0.4. Two states instead of three; the visual quiets down when the clock isn't inside the gap.
+- **Collapsed hairlines follow the same rule.** Non-present gap hairlines render in 35%-alpha coral. The present one stays full. Bookend (off-hours) hairlines drop to a muted slate.
+- **Text on cream.** Range and duration in ink, entries in medium-ink uppercase with tracked lettering, bullet visible against cream. Text-on-cream contrast tested for both light and dark appearances.
+
+### iPhone Today, authoritative pass
+
+- **Two-line rows.** Every task in Today shows title + a secondary line with due chip, area chip, and project (or gap on This Week). Reads faster than a single dense line and the DUE chip has room to breathe.
+- **A dynamic calendar-icon Today button.** The top-right button draws the current day of month inside the calendar mark, so at a glance the button matches the date it navigates to.
+- **Area filters live in the ⋯ menu.** The top-right overflow menu gathers *Add gap* and *filter by area* (each area's color chip inline). Removes the row of filter chips from the header without hiding the capability.
+- **Inline action cluster on the selected row.** Tap a row to select it; a small pencil + trash cluster appears on the right of the row. Replaces the system context menu for the two most common operations. Long-press still moves.
+- **Persistent bottom sheet hosts on-demand sheets.** IOSBottomSheet owns the root modal slot, so no more races between the always-open planner and a transient reschedule.
+
+### Mac
+
+- **Section drag-reorder persistence, fixed.** The v1.0.1 known issue is closed; a section moved in a project stays moved across relaunches.
+- **Toolbar cleanup.** `sharedBackgroundVisibility(.hidden)` kills the glass from behind toolbar chrome, so the title bar reads as a hairline instead of a bar. Primary-action buttons resolve to the window trailing edge, not the split-view root.
+
+### Marketing site
+
+- **daygaps.com repalette + type port.** The site adopts the app's v1.0.5 visual language: three-tone cream stack (page, card, header), one shared coral-scarce discipline, SF Pro across all body copy, Futura reserved for the wordmark alone. Feature cards on the landing page use the Bootstrap-style card-header idiom the app inspector introduced.
+- **Documentation cards standardized.** Every /docs/, /concepts/, /start/ card renders in the same panel treatment as the landing cards, with the CTA link on its own line.
+
+## v1.0.4 · July 19, 2026
+
+The release where the right inspector gets its permanent home for gaps and the app grows the last few connective tissues: derived gap durations, live links inside task titles, and a real reorder mechanic that persists.
+
+### The right inspector: gap cutouts (new)
+
+- **Every gap in the inspector renders as a coral cutout.** Range on the left, duration on the right, entries beneath. The bookend (pre-dawn / after-hours) gap gets the same shape in a cool tone to signal off-hours.
+- **Between-event captions.** Calendar events sit between cutouts as small captioned rows, so the inspector reads as an alternating dance of "you decided" (cutout) and "the world decided" (event).
+- **Derived durations.** Each gap's max capacity is computed from the next fixed thing (next gap or next event) and rendered next to the range. Change your plan, the math updates. No end-time to maintain by hand.
+
+### Live links in task titles
+
+- **URLs, phone numbers, and emails become clickable in place.** `NSDataDetector` runs on every title; matches are underlined and open in the system handler on tap. Double-clicking a task no longer accidentally triggers a link because the openURL path guards on click-vs-double-click by timestamp.
+
+### Reorder that persists
+
+- **Native grip-armed drag on projects and areas.** Long-press to arm, drag to move, release to commit. The move survives relaunch and syncs to iCloud.
+- **Renaming a gap's time cascades.** Change 10:30 to 10:00 on a gap and every task assigned to the old time follows, so the schedule doesn't quietly drift.
+
+### Ephemeral tagging polish
+
+- **The `#tag` mechanic is fully derived.** No tag registry, no rename ceremony. Delete the last task that carries a tag and the tag stops existing. The tag chips on Today are recomputed each open.
+
+## v1.0.3 · July 8, 2026
+
+Widgets. And a batch of small planning-surface tightening around the calendar inspector.
+
+### Widgets (new)
+
+- **Three sizes.** Small: the next gap and its first two tasks. Medium: the current gap in full with all its tasks, plus a tap-to-mark-done affordance. Large: today at a glance, gap by gap.
+- **Subtask-aware.** A parent task with open subtasks shows the subtask count; the widget won't let you complete a parent while subtasks are open, same rule as the app.
+- **Tap-to-focus and tap-to-done.** Tap a gap to open the app focused on that gap. Tap a checkbox to complete the task without leaving the Home Screen.
+- **Light and dark.** Widget backgrounds pick up the system appearance; text renders in the same ink family the app uses.
+
+### Planning surface
+
+- **Calendar inspector gains the "claim this open time as a gap" affordance.** The between-events open stretches the inspector already derives are now clickable: pick one and it becomes a named gap starting at that time.
+- **Gap glyph tightened.** The bell icon for reminder-enabled gaps sits on the baseline of the header instead of half a line above it.
 
 ## v1.0.2 · July 1, 2026
 

@@ -1,0 +1,54 @@
+{{- /* The Plan page in 1.1: the To plan column (Anyday and Carried over) and
+       the day columns, each with its gaps. A task is shown mid-drag onto a
+       gap, with the hairline where it will land. Content is invented. */ -}}
+<div class="plan" role="img" aria-label="The Plan page: a To plan column and two day columns, with a task being dragged into a gap">
+  <div aria-hidden="true">
+  <div class="plan__top">
+    <span class="plan__title">Plan</span><span class="plan__range">Oct 19 – 25</span>
+    <div class="chiprow">
+      <span class="chip chip--area" style="--a:var(--area-pink);--at:var(--area-pink-text)">Research</span>
+      <span class="chip chip--area" style="--a:var(--area-teal);--at:var(--area-teal-text)">Teaching</span>
+      <span class="chip chip--area" style="--a:var(--area-green);--at:var(--area-green-text)">Personal</span>
+    </div>
+  </div>
+  <div class="plan__cols">
+    <div class="pcol">
+      <div class="seg"><span class="is-on">Anyday</span><span>Carried over</span></div>
+      <section class="tsec">
+        <header class="tsec__head">Due, not planned</header>
+        <div class="row">{{ partial "ui/checkbox.html" (dict "state" "soon") }}<div class="row__main"><span class="row__t">Post the problem set</span><span class="row__p">Soil physics</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="tsec__head">Soil carbon paper</header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Write the abstract</span></div></div>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Check units in table 3</span></div></div>
+      </section>
+    </div>
+    <div class="pcol">
+      <div class="pcol__head pcol__head--today"><span>Today</span></div>
+      <section class="tsec">
+        <header class="gh"><span class="gh__time">1:00 PM</span><span class="gh__sep">·</span><span class="gh__name">Writing</span><span class="gh__len">2h 30m</span></header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Draft results, section 3</span></div></div>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Update the methods table</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="gh"><span class="gh__time">4:00 PM</span><span class="gh__sep">·</span><span class="gh__name">Late afternoon</span><span class="gh__len">2h</span></header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Book the field van</span></div></div>
+      </section>
+    </div>
+    <div class="pcol">
+      <div class="pcol__head"><span>Thursday</span></div>
+      <section class="tsec">
+        <header class="gh"><span class="gh__time">8:30 AM</span><span class="gh__sep">·</span><span class="gh__name">Morning writing</span><span class="gh__len">1h 30m</span></header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Revise the discussion</span></div></div>
+        <div class="drop-line"></div>
+        <div class="row is-dragging">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Write the abstract</span></div></div>
+      </section>
+      <section class="tsec">
+        <header class="tsec__head">Anytime</header>
+        <div class="row">{{ partial "ui/checkbox.html" dict }}<div class="row__main"><span class="row__t">Renew parking permit</span></div></div>
+      </section>
+    </div>
+  </div>
+  </div>
+</div>

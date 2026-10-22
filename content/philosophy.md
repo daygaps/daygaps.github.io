@@ -24,13 +24,13 @@ You don't live your day in twenty-minute increments, and you don't live it as "T
 
 Your day has two halves. One half is already structured: meetings, classes, meals, errands, the walk, sleep. The parts that have a time and place. The other half is in the gaps between, and that half is yours to direct.
 
-{{< brand >}} has two modes for the two halves, though it doesn't label them on the screen. Before the day starts, you're planning. The whole interface exists to help you decide what each gap is for. Once you're inside a gap, you're executing. The other gaps fade and the other projects step out of the way, and what's in front of you is one slice of time and a few tasks beneath it.
+{{< brand >}} has two modes for the two halves, though it doesn't label them on the screen. Before the day starts, you're planning. The whole interface exists to help you decide what each gap is for. Once you're inside a gap, you're executing. The focus card opens over the faded app, and what's in front of you is one slice of time, the time left in it, and a few tasks to tick off.
 
-{{< appview mode="focus" caption="Click a gap to focus it. The others quiet down." >}}
+{{< appview mode="focus" caption="Open the now island and the gap you are in becomes one card. The rest of the app fades behind it." >}}
 
-Or open the gap as its own window, with no sidebar and no way to navigate elsewhere. The friction is the feature. The next time you want to switch contexts, you close the window. That's the only gesture there is.
+The card holds no buttons for planning. Renaming, rescheduling and sorting mean stepping out of the gap, and the friction is the feature: the next time you want to switch contexts, you close the card.
 
-{{< appview mode="solo" caption="A gap opened as a standalone window. No sidebar, no inspector, no escape hatch." >}}
+{{< appview mode="solo" caption="The focus card: the gap's times, its tasks, a pie of what is done, and the time left." >}}
 
 Both modes are calm. Neither asks for grooming.
 
@@ -38,7 +38,7 @@ Both modes are calm. Neither asks for grooming.
 
 Your calendar is the system of record for events, and {{< brand >}} treats it that way. The app reads the calendars you choose to share and writes nothing back. Events arrive as facts: the fixed posts of the day, drawn alongside your gaps so the open time is visible at a glance.
 
-From those facts the app derives everything else it shows you. The true gaps between events, listed live in the calendar pane, one click away from becoming a named gap that starts where the open time starts. The most each gap can hold, read from where the next fixed thing begins. The quiet tint on a gap that sits inside an event, whether that event is a seminar or an hour you blocked to think.
+From those facts the app derives everything else it shows you. The true gaps between events, listed live in the calendar pane, one click away from becoming a named gap that starts where the open time starts. The most each gap can hold, read from where the next fixed thing begins. The quiet note on a gap that sits inside an event, *during* its name, whether that event is a seminar or an hour you blocked to think.
 
 Derived means never stored, and never stored means never stale. When a meeting runs long or a class moves, there is no saved schedule waiting to be repaired; the geometry recomputes and the day reads true again. The plan you keep is the part you meant: the gaps you named and the tasks you placed. The arithmetic around them is the app's job, every time, from scratch.
 

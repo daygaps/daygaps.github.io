@@ -12,7 +12,7 @@ That is the whole loop, and very nearly the whole app. This page walks you from 
 
 ## Install
 
-{{< brand >}} runs on the Mac (macOS 14 and later) and on iPhone (iOS 17 and later). The [Get the app](/beta/) page has the current way in.
+{{< brand >}} runs on the Mac, the iPhone and the iPad. The [Get the app](/beta/) page has the current way in and the system versions each one needs.
 
 Sign into the same iCloud account on every device. That is the whole setup: your data lives in your private iCloud zone, and any device signed into that account sees the same areas, projects, and days. There is no account to create and no folder to pick.
 
@@ -56,9 +56,9 @@ Three or four tasks per gap, rarely more. The point of the exercise is that when
 
 ## Do the work
 
-When a gap's time comes, open Today. Its tasks sit under its header. Check them off as you go; completed tasks stay visible with a strikethrough, so the day ends as a record of what happened rather than an empty list.
+When a gap's time comes, its name appears in the **now island** at the bottom of every page, with the time left. Click or tap the island and the **focus card** opens: just that gap's tasks, a pie of what is done, and the time remaining. Check them off as you go. On the Mac, Command-F does the same from anywhere.
 
-Click a gap to focus it and the rest of the day quiets down. On the phone, tap the gap's header for the same effect.
+Completed tasks stay visible with a strikethrough, so the day ends as a record of what happened rather than an empty list.
 
 ## The next morning
 
